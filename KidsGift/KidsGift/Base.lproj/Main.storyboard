@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Dag-7U-wjQ">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="GFI-ei-kUG">
+            <objects>
+                <navigationController id="Dag-7U-wjQ" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lcM-uS-XeJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="rZ6-VF-NeH" kind="relationship" relationship="rootViewController" id="zCM-VD-kbW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rNZ-sJ-fbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="231" y="-293"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tBc-cF-hA9">
+            <objects>
+                <navigationController storyboardIdentifier="navigationSetting" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z4c-BQ-RO4" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="s0m-f5-3EG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="oTd-Xb-xLp" kind="relationship" relationship="rootViewController" id="qiq-ou-OW1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ey-i8-B4Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="230.5" y="524.5"/>
+        </scene>
+        <!--Gr Setting View Controller-->
+        <scene sceneID="3VN-6N-JZg">
+            <objects>
+                <viewController storyboardIdentifier="VMGrSettingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oTd-Xb-xLp" customClass="VMGrSettingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vPE-PG-o00"/>
+                        <viewControllerLayoutGuide type="bottom" id="gr8-OW-0gU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Q7X-Ka-Hmk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Setting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGd-Yy-gE1">
+                                <rect key="frame" x="153" y="315" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="HEn-Z2-W6g"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b3P-1Y-jFn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="773.5" y="524.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CSv-Ir-Laf">
+            <objects>
+                <navigationController storyboardIdentifier="navigationMatches" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BCD-eN-tc7" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="v6O-7S-Oz3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="3q2-Ld-kex" kind="relationship" relationship="rootViewController" id="gbd-fb-uet"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lU6-YM-hth" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="230.5" y="1304.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="UXT-pU-4Vs">
+            <objects>
+                <navigationController id="Pkv-YB-B7w" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pb0-qC-Lva">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="nwb-Ul-PbA" kind="relationship" relationship="rootViewController" id="bKu-Cq-t8d"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mQT-2u-92j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="230.5" y="2179.5"/>
+        </scene>
+        <!--Gr Matches View Controller-->
+        <scene sceneID="5Mj-9c-sWv">
+            <objects>
+                <viewController storyboardIdentifier="VMGrMatchesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3q2-Ld-kex" customClass="VMGrMatchesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vyi-RC-5XR"/>
+                        <viewControllerLayoutGuide type="bottom" id="HnC-5u-qgw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AJB-Gf-kyr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Matches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ud-f6-gAv">
+                                <rect key="frame" x="131" y="349" width="66" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YNr-kI-uMh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5E6-uH-sb2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="773.5" y="1304.5"/>
+        </scene>
+        <!--Gr Root View Controller-->
+        <scene sceneID="rM0-jE-HqI">
+            <objects>
+                <viewController storyboardIdentifier="VMGrRootViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nwb-Ul-PbA" customClass="VMGrRootViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0FM-7U-tEq"/>
+                        <viewControllerLayoutGuide type="bottom" id="WKk-s1-g13"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="T8e-qI-KuL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xpL-V4-WB3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="doY-Gb-XlQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="787.5" y="2179.5"/>
+        </scene>
+        <!--Gr Login View Controller-->
+        <scene sceneID="HaF-BD-LDK">
+            <objects>
+                <viewController storyboardIdentifier="VMGrLoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rZ6-VF-NeH" customClass="VMGrLoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3rt-5W-pB6"/>
+                        <viewControllerLayoutGuide type="bottom" id="eP5-Ga-DNf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9FC-eJ-t66">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gig-oW-2F4">
+                                <rect key="frame" x="63" y="381" width="263" height="30"/>
+                                <state key="normal" title="Google"/>
+                                <connections>
+                                    <action selector="authGoogleAction:" destination="rZ6-VF-NeH" eventType="touchUpInside" id="Aub-Fr-xjs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CgY-Sg-T2r">
+                                <rect key="frame" x="43" y="308" width="359" height="41"/>
+                                <state key="normal" title="Facebook" image="button_fb.png"/>
+                                <connections>
+                                    <action selector="authFacebookAction:" destination="rZ6-VF-NeH" eventType="touchUpInside" id="HL2-qG-HcQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Eti-HO-9LZ"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9dx-Ma-6iU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="773.5" y="-293.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="button_fb.png" width="280" height="41"/>
+    </resources>
+</document>

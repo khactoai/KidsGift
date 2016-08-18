@@ -1,0 +1,14 @@
+platform :ios, '7.0'
+
+target "KidsGift" do
+    pod 'Firebase'
+    pod 'Firebase/Auth'
+    pod 'GoogleSignIn'
+    pod 'FBSDKCoreKit'
+    pod 'FBSDKShareKit'
+    pod 'FBSDKLoginKit'
+    pod 'RESideMenu'
+    pod 'Reachability'
+    pod 'MBProgressHUD'
+
+end
