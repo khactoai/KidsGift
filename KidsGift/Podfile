@@ -3,6 +3,8 @@ platform :ios, '7.0'
 target "KidsGift" do
     pod 'Firebase'
     pod 'Firebase/Auth'
+    pod 'Firebase/Storage'
+    
     pod 'GoogleSignIn'
     pod 'FBSDKCoreKit'
     pod 'FBSDKShareKit'
@@ -10,5 +12,6 @@ target "KidsGift" do
     pod 'RESideMenu'
     pod 'Reachability'
     pod 'MBProgressHUD'
+    pod 'AFNetworking'
 
 end

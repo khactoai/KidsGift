@@ -37,6 +37,10 @@
 		D7C347C21D65BD7C0051E728 /* VMGrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C347C01D65BD7C0051E728 /* VMGrViewController.m */; };
 		D7C347C61D65BDD80051E728 /* VMGrSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C347C51D65BDD80051E728 /* VMGrSettingViewController.m */; };
 		D7C347CA1D65BE0A0051E728 /* VMGrMatchesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C347C91D65BE0A0051E728 /* VMGrMatchesViewController.m */; };
+		D7D573D51D66D1B400205DFB /* no_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D573D21D66D1B400205DFB /* no_avatar.png */; };
+		D7D573D61D66D1B400205DFB /* no_avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D573D31D66D1B400205DFB /* no_avatar@2x.png */; };
+		D7D573D71D66D1B400205DFB /* no_avatar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D573D41D66D1B400205DFB /* no_avatar@3x.png */; };
+		D7D573DB1D67172700205DFB /* VMGrUtilsFirebase.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D573DA1D67172700205DFB /* VMGrUtilsFirebase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +84,11 @@
 		D7C347C81D65BE0A0051E728 /* VMGrMatchesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrMatchesViewController.h; sourceTree = "<group>"; };
 		D7C347C91D65BE0A0051E728 /* VMGrMatchesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrMatchesViewController.m; sourceTree = "<group>"; };
 		D7C347CB1D65BE520051E728 /* AppConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
+		D7D573D21D66D1B400205DFB /* no_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_avatar.png; sourceTree = "<group>"; };
+		D7D573D31D66D1B400205DFB /* no_avatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_avatar@2x.png"; sourceTree = "<group>"; };
+		D7D573D41D66D1B400205DFB /* no_avatar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_avatar@3x.png"; sourceTree = "<group>"; };
+		D7D573D91D67172700205DFB /* VMGrUtilsFirebase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrUtilsFirebase.h; sourceTree = "<group>"; };
+		D7D573DA1D67172700205DFB /* VMGrUtilsFirebase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrUtilsFirebase.m; sourceTree = "<group>"; };
 		ED410AB8FEC030D6262B4670 /* Pods-KidsGift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsGift.release.xcconfig"; path = "Pods/Target Support Files/Pods-KidsGift/Pods-KidsGift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +142,7 @@
 		D7C347701D6579C40051E728 /* KidsGift */ = {
 			isa = PBXGroup;
 			children = (
+				D7D573D81D6716FF00205DFB /* Model */,
 				D7C3478F1D6585B20051E728 /* Resources */,
 				D7C3478B1D6585480051E728 /* ViewController */,
 				D7C347741D6579C40051E728 /* AppDelegate.h */,
@@ -198,6 +208,9 @@
 		D7C347A91D6587C20051E728 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D7D573D21D66D1B400205DFB /* no_avatar.png */,
+				D7D573D31D66D1B400205DFB /* no_avatar@2x.png */,
+				D7D573D41D66D1B400205DFB /* no_avatar@3x.png */,
 				D7C347B21D65884B0051E728 /* button_gg.png */,
 				D7C347B31D65884B0051E728 /* button_gg@2x.png */,
 				D7C347B01D6587FC0051E728 /* bg_main_m.png */,
@@ -244,6 +257,15 @@
 				D7C347C91D65BE0A0051E728 /* VMGrMatchesViewController.m */,
 			);
 			path = MatchesVC;
+			sourceTree = "<group>";
+		};
+		D7D573D81D6716FF00205DFB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D7D573D91D67172700205DFB /* VMGrUtilsFirebase.h */,
+				D7D573DA1D67172700205DFB /* VMGrUtilsFirebase.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,7 +328,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7D573D61D66D1B400205DFB /* no_avatar@2x.png in Resources */,
 				D7C347A71D6585F20051E728 /* launch.png in Resources */,
+				D7D573D51D66D1B400205DFB /* no_avatar.png in Resources */,
 				D7C347B41D65884B0051E728 /* button_gg.png in Resources */,
 				D7C347AF1D6587EB0051E728 /* button_fb@3x.png in Resources */,
 				D7C3479D1D6585E40051E728 /* icon_m_40pt.png in Resources */,
@@ -322,6 +346,7 @@
 				D7C347B11D6587FC0051E728 /* bg_main_m.png in Resources */,
 				D7C347A11D6585E40051E728 /* icon_m_60pt@2x.png in Resources */,
 				D7C347811D6579C40051E728 /* Assets.xcassets in Resources */,
+				D7D573D71D66D1B400205DFB /* no_avatar@3x.png in Resources */,
 				D7C3477F1D6579C40051E728 /* Main.storyboard in Resources */,
 				D7C347AE1D6587EB0051E728 /* button_fb@2x.png in Resources */,
 				D7C3479C1D6585E40051E728 /* icon_m_29pt@3x.png in Resources */,
@@ -390,6 +415,7 @@
 				D7C347C61D65BDD80051E728 /* VMGrSettingViewController.m in Sources */,
 				D7C347761D6579C40051E728 /* AppDelegate.m in Sources */,
 				D7C347CA1D65BE0A0051E728 /* VMGrMatchesViewController.m in Sources */,
+				D7D573DB1D67172700205DFB /* VMGrUtilsFirebase.m in Sources */,
 				D7C347C11D65BD7C0051E728 /* VMGrRootViewController.m in Sources */,
 				D7C347C21D65BD7C0051E728 /* VMGrViewController.m in Sources */,
 				D7C347731D6579C40051E728 /* main.m in Sources */,
@@ -509,6 +535,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = KidsGift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobifocuz.kidsgift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -522,6 +549,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = KidsGift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobifocuz.kidsgift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
