@@ -14,4 +14,7 @@
 
 @interface VMGrLoginViewController : UIViewController <GIDSignInUIDelegate>
 
+- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error;
+- (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error;
+
 @end

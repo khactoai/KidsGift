@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32866B761D67C04F00B13F04 /* VMGrAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32866B751D67C04F00B13F04 /* VMGrAlertView.m */; };
+		32866B791D67C08200B13F04 /* VMGrUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 32866B781D67C08200B13F04 /* VMGrUtilities.m */; };
 		9AB1F056A8602065B35CECCA /* libPods-KidsGift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C3C6109726BC2F29CE45FF2 /* libPods-KidsGift.a */; };
 		D7C347731D6579C40051E728 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C347721D6579C40051E728 /* main.m */; };
 		D7C347761D6579C40051E728 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C347751D6579C40051E728 /* AppDelegate.m */; };
@@ -46,6 +48,10 @@
 /* Begin PBXFileReference section */
 		0DC14D30BA8ADC80BEE32024 /* Pods-KidsGift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsGift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KidsGift/Pods-KidsGift.debug.xcconfig"; sourceTree = "<group>"; };
 		1C3C6109726BC2F29CE45FF2 /* libPods-KidsGift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KidsGift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		32866B741D67C04F00B13F04 /* VMGrAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrAlertView.h; sourceTree = "<group>"; };
+		32866B751D67C04F00B13F04 /* VMGrAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrAlertView.m; sourceTree = "<group>"; };
+		32866B771D67C08200B13F04 /* VMGrUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrUtilities.h; sourceTree = "<group>"; };
+		32866B781D67C08200B13F04 /* VMGrUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrUtilities.m; sourceTree = "<group>"; };
 		D7C3476E1D6579C40051E728 /* KidsGift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KidsGift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C347721D6579C40051E728 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D7C347741D6579C40051E728 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -104,6 +110,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32866B731D67C04100B13F04 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				32866B741D67C04F00B13F04 /* VMGrAlertView.h */,
+				32866B751D67C04F00B13F04 /* VMGrAlertView.m */,
+				32866B771D67C08200B13F04 /* VMGrUtilities.h */,
+				32866B781D67C08200B13F04 /* VMGrUtilities.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		484DBAD635114F06B0A18CF4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +159,7 @@
 		D7C347701D6579C40051E728 /* KidsGift */ = {
 			isa = PBXGroup;
 			children = (
+				32866B731D67C04100B13F04 /* Utilities */,
 				D7D573D81D6716FF00205DFB /* Model */,
 				D7C3478F1D6585B20051E728 /* Resources */,
 				D7C3478B1D6585480051E728 /* ViewController */,
@@ -411,6 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32866B761D67C04F00B13F04 /* VMGrAlertView.m in Sources */,
 				D7C347BB1D65BD660051E728 /* VMGrLoginViewController.m in Sources */,
 				D7C347C61D65BDD80051E728 /* VMGrSettingViewController.m in Sources */,
 				D7C347761D6579C40051E728 /* AppDelegate.m in Sources */,
@@ -418,6 +437,7 @@
 				D7D573DB1D67172700205DFB /* VMGrUtilsFirebase.m in Sources */,
 				D7C347C11D65BD7C0051E728 /* VMGrRootViewController.m in Sources */,
 				D7C347C21D65BD7C0051E728 /* VMGrViewController.m in Sources */,
+				32866B791D67C08200B13F04 /* VMGrUtilities.m in Sources */,
 				D7C347731D6579C40051E728 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

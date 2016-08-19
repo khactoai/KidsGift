@@ -27,19 +27,12 @@
     [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
     [GIDSignIn sharedInstance].delegate = self;
     
-    
-//    UIStoryboard *storyboard = self.window.rootViewController.storyboard;
-//    UIViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"VMGrRootViewController"];
-//    self.window.rootViewController = rootViewController;
-//    [self.window makeKeyAndVisible];
-    
-    
     FIRUser *mUser = [[FIRAuth auth] currentUser];
-    
     if (mUser) {
-        NSLog(@"User is Login with email: %@ , name: %@", mUser.displayName, mUser.email);
-    } else {
-        NSLog(@"User is Logout");
+        UIStoryboard *storyboard = self.window.rootViewController.storyboard;
+        UIViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"VMGrRootViewController"];
+        self.window.rootViewController = rootViewController;
+        [self.window makeKeyAndVisible];
     }
     
     
@@ -122,112 +115,19 @@
 #pragma mark Delegate Google
 
 - (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
-    if (error == nil) {
-        
-        if ([self.window.rootViewController isKindOfClass:[VMGrLoginViewController class]]) {
-            VMGrLoginViewController* loginVC = (VMGrLoginViewController*)self.window.rootViewController;
-            
-            
-        }
-        
-        NSLog(@"Class : %@", [self.window.rootViewController class]);
-        
-        
-        
-        
-        if (user.profile.hasImage) {
-            
-            NSUInteger dimension = round(300 * [[UIScreen mainScreen] scale]);
-            NSURL *imageURL = [user.profile imageURLWithDimension:dimension];
-            NSURLRequest *urlRequest = [NSURLRequest requestWithURL:imageURL];
-            
-            [self downloadImageProfile:urlRequest];
-            
-            
-        
-        }
-        
-        GIDAuthentication *authentication = user.authentication;
-        FIRAuthCredential *credential = [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
-                                         accessToken:authentication.accessToken];
-        
-        [[FIRAuth auth] signInWithCredential:credential
-                                  completion:^(FIRUser *user, NSError *error) {
-                                      // ...
-                                      if (error == nil) {
-                                          NSLog(@"Login success");
-                                      } else {
-                                          NSLog(@"Login False");
-                                      }
-                                      
-                                  }];
-    } else {
-        NSLog(@"%@", error.localizedDescription);
+    
+    if ([self.window.rootViewController isKindOfClass:[VMGrLoginViewController class]]) {
+        VMGrLoginViewController *loginVC = (VMGrLoginViewController*)self.window.rootViewController;
+        [loginVC signIn:signIn didSignInForUser:user withError:error];
     }
 }
 
 - (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error {
-    // Perform any operations when the user disconnects from app here.
+    if ([self.window.rootViewController isKindOfClass:[VMGrLoginViewController class]]) {
+        VMGrLoginViewController *loginVC = (VMGrLoginViewController*)self.window.rootViewController;
+        [loginVC signIn:signIn didDisconnectWithUser:user withError:error];
+    }
 }
-
-#pragma mark download image profile
-- (void)downloadImageProfile:(NSURLRequest*)request {
-    
-    
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    
-    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-        return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
-    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-        NSLog(@"File downloaded to: %@", filePath);
-        [self uploadFileToFireBase:filePath];
-    }];
-    [downloadTask resume];
-    
-}
-
-- (void)uploadFileToFireBase:(NSURL*)filePath {
-    
-    FIRStorage *storage = [FIRStorage storage];
-    
-    
-    
-    // Points to the root reference
-    FIRStorageReference *storageRef = [storage referenceForURL:@"gs://kidsgift-34c93.appspot.com"];
-    // Points to "images"
-    FIRStorageReference *imagesRef = [storageRef child:@"images"];
-    
-    // Points to "images/space.jpg"
-    // Note that you can use variables to create child values
-    NSString *fileName = @"space.jpg";
-    FIRStorageReference *spaceRef = [imagesRef child:fileName];
-    
-    // File path is "images/space.jpg"
-    NSString *path = spaceRef.fullPath;
-    
-    // File name is "space.jpg"
-    NSString *name = spaceRef.name;
-    
-    FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc] init];
-    metadata.contentType = @"image/jpeg";
-    
-    FIRStorageUploadTask *uploadTask = [spaceRef putFile:filePath metadata:metadata completion:^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
-        
-        if (error != nil) {
-            // Uh-oh, an error occurred!
-        } else {
-            // Metadata contains file metadata such as size, content-type, and download URL.
-            NSURL *downloadURL = metadata.downloadURL;
-        }
-        
-    }];
-    
-    
-    
-}
-
 
 @end
 
