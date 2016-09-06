@@ -9,8 +9,14 @@
 #import "AppDelegate.h"
 #import <AFNetworking.h>
 #import "VMGrLoginViewController.h"
+#import "AppConstant.h"
+#import <FirebaseDatabase/FirebaseDatabase.h>
 
-@interface AppDelegate () <UISplitViewControllerDelegate>
+@interface AppDelegate () <UISplitViewControllerDelegate> {
+    
+    FIRDatabaseReference *mRef;
+    FIRUser *mUser;
+}
 
 @end
 
@@ -24,17 +30,27 @@
     
     // Use Firebase library to configure APIs
     [FIRApp configure];
+    
+    mRef = [[FIRDatabase database] reference];
+    
+
     [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
     [GIDSignIn sharedInstance].delegate = self;
     
-    FIRUser *mUser = [[FIRAuth auth] currentUser];
+    
+    mUser = [[FIRAuth auth] currentUser];
     if (mUser) {
+        
+        NSDictionary *dicUser = @{FIR_USER_UID: mUser.uid,
+                                  FIR_USER_NAME: mUser.displayName};
+        
+        [[[mRef child:FIR_DATABASE_USERS] child:mUser.uid] updateChildValues:dicUser];
+        
         UIStoryboard *storyboard = self.window.rootViewController.storyboard;
         UIViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"VMGrRootViewController"];
         self.window.rootViewController = rootViewController;
         [self.window makeKeyAndVisible];
     }
-    
     
     return YES;
 }
@@ -106,6 +122,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [FBSDKAppEvents activateApp];
+    [self locationManagerStart];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -127,6 +144,61 @@
         VMGrLoginViewController *loginVC = (VMGrLoginViewController*)self.window.rootViewController;
         [loginVC signIn:signIn didDisconnectWithUser:user withError:error];
     }
+}
+
+#pragma mark - Location manager methods
+
+- (void)locationManagerStart {
+    if (self.locationManager == nil)
+    {
+        self.locationManager = [[CLLocationManager alloc] init];
+        [self.locationManager setDelegate:self];
+        [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+        if([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [self.locationManager requestWhenInUseAuthorization];
+        }
+        
+    }
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void)locationManagerStop {
+    [self.locationManager stopUpdatingLocation];
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    
+    if (mUser && newLocation) {
+        [self updateUserLocation:newLocation];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    
+    CLLocation *newLocation = [locations lastObject];
+    
+    if (mUser && newLocation) {
+        [self updateUserLocation:newLocation];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    
+}
+
+- (void)updateUserLocation:(CLLocation *)location{
+    
+    NSDictionary *dicUser = @{FIR_USER_UID: mUser.uid,
+                              FIR_USER_NAME: mUser.displayName,
+                              FIR_USER_LATITUDE: [NSNumber numberWithFloat:location.coordinate.latitude],
+                              FIR_USER_LONGITUDE: [NSNumber numberWithFloat:location.coordinate.longitude]};
+    
+    [[[mRef child:FIR_DATABASE_USERS] child:mUser.uid] updateChildValues:dicUser withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOCATION_UPDATE object:self];
+    }];
+    
 }
 
 @end

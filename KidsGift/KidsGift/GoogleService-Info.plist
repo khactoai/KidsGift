@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>230116747061-q6aldi42j7tso6ecrkjn6cqcdpkaivmq.apps.googleusercontent.com</string>
+	<string>230116747061-lfbcjavb7bdvn54q8ljg9bdbcjmkpi8j.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.230116747061-q6aldi42j7tso6ecrkjn6cqcdpkaivmq</string>
+	<string>com.googleusercontent.apps.230116747061-lfbcjavb7bdvn54q8ljg9bdbcjmkpi8j</string>
 	<key>API_KEY</key>
 	<string>AIzaSyATvaaKn_yJgFbCHpuwl3yj38PRlVmSoZA</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.mobifocuz.kidsgift</string>
+	<string>com.mobifocuz.kidsgifting</string>
 	<key>PROJECT_ID</key>
 	<string>kidsgift-34c93</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:230116747061:ios:1f7641dd4b973c8e</string>
+	<string>1:230116747061:ios:3af733a2b64f2a8f</string>
 	<key>DATABASE_URL</key>
 	<string>https://kidsgift-34c93.firebaseio.com</string>
 </dict>

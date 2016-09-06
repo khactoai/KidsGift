@@ -30,10 +30,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    //[FIRApp configure];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_main_m"]]];
     
     [GIDSignIn sharedInstance].uiDelegate = self;
-    
 }
 
 - (void)didReceiveMemoryWarning {

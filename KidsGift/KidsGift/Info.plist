@@ -11,7 +11,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>Kids Gifting</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -31,7 +31,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.230116747061-q6aldi42j7tso6ecrkjn6cqcdpkaivmq</string>
+				<string>com.googleusercontent.apps.230116747061-lfbcjavb7bdvn54q8ljg9bdbcjmkpi8j</string>
 			</array>
 		</dict>
 	</array>
@@ -40,7 +40,7 @@
 	<key>FacebookAppID</key>
 	<string>537651916443741</string>
 	<key>FacebookDisplayName</key>
-	<string>Kids Gift</string>
+	<string>Kids Gifting</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -72,6 +72,15 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We only use your location to show you things around you.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict/>
+	</dict>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

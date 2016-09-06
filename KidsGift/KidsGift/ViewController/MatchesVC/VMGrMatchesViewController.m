@@ -7,6 +7,7 @@
 //
 
 #import "VMGrMatchesViewController.h"
+#import "RESideMenu.h"
 
 @interface VMGrMatchesViewController ()
 
@@ -17,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self setLogoNavigation];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +36,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)menuAction:(id)sender {
+    
+    [self.sideMenuViewController presentLeftMenuViewController];
+}
 
 @end

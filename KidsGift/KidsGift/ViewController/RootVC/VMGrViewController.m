@@ -19,7 +19,7 @@
     // Do any additional setup after loading the view.
     
     [[self navigationController] setNavigationBarHidden:NO animated:NO];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bg_main"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bg_main_m"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
@@ -40,7 +40,7 @@
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 200.0, 40.0)];
     titleView.backgroundColor = [UIColor clearColor];
     UIImageView *imageLogo = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 79, 18)];
-    imageLogo.image = [UIImage imageNamed:@"logo"];
+    imageLogo.image = [UIImage imageNamed:@"logo_m"];
     [imageLogo setCenter:CGPointMake(titleView.frame.size.width/2, titleView.frame.size.height/2)];
     [titleView addSubview:imageLogo];
     self.navigationItem.titleView = titleView;
