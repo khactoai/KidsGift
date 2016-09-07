@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VMGrViewController.h"
 
-@interface VMGrSettingViewController : UIViewController
+@interface VMGrSettingViewController : VMGrViewController
 
 @end

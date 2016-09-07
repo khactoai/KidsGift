@@ -27,6 +27,9 @@
 		D71E19F61D7E991C00DCDCF3 /* icon_logout.png in Resources */ = {isa = PBXBuildFile; fileRef = D71E19F31D7E991C00DCDCF3 /* icon_logout.png */; };
 		D71E19F71D7E991C00DCDCF3 /* icon_logout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D71E19F41D7E991C00DCDCF3 /* icon_logout@2x.png */; };
 		D71E19F81D7E991C00DCDCF3 /* icon_logout@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D71E19F51D7E991C00DCDCF3 /* icon_logout@3x.png */; };
+		D76611971D7FCF5F00990506 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D76611941D7FCF5F00990506 /* arrow.png */; };
+		D76611981D7FCF5F00990506 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D76611951D7FCF5F00990506 /* arrow@2x.png */; };
+		D76611991D7FCF5F00990506 /* arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D76611961D7FCF5F00990506 /* arrow@3x.png */; };
 		D7C347731D6579C40051E728 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C347721D6579C40051E728 /* main.m */; };
 		D7C347761D6579C40051E728 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C347751D6579C40051E728 /* AppDelegate.m */; };
 		D7C3477F1D6579C40051E728 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C3477D1D6579C40051E728 /* Main.storyboard */; };
@@ -86,6 +89,9 @@
 		D71E19F31D7E991C00DCDCF3 /* icon_logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_logout.png; sourceTree = "<group>"; };
 		D71E19F41D7E991C00DCDCF3 /* icon_logout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_logout@2x.png"; sourceTree = "<group>"; };
 		D71E19F51D7E991C00DCDCF3 /* icon_logout@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_logout@3x.png"; sourceTree = "<group>"; };
+		D76611941D7FCF5F00990506 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		D76611951D7FCF5F00990506 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
+		D76611961D7FCF5F00990506 /* arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@3x.png"; sourceTree = "<group>"; };
 		D7C3476E1D6579C40051E728 /* KidsGift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KidsGift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C347721D6579C40051E728 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D7C347741D6579C40051E728 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -269,6 +275,9 @@
 		D7C347A91D6587C20051E728 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D76611941D7FCF5F00990506 /* arrow.png */,
+				D76611951D7FCF5F00990506 /* arrow@2x.png */,
+				D76611961D7FCF5F00990506 /* arrow@3x.png */,
 				D71E19F31D7E991C00DCDCF3 /* icon_logout.png */,
 				D71E19F41D7E991C00DCDCF3 /* icon_logout@2x.png */,
 				D71E19F51D7E991C00DCDCF3 /* icon_logout@3x.png */,
@@ -432,15 +441,18 @@
 				D7C347B11D6587FC0051E728 /* bg_main_m.png in Resources */,
 				D71E19F81D7E991C00DCDCF3 /* icon_logout@3x.png in Resources */,
 				D7C347A11D6585E40051E728 /* icon_m_60pt@2x.png in Resources */,
+				D76611991D7FCF5F00990506 /* arrow@3x.png in Resources */,
 				D7C347811D6579C40051E728 /* Assets.xcassets in Resources */,
 				D71E19F71D7E991C00DCDCF3 /* icon_logout@2x.png in Resources */,
 				D7D573D71D66D1B400205DFB /* no_avatar@3x.png in Resources */,
 				D71E19EE1D7E8E8600DCDCF3 /* icon_menu@3x.png in Resources */,
 				D71E19E11D7E894900DCDCF3 /* logo_text@2x.png in Resources */,
+				D76611971D7FCF5F00990506 /* arrow.png in Resources */,
 				D7C3477F1D6579C40051E728 /* Main.storyboard in Resources */,
 				D7C347AE1D6587EB0051E728 /* button_fb@2x.png in Resources */,
 				D71E19E81D7E8E5400DCDCF3 /* back_menu@3x.png in Resources */,
 				D7C3479C1D6585E40051E728 /* icon_m_29pt@3x.png in Resources */,
+				D76611981D7FCF5F00990506 /* arrow@2x.png in Resources */,
 				D7C347B51D65884B0051E728 /* button_gg@2x.png in Resources */,
 				D7C347A81D6585F20051E728 /* launch@2x.png in Resources */,
 				D71E19E21D7E894900DCDCF3 /* logo_text@3x.png in Resources */,

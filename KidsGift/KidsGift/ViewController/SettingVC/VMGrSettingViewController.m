@@ -11,6 +11,10 @@
 #import "AppConstant.h"
 #import <FirebaseDatabase/FirebaseDatabase.h>
 #import <AFNetworking.h>
+#import <GoogleSignIn/GoogleSignIn.h>
+#import "VMGrUtilities.h"
+#import "VMGrAlertView.h"
+#import "RESideMenu.h"
 
 @import Firebase;
 
@@ -26,10 +30,10 @@ enum CellMenu : NSUInteger {
 @interface VMGrSettingViewController () {
     
     NSArray *mArrCell;
-    NSString *mLocationAddressFromGG;
+    NSString *mLocationAddress;
     
     FIRDatabaseReference *mRef;
-    FIRUser *mUser;
+    FIRUser *mFIRUser;
 
 }
 
@@ -44,6 +48,7 @@ enum CellMenu : NSUInteger {
     // Do any additional setup after loading the view.
     self.tableSetting.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLocation) name:NOTIFICATION_LOCATION_UPDATE object:nil];
+    [self setLogoNavigation];
     
     mArrCell = [[NSArray alloc] initWithObjects:@"VMGrInfoViewCell",
                                                 @"VMGrLocationViewCell",
@@ -55,7 +60,7 @@ enum CellMenu : NSUInteger {
     
     
     mRef = [[FIRDatabase database] reference];
-    mUser = [[FIRAuth auth] currentUser];
+    mFIRUser = [[FIRAuth auth] currentUser];
     
 }
 
@@ -80,7 +85,7 @@ enum CellMenu : NSUInteger {
     int heightCell = 90;
     switch (indexPath.row) {
         case CellInfo:
-            heightCell = 100;
+            heightCell = 130;
             break;
         default:
             break;
@@ -101,14 +106,75 @@ enum CellMenu : NSUInteger {
         cell = [[VMGrMenuViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
+    switch (indexPath.row) {
+        case CellInfo:
+            cell.name.text = mFIRUser.displayName;
+            [self loadImageAvatar:cell.imgAvatar];
+            break;
+        case CellLocation:
+            break;
+        default:
+            break;
+    }
+    
     return cell;
 
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    switch (indexPath.row) {
+        case CellLogout:
+            /*
+            if (![VMGrUtilities connectedToNetwork]) {
+                [VMGrAlertView showAlertNoConnection];
+                return;
+            }
+            [[GIDSignIn sharedInstance] signOut];
+             */
+            break;
+        default:
+            break;
+    }
+    
+}
+
+
+- (void)loadImageAvatar:(UIImageView*)imageView {
+    
+    FIRStorage *storage = [FIRStorage storage];
+    FIRStorageReference *storageRef = [storage referenceForURL:FIR_STORAGE_SG];
+    FIRStorageReference *avatarRef = [storageRef child:FIR_STORAGE_AVATAR];
+    FIRStorageReference *uidRef = [avatarRef child:mFIRUser.uid];
+    
+    [uidRef dataWithMaxSize:1 * 1024 * 1024 completion:^(NSData * _Nullable data, NSError * _Nullable error) {
+        
+        if (error != nil) {
+            
+        } else {
+            UIImage *imgAvatar = [UIImage imageWithData:data];
+            [imageView setImage:imgAvatar];
+            imageView.layer.cornerRadius = imageView.frame.size.width/2;
+            imageView.layer.masksToBounds = YES;
+        }
+        
+    }];
+    
+}
+
+- (void)updateCellLocation {
+    if (mLocationAddress && ![mLocationAddress isEqualToString:@""]) {
+        VMGrMenuViewCell *cell = (VMGrMenuViewCell*)[self.tableSetting cellForRowAtIndexPath:[NSIndexPath indexPathForRow:CellLocation inSection:0]];
+        if (cell) {
+            cell.address.text = mLocationAddress;
+        }
+    }
+}
+
+
 - (void)updateLocation {
     
-    
-    [[[mRef child:FIR_DATABASE_USERS] child:mUser.uid]  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid]  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         NSDictionary *dicUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
         
@@ -144,13 +210,12 @@ enum CellMenu : NSUInteger {
                 NSArray *arrFormattedAddress = [dic objectForKey:@"formatted_address"];
                 NSString *strFormattedAddress = [arrFormattedAddress description];
                 if (strFormattedAddress != nil && ![strFormattedAddress isEqualToString:@""]) {
-                    mLocationAddressFromGG = strFormattedAddress;
-                    //[self updateCellLocation];
-                    NSLog(@"mLocationAddressFromGG : %@", mLocationAddressFromGG);
+                    mLocationAddress = strFormattedAddress;
+                    [self updateCellLocation];
                 }
             }
             
-            if (!mLocationAddressFromGG || [mLocationAddressFromGG isEqualToString:@""]) {
+            if (!mLocationAddress || [mLocationAddress isEqualToString:@""]) {
                 if ([dic objectForKey:@"address_components"]) {
                     NSArray* arr = [dic objectForKey:@"address_components"];
                     NSString *cityName;
@@ -165,19 +230,22 @@ enum CellMenu : NSUInteger {
                             countryName = [d objectForKey:@"long_name"];
                         
                     }
-                    mLocationAddressFromGG = [NSString stringWithFormat:@"%@,%@",cityName,countryName];
-                    if (mLocationAddressFromGG != nil && ![mLocationAddressFromGG isEqualToString:@""]) {
-                        //[self updateCellLocation];
-                        NSLog(@"mLocationAddressFromGG : %@", mLocationAddressFromGG);
+                    mLocationAddress = [NSString stringWithFormat:@"%@,%@",cityName,countryName];
+                    if (mLocationAddress != nil && ![mLocationAddress isEqualToString:@""]) {
+                        [self updateCellLocation];
                     }
                 }
                 
             }
             
-            
         }
     }];
     [dataTask resume];
+}
+
+- (IBAction)backAction:(id)sender {
+    
+    [self.sideMenuViewController hideMenuViewController];
 }
 
 

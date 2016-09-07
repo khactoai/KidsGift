@@ -10,4 +10,14 @@
 
 @implementation VMGrMenuViewCell
 
+- (void)awakeFromNib {
+
+}
+
+- (IBAction)distanceChanged:(id)sender {
+    
+    int distanceValue = self.sliderDistance.value;
+    self.distance.text = [NSString stringWithFormat:@"%d",distanceValue];
+}
+
 @end
