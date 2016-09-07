@@ -14,5 +14,7 @@ target "KidsGift" do
     pod 'Reachability'
     pod 'MBProgressHUD'
     pod 'AFNetworking'
+    
+    pod 'ActionSheetPicker-3.0'
 
 end

@@ -36,9 +36,6 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (IBAction)menuAction:(id)sender {
-    
-    [self.sideMenuViewController presentLeftMenuViewController];
-}
+
 
 @end

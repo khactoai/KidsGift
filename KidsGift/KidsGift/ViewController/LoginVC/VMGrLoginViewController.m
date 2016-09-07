@@ -144,9 +144,10 @@
     }
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
-    RESideMenu *sideMenuVC = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrRootViewController"];
-    sideMenuVC.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:sideMenuVC animated:YES completion:nil];
+    //RESideMenu *sideMenuVC = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrRootViewController"];
+    UIViewController *rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrRootTabBarController"];
+    rootViewController.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:rootViewController animated:YES completion:nil];
 }
 
 #pragma mark download image profile

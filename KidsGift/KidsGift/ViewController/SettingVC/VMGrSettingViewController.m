@@ -15,6 +15,7 @@
 #import "VMGrUtilities.h"
 #import "VMGrAlertView.h"
 #import "RESideMenu.h"
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @import Firebase;
 
@@ -22,9 +23,8 @@ enum CellMenu : NSUInteger {
     CellInfo            = 0,
     CellLocation        = 1,
     CellDistance        = 2,
-    CellSetupGift       = 3,
-    CellNotify          = 4,
-    CellLogout          = 5
+    CellNotify          = 3,
+    CellLogout          = 4
 };
 
 @interface VMGrSettingViewController () {
@@ -34,6 +34,7 @@ enum CellMenu : NSUInteger {
     
     FIRDatabaseReference *mRef;
     FIRUser *mFIRUser;
+    NSDictionary *mDictUser;
 
 }
 
@@ -53,7 +54,6 @@ enum CellMenu : NSUInteger {
     mArrCell = [[NSArray alloc] initWithObjects:@"VMGrInfoViewCell",
                                                 @"VMGrLocationViewCell",
                                                 @"VMGrDiscoveryViewCell",
-                                                @"VMGrSetupGiftViewCell",
                                                 @"VMGrNotifyViewCell",
                                                 @"VMGrLogoutViewCell", nil];
     
@@ -61,6 +61,8 @@ enum CellMenu : NSUInteger {
     
     mRef = [[FIRDatabase database] reference];
     mFIRUser = [[FIRAuth auth] currentUser];
+    
+    [self loadDataSetting];
     
 }
 
@@ -78,6 +80,16 @@ enum CellMenu : NSUInteger {
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)loadDataSetting {
+
+    [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid]  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        mDictUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
+        [self.tableSetting reloadData];
+        
+    }];
+}
 
 #pragma mark UITableView Delegate
 
@@ -112,6 +124,14 @@ enum CellMenu : NSUInteger {
             [self loadImageAvatar:cell.imgAvatar];
             break;
         case CellLocation:
+            cell.location.text = [mDictUser objectForKey:FIR_USER_LOCATION];
+            break;
+        case CellDistance:
+            cell.distance.text = [mDictUser objectForKey:FIR_USER_DISTANCE];
+            break;
+        case CellNotify:
+            [cell.switchNotifyMatch setOn:[[mDictUser objectForKey:FIR_USER_NOTIFY_MATCH] boolValue]];
+            [cell.switchNotifyChat setOn:[[mDictUser objectForKey:FIR_USER_NOTIFY_CHAT] boolValue]];
             break;
         default:
             break;
@@ -123,18 +143,17 @@ enum CellMenu : NSUInteger {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    switch (indexPath.row) {
-        case CellLogout:
-            /*
-            if (![VMGrUtilities connectedToNetwork]) {
-                [VMGrAlertView showAlertNoConnection];
-                return;
-            }
-            [[GIDSignIn sharedInstance] signOut];
-             */
-            break;
-        default:
-            break;
+    
+    if (indexPath.row == CellLogout) {
+        [[GIDSignIn sharedInstance] signOut];
+        FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+        [login logOut];
+        
+        
+        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrLoginViewController"];
+        vc.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
+        [self presentViewController:vc animated:YES completion:nil];
+        
     }
     
 }
@@ -166,7 +185,7 @@ enum CellMenu : NSUInteger {
     if (mLocationAddress && ![mLocationAddress isEqualToString:@""]) {
         VMGrMenuViewCell *cell = (VMGrMenuViewCell*)[self.tableSetting cellForRowAtIndexPath:[NSIndexPath indexPathForRow:CellLocation inSection:0]];
         if (cell) {
-            cell.address.text = mLocationAddress;
+            cell.location.text = mLocationAddress;
         }
     }
 }
@@ -242,11 +261,41 @@ enum CellMenu : NSUInteger {
     }];
     [dataTask resume];
 }
-
-- (IBAction)backAction:(id)sender {
+- (IBAction)saveAction:(id)sender {
     
-    [self.sideMenuViewController hideMenuViewController];
+    NSString *distance = @"";
+    BOOL isNotifyMatch;
+    BOOL isNotifyChat;
+    
+    
+    VMGrMenuViewCell *cellDistance = (VMGrMenuViewCell*)[self.tableSetting cellForRowAtIndexPath:[NSIndexPath indexPathForRow:CellDistance inSection:0]];
+    if (cellDistance) {
+        distance = cellDistance.distance.text;
+    }
+    
+    VMGrMenuViewCell *cellNotify = (VMGrMenuViewCell*)[self.tableSetting cellForRowAtIndexPath:[NSIndexPath indexPathForRow:CellNotify inSection:0]];
+    if (cellNotify) {
+        isNotifyMatch = cellNotify.switchNotifyMatch.isOn;
+        isNotifyChat = cellNotify.switchNotifyChat.isOn;
+    }
+    
+    
+    NSDictionary *dicSetting = @{FIR_USER_LOCATION: mLocationAddress,
+                             FIR_USER_DISTANCE: distance,
+                             FIR_USER_NOTIFY_MATCH: [NSNumber numberWithBool:isNotifyMatch],
+                             FIR_USER_NOTIFY_CHAT: [NSNumber numberWithBool:isNotifyChat]};
+    
+    [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid] updateChildValues:dicSetting withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
+        if (error) {
+            [VMGrAlertView showAlertMessage:@"Setup error, please check again"];
+        } else {
+            [VMGrAlertView showAlertMessage:@"Update setting success"];
+        }
+        
+    }];
+    
 }
+
 
 
 @end

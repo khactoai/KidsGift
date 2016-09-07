@@ -33,7 +33,6 @@
     
     mRef = [[FIRDatabase database] reference];
     
-
     [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
     [GIDSignIn sharedInstance].delegate = self;
     
@@ -47,7 +46,7 @@
         [[[mRef child:FIR_DATABASE_USERS] child:mUser.uid] updateChildValues:dicUser];
         
         UIStoryboard *storyboard = self.window.rootViewController.storyboard;
-        UIViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"VMGrRootViewController"];
+        UIViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"VMGrRootTabBarController"];
         self.window.rootViewController = rootViewController;
         [self.window makeKeyAndVisible];
     }
