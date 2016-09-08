@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VMGrViewController.h"
 
 @protocol VMGrToySelectedDelegate;
 
-@interface VMGrListToysViewController : UIViewController
+@interface VMGrListToysViewController : VMGrViewController
 
 @property (strong, nonatomic) NSObject <VMGrToySelectedDelegate> *delegate;
 

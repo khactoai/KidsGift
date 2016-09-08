@@ -12,8 +12,12 @@
 #import "AppConstant.h"
 #import <FirebaseDatabase/FirebaseDatabase.h>
 #import "VMGrAlertView.h"
+#import "VMGrUtilities.h"
+#import "MBProgressHUD.h"
 
 @import Firebase;
+
+#define PLEASE_SELECT_TOY @"Please select toy"
 
 @interface VMGrSetupViewController () <VMGrToySelectedDelegate> {
 
@@ -38,7 +42,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"Setup";
+    [self setLogoNavigation];
     
     mRef = [[FIRDatabase database] reference];
     mFIRUser = [[FIRAuth auth] currentUser];
@@ -68,13 +72,26 @@
         
         NSDictionary *dictUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
         
-        NSString *toyNum = [dictUser objectForKey:FIR_USER_TOY_NUM];
-        NSString *toyHave = [dictUser objectForKey:FIR_USER_TOY_HAVE];
-        NSString *toyWant = [dictUser objectForKey:FIR_USER_TOY_WANT];
+        // Num
+        if ([dictUser objectForKey:FIR_USER_TOY_NUM]) {
+            [self.btnToyNum setTitle:[dictUser objectForKey:FIR_USER_TOY_NUM] forState:UIControlStateNormal];
+        } else {
+            [self.btnToyNum setTitle:@"1" forState:UIControlStateNormal];
+        }
         
-        [self.btnToyNum setTitle:toyNum forState:UIControlStateNormal];
-        [self.btnToyHave setTitle:toyHave forState:UIControlStateNormal];
-        [self.btnToyWant setTitle:toyWant forState:UIControlStateNormal];
+        // have
+        if ([dictUser objectForKey:FIR_USER_TOY_HAVE]) {
+            [self.btnToyHave setTitle:[dictUser objectForKey:FIR_USER_TOY_HAVE] forState:UIControlStateNormal];
+        } else {
+            [self.btnToyHave setTitle:PLEASE_SELECT_TOY forState:UIControlStateNormal];
+        }
+        
+        // want
+        if ([dictUser objectForKey:FIR_USER_TOY_WANT]) {
+            [self.btnToyWant setTitle:[dictUser objectForKey:FIR_USER_TOY_WANT] forState:UIControlStateNormal];
+        } else {
+            [self.btnToyWant setTitle:PLEASE_SELECT_TOY forState:UIControlStateNormal];
+        }
         
     }];
 }
@@ -125,11 +142,16 @@
 
 - (IBAction)setupAction:(id)sender {
     
+    if (![VMGrUtilities connectedToNetwork]) {
+        [VMGrAlertView showAlertNoConnection];
+        return;
+    }
+    
     NSString *toyNum = self.btnToyNum.titleLabel.text;
     NSString *toyHave = self.btnToyHave.titleLabel.text;
     NSString *toyWant = self.btnToyWant.titleLabel.text;
     
-    if (![toyNum isEqualToString:@""] && ![toyHave isEqualToString:@""] && ![toyWant isEqualToString:@""]) {
+    if (![toyNum isEqualToString:@""] && ![toyHave isEqualToString:PLEASE_SELECT_TOY] && ![toyWant isEqualToString:PLEASE_SELECT_TOY]) {
         
         NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -139,17 +161,20 @@
                                   FIR_USER_TOY_WANT: toyWant,
                                   FIR_USER_TOY_DATE_REQUEST: [dateFormatter stringFromDate:[NSDate date]]};
         
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid] updateChildValues:dicToy withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
             if (error) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [VMGrAlertView showAlertMessage:@"Setup error, please check again"];
             } else {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [VMGrAlertView showAlertMessage:@"Setup success"];
             }
             
         }];
         
     } else {
-        [VMGrAlertView showAlertMessage:@"Please select data"];
+        [VMGrAlertView showAlertMessage:PLEASE_SELECT_TOY];
     }
     
 }

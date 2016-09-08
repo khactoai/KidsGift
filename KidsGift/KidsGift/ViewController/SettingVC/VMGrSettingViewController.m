@@ -16,6 +16,7 @@
 #import "VMGrAlertView.h"
 #import "RESideMenu.h"
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "MBProgressHUD.h"
 
 @import Firebase;
 
@@ -61,7 +62,7 @@ enum CellMenu : NSUInteger {
     
     mRef = [[FIRDatabase database] reference];
     mFIRUser = [[FIRAuth auth] currentUser];
-    
+    mLocationAddress = @"";
     [self loadDataSetting];
     
 }
@@ -124,10 +125,15 @@ enum CellMenu : NSUInteger {
             [self loadImageAvatar:cell.imgAvatar];
             break;
         case CellLocation:
-            cell.location.text = [mDictUser objectForKey:FIR_USER_LOCATION];
+            //cell.location.text = [mDictUser objectForKey:FIR_USER_LOCATION];
             break;
         case CellDistance:
-            cell.distance.text = [mDictUser objectForKey:FIR_USER_DISTANCE];
+            if ([mDictUser objectForKey:FIR_USER_DISTANCE]) {
+                cell.distance.text = [mDictUser objectForKey:FIR_USER_DISTANCE];
+            } else {
+                cell.distance.text = [NSString stringWithFormat:@"%d", (int)cell.sliderDistance.value];
+            }
+            
             break;
         case CellNotify:
             [cell.switchNotifyMatch setOn:[[mDictUser objectForKey:FIR_USER_NOTIFY_MATCH] boolValue]];
@@ -145,14 +151,27 @@ enum CellMenu : NSUInteger {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.row == CellLogout) {
-        [[GIDSignIn sharedInstance] signOut];
-        FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-        [login logOut];
         
+        if (![VMGrUtilities connectedToNetwork]) {
+            [VMGrAlertView showAlertNoConnection];
+            return;
+        }
         
-        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrLoginViewController"];
-        vc.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-        [self presentViewController:vc animated:YES completion:nil];
+        for (id<FIRUserInfo> userInfo in mFIRUser.providerData) {
+            if ([userInfo.providerID isEqualToString:FIRFacebookAuthProviderID]) {
+                FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+                [login logOut];
+                
+            } else if ([userInfo.providerID isEqualToString:FIRGoogleAuthProviderID]) {
+                [[GIDSignIn sharedInstance] signOut];
+            }
+        }
+        
+        NSError *signOutError;
+        BOOL status = [[FIRAuth auth] signOut:&signOutError];
+        if (status) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
         
     }
     
@@ -263,10 +282,14 @@ enum CellMenu : NSUInteger {
 }
 - (IBAction)saveAction:(id)sender {
     
+    if (![VMGrUtilities connectedToNetwork]) {
+        [VMGrAlertView showAlertNoConnection];
+        return;
+    }
+    
     NSString *distance = @"";
     BOOL isNotifyMatch;
     BOOL isNotifyChat;
-    
     
     VMGrMenuViewCell *cellDistance = (VMGrMenuViewCell*)[self.tableSetting cellForRowAtIndexPath:[NSIndexPath indexPathForRow:CellDistance inSection:0]];
     if (cellDistance) {
@@ -285,10 +308,13 @@ enum CellMenu : NSUInteger {
                              FIR_USER_NOTIFY_MATCH: [NSNumber numberWithBool:isNotifyMatch],
                              FIR_USER_NOTIFY_CHAT: [NSNumber numberWithBool:isNotifyChat]};
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid] updateChildValues:dicSetting withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
         if (error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [VMGrAlertView showAlertMessage:@"Setup error, please check again"];
         } else {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [VMGrAlertView showAlertMessage:@"Update setting success"];
         }
         

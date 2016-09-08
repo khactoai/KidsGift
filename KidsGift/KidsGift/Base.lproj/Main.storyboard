@@ -44,7 +44,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTu-ft-EeN">
                                 <rect key="frame" x="73" y="89" width="46" height="30"/>
-                                <state key="normal" title="2">
+                                <state key="normal" title="1">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
@@ -53,7 +53,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xme-8R-PxG">
                                 <rect key="frame" x="97" y="127" width="241" height="30"/>
-                                <state key="normal" title="Teddy bears">
+                                <state key="normal" title="Select toy you have">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
@@ -68,7 +68,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6H-pJ-e8K">
                                 <rect key="frame" x="97" y="198" width="241" height="30"/>
-                                <state key="normal" title="Dolls">
+                                <state key="normal" title="Select toy you want">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
@@ -76,12 +76,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndq-1p-LN0">
-                                <rect key="frame" x="136" y="568" width="103" height="30"/>
+                                <rect key="frame" x="112" y="563" width="150" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="XUB-nb-yga"/>
-                                    <constraint firstAttribute="width" constant="103" id="xDJ-B4-qQU"/>
+                                    <constraint firstAttribute="height" constant="40" id="XUB-nb-yga"/>
+                                    <constraint firstAttribute="width" constant="150" id="xDJ-B4-qQU"/>
                                 </constraints>
-                                <state key="normal" title="Setup"/>
+                                <state key="normal" title="Setup" backgroundImage="bg_main_m.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="setupAction:" destination="bl8-v5-Rqa" eventType="touchUpInside" id="pnF-bs-bdH"/>
                                 </connections>
@@ -89,11 +91,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="srb-A6-UQ3" firstAttribute="top" secondItem="Ndq-1p-LN0" secondAttribute="bottom" constant="20" id="7Bc-TB-5fb"/>
+                            <constraint firstItem="srb-A6-UQ3" firstAttribute="top" secondItem="Ndq-1p-LN0" secondAttribute="bottom" constant="15" id="7Bc-TB-5fb"/>
                             <constraint firstItem="Ndq-1p-LN0" firstAttribute="centerX" secondItem="riD-dq-IC3" secondAttribute="centerX" id="uD4-Qi-XYX"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Setup" id="gfJ-ed-gSt"/>
+                    <tabBarItem key="tabBarItem" title="Setup" image="star.png" id="gfJ-ed-gSt"/>
                     <navigationItem key="navigationItem" id="yDp-ZL-ZOV"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -490,7 +492,7 @@
                             <constraint firstItem="s7j-IN-ntX" firstAttribute="leading" secondItem="Q7X-Ka-Hmk" secondAttribute="leading" id="iCH-ai-pNk"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="Mhf-ph-xNC"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="user.png" id="Mhf-ph-xNC"/>
                     <navigationItem key="navigationItem" id="HEn-Z2-W6g">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="u7r-Yz-kIJ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="epA-GA-7LA">
@@ -694,17 +696,23 @@
                     </view>
                     <navigationItem key="navigationItem" id="Eti-HO-9LZ"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="9YJ-xw-gwq" kind="presentation" identifier="VMGrRootTabBarSegue" id="X7C-zH-C7m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dx-Ma-6iU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-303.5" y="-43.5"/>
+            <point key="canvasLocation" x="-787.5" y="1910.5"/>
         </scene>
     </scenes>
     <resources>
+        <image name="bg_main_m.png" width="141" height="147"/>
         <image name="button_fb.png" width="280" height="41"/>
         <image name="button_gg.png" width="270" height="40"/>
         <image name="icon_logout.png" width="22" height="22"/>
         <image name="logo_text.png" width="341" height="82"/>
         <image name="no_avatar.png" width="300" height="300"/>
+        <image name="star.png" width="26" height="26"/>
+        <image name="user.png" width="26" height="26"/>
     </resources>
 </document>

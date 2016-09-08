@@ -39,16 +39,10 @@
     
     mUser = [[FIRAuth auth] currentUser];
     if (mUser) {
-        
         NSDictionary *dicUser = @{FIR_USER_UID: mUser.uid,
                                   FIR_USER_NAME: mUser.displayName};
         
         [[[mRef child:FIR_DATABASE_USERS] child:mUser.uid] updateChildValues:dicUser];
-        
-        UIStoryboard *storyboard = self.window.rootViewController.storyboard;
-        UIViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"VMGrRootTabBarController"];
-        self.window.rootViewController = rootViewController;
-        [self.window makeKeyAndVisible];
     }
     
     return YES;
@@ -132,18 +126,57 @@
 
 - (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
     
-    if ([self.window.rootViewController isKindOfClass:[VMGrLoginViewController class]]) {
-        VMGrLoginViewController *loginVC = (VMGrLoginViewController*)self.window.rootViewController;
+    UIViewController *currentVC = [self getCurrentViewController];
+    if ([currentVC isKindOfClass:[VMGrLoginViewController class]]) {
+        VMGrLoginViewController *loginVC = (VMGrLoginViewController*)currentVC;
         [loginVC signIn:signIn didSignInForUser:user withError:error];
     }
 }
 
 - (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error {
-    if ([self.window.rootViewController isKindOfClass:[VMGrLoginViewController class]]) {
-        VMGrLoginViewController *loginVC = (VMGrLoginViewController*)self.window.rootViewController;
+    
+    UIViewController *currentVC = [self getCurrentViewController];
+    if ([currentVC isKindOfClass:[VMGrLoginViewController class]]) {
+        VMGrLoginViewController *loginVC = (VMGrLoginViewController*)currentVC;
         [loginVC signIn:signIn didDisconnectWithUser:user withError:error];
     }
 }
+
+- (id)getCurrentViewController {
+    
+    id windowRootVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    id currentViewController = [self findTopViewController:windowRootVC];
+    return currentViewController;
+}
+
+- (id)findTopViewController:(id)inController {
+    /* if ur using any Customs classes, do like this.
+     * Here SlideNavigationController is a subclass of UINavigationController.
+     * And ensure you check the custom classes before native controllers , if u have any in your hierarchy.
+     if ([inController isKindOfClass:[SlideNavigationController class]])
+     {
+     return [self findTopViewController:[inController visibleViewController]];
+     }
+     else */
+    if ([inController isKindOfClass:[UITabBarController class]])
+    {
+        return [self findTopViewController:[inController selectedViewController]];
+    }
+    else if ([inController isKindOfClass:[UINavigationController class]])
+    {
+        return [self findTopViewController:[inController visibleViewController]];
+    }
+    else if ([inController isKindOfClass:[UIViewController class]])
+    {
+        return inController;
+    }
+    else
+    {
+        NSLog(@"Unhandled ViewController class : %@",inController);
+        return nil;
+    }
+}
+
 
 #pragma mark - Location manager methods
 
