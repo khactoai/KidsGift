@@ -34,6 +34,7 @@
 		D758002F1D812CF700725FFB /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = D758002C1D812CF700725FFB /* user.png */; };
 		D75800301D812CF700725FFB /* user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D758002D1D812CF700725FFB /* user@2x.png */; };
 		D75800311D812CF700725FFB /* user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D758002E1D812CF700725FFB /* user@3x.png */; };
+		D75800341D812FC300725FFB /* VMGrSetupViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D75800331D812FC300725FFB /* VMGrSetupViewCell.m */; };
 		D76281721D800F9700D6CD50 /* VMGrToyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D76281711D800F9700D6CD50 /* VMGrToyViewCell.m */; };
 		D76281761D8010FC00D6CD50 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = D76281731D8010FC00D6CD50 /* check.png */; };
 		D76281771D8010FC00D6CD50 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D76281741D8010FC00D6CD50 /* check@2x.png */; };
@@ -111,6 +112,8 @@
 		D758002C1D812CF700725FFB /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		D758002D1D812CF700725FFB /* user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user@2x.png"; sourceTree = "<group>"; };
 		D758002E1D812CF700725FFB /* user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user@3x.png"; sourceTree = "<group>"; };
+		D75800321D812FC300725FFB /* VMGrSetupViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrSetupViewCell.h; sourceTree = "<group>"; };
+		D75800331D812FC300725FFB /* VMGrSetupViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrSetupViewCell.m; sourceTree = "<group>"; };
 		D76281701D800F9700D6CD50 /* VMGrToyViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrToyViewCell.h; sourceTree = "<group>"; };
 		D76281711D800F9700D6CD50 /* VMGrToyViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrToyViewCell.m; sourceTree = "<group>"; };
 		D76281731D8010FC00D6CD50 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
@@ -217,6 +220,8 @@
 				D71E19F11D7E906100DCDCF3 /* VMGrMenuViewCell.m */,
 				D76281701D800F9700D6CD50 /* VMGrToyViewCell.h */,
 				D76281711D800F9700D6CD50 /* VMGrToyViewCell.m */,
+				D75800321D812FC300725FFB /* VMGrSetupViewCell.h */,
+				D75800331D812FC300725FFB /* VMGrSetupViewCell.m */,
 			);
 			path = ViewCell;
 			sourceTree = "<group>";
@@ -612,6 +617,7 @@
 				D7C347BB1D65BD660051E728 /* VMGrLoginViewController.m in Sources */,
 				D7C347C61D65BDD80051E728 /* VMGrSettingViewController.m in Sources */,
 				D7C347761D6579C40051E728 /* AppDelegate.m in Sources */,
+				D75800341D812FC300725FFB /* VMGrSetupViewCell.m in Sources */,
 				D7C347CA1D65BE0A0051E728 /* VMGrMatchesViewController.m in Sources */,
 				D7D573DB1D67172700205DFB /* VMGrUtilsFirebase.m in Sources */,
 				D76611A11D7FDE5000990506 /* VMGrChatViewController.m in Sources */,
@@ -737,12 +743,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = KidsGift/KidsGift.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mao Nishi (9T6JQ4PQ3Z)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kulturely Limited (NV6PR3F96Y)";
 				INFOPLIST_FILE = KidsGift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobifocuz.kidsgifting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0ac1cd31-143f-4cfc-8608-2d4f00151e50";
 			};
 			name = Debug;
 		};
@@ -753,12 +760,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = KidsGift/KidsGift.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mao Nishi (9T6JQ4PQ3Z)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kulturely Limited (NV6PR3F96Y)";
 				INFOPLIST_FILE = KidsGift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobifocuz.kidsgifting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0ac1cd31-143f-4cfc-8608-2d4f00151e50";
 			};
 			name = Release;
 		};

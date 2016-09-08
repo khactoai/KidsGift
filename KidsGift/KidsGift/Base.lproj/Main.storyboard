@@ -36,45 +36,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I have" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qo8-Nc-bWC">
-                                <rect key="frame" x="20" y="93" width="60" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTu-ft-EeN">
-                                <rect key="frame" x="73" y="89" width="46" height="30"/>
-                                <state key="normal" title="1">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="numAction:" destination="bl8-v5-Rqa" eventType="touchUpInside" id="b8j-oc-kc7"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xme-8R-PxG">
-                                <rect key="frame" x="97" y="127" width="241" height="30"/>
-                                <state key="normal" title="Select toy you have">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="toyHaveAction:" destination="bl8-v5-Rqa" eventType="touchUpInside" id="dOc-xH-P8P"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cuk-5s-bYU">
-                                <rect key="frame" x="20" y="174" width="91" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6H-pJ-e8K">
-                                <rect key="frame" x="97" y="198" width="241" height="30"/>
-                                <state key="normal" title="Select toy you want">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="toyWantAction:" destination="bl8-v5-Rqa" eventType="touchUpInside" id="dre-MU-lG8"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndq-1p-LN0">
                                 <rect key="frame" x="112" y="563" width="150" height="40"/>
                                 <constraints>
@@ -88,10 +49,74 @@
                                     <action selector="setupAction:" destination="bl8-v5-Rqa" eventType="touchUpInside" id="pnF-bs-bdH"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hAZ-fp-7k6">
+                                <rect key="frame" x="0.0" y="64" width="375" height="491"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VMGrSetupViewCell" id="H1j-Cx-ev5" customClass="VMGrSetupViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H1j-Cx-ev5" id="lUI-CW-7Bd">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I Have" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="50" translatesAutoresizingMaskIntoConstraints="NO" id="KKv-ZB-0td">
+                                                    <rect key="frame" x="20" y="11" width="66" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="3vC-qu-NoX"/>
+                                                        <constraint firstAttribute="width" constant="66" id="eAN-Ti-tCM"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Doll" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwt-Pd-2uQ">
+                                                    <rect key="frame" x="88" y="1" width="278" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="TaU-CV-wVd"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="m7x-zF-Fbb">
+                                                    <rect key="frame" x="347" y="9" width="16" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="16" id="IPt-ho-yDl"/>
+                                                        <constraint firstAttribute="height" constant="16" id="NOD-XJ-lEs"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lwt-Pd-2uQ" firstAttribute="centerY" secondItem="lUI-CW-7Bd" secondAttribute="centerY" id="7Jh-cW-luW"/>
+                                                <constraint firstAttribute="trailing" secondItem="m7x-zF-Fbb" secondAttribute="trailing" constant="12" id="82N-yh-e95"/>
+                                                <constraint firstItem="m7x-zF-Fbb" firstAttribute="centerY" secondItem="lUI-CW-7Bd" secondAttribute="centerY" constant="-4.5" id="Fxb-cR-wfg"/>
+                                                <constraint firstItem="KKv-ZB-0td" firstAttribute="leading" secondItem="lUI-CW-7Bd" secondAttribute="leading" constant="20" id="RwF-6K-gdE"/>
+                                                <constraint firstAttribute="trailing" secondItem="lwt-Pd-2uQ" secondAttribute="trailing" constant="9" id="TTF-pv-OEa"/>
+                                                <constraint firstItem="KKv-ZB-0td" firstAttribute="centerY" secondItem="lUI-CW-7Bd" secondAttribute="centerY" id="wve-Vf-hLE"/>
+                                                <constraint firstItem="lwt-Pd-2uQ" firstAttribute="leading" secondItem="KKv-ZB-0td" secondAttribute="trailing" constant="2" id="z4A-2E-Xqa"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imgArrow" destination="m7x-zF-Fbb" id="As0-qv-Ec2"/>
+                                            <outlet property="labelValue" destination="lwt-Pd-2uQ" id="2g9-zR-SKw"/>
+                                            <outlet property="lableTitle" destination="KKv-ZB-0td" id="H37-cG-Gol"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="bl8-v5-Rqa" id="6Ae-mW-IT0"/>
+                                    <outlet property="delegate" destination="bl8-v5-Rqa" id="ZZ9-DP-v2L"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="hAZ-fp-7k6" firstAttribute="leading" secondItem="riD-dq-IC3" secondAttribute="leading" id="1Cc-r7-yLw"/>
                             <constraint firstItem="srb-A6-UQ3" firstAttribute="top" secondItem="Ndq-1p-LN0" secondAttribute="bottom" constant="15" id="7Bc-TB-5fb"/>
+                            <constraint firstAttribute="trailing" secondItem="hAZ-fp-7k6" secondAttribute="trailing" id="8pN-5Y-VKl"/>
+                            <constraint firstItem="hAZ-fp-7k6" firstAttribute="top" secondItem="riD-dq-IC3" secondAttribute="top" constant="64" id="JJg-6n-bmN"/>
+                            <constraint firstItem="Ndq-1p-LN0" firstAttribute="top" secondItem="hAZ-fp-7k6" secondAttribute="bottom" constant="8" id="qdQ-je-OZJ"/>
                             <constraint firstItem="Ndq-1p-LN0" firstAttribute="centerX" secondItem="riD-dq-IC3" secondAttribute="centerX" id="uD4-Qi-XYX"/>
                         </constraints>
                     </view>
@@ -99,9 +124,7 @@
                     <navigationItem key="navigationItem" id="yDp-ZL-ZOV"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="btnToyHave" destination="xme-8R-PxG" id="bWD-8C-RgS"/>
-                        <outlet property="btnToyNum" destination="gTu-ft-EeN" id="J0C-39-hix"/>
-                        <outlet property="btnToyWant" destination="A6H-pJ-e8K" id="umT-5k-lMG"/>
+                        <outlet property="tableSetup" destination="hAZ-fp-7k6" id="aN7-o0-gKd"/>
                         <segue destination="neJ-OZ-bgX" kind="push" identifier="VMGrListToysSegue" id="5d3-S8-dA3"/>
                     </connections>
                 </viewController>
@@ -706,6 +729,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.png" width="32" height="32"/>
         <image name="bg_main_m.png" width="141" height="147"/>
         <image name="button_fb.png" width="280" height="41"/>
         <image name="button_gg.png" width="270" height="40"/>

@@ -125,7 +125,9 @@ enum CellMenu : NSUInteger {
             [self loadImageAvatar:cell.imgAvatar];
             break;
         case CellLocation:
-            //cell.location.text = [mDictUser objectForKey:FIR_USER_LOCATION];
+            if ([mDictUser objectForKey:FIR_USER_LOCATION]) {
+                cell.location.text = [mDictUser objectForKey:FIR_USER_LOCATION];
+            }
             break;
         case CellDistance:
             if ([mDictUser objectForKey:FIR_USER_DISTANCE]) {
