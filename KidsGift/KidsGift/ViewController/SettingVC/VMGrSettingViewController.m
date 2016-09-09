@@ -84,10 +84,13 @@ enum CellMenu : NSUInteger {
 
 - (void)loadDataSetting {
 
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid]  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        
-        mDictUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
-        [self.tableSetting reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
+            mDictUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
+            [self.tableSetting reloadData];
+        }
         
     }];
 }
@@ -214,14 +217,16 @@ enum CellMenu : NSUInteger {
 
 - (void)updateLocation {
     
+    mFIRUser = [[FIRAuth auth] currentUser];
     [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid]  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
-        NSDictionary *dicUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
-        
-        float latitude = [[dicUser objectForKey:FIR_USER_LATITUDE] floatValue];
-        float longitude = [[dicUser objectForKey:FIR_USER_LONGITUDE] floatValue];
-        
-        [self loadAddressFromGGWithLatitude:latitude longitude:longitude];
+        if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dicUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
+            float latitude = [[dicUser objectForKey:FIR_USER_LATITUDE] floatValue];
+            float longitude = [[dicUser objectForKey:FIR_USER_LONGITUDE] floatValue];
+            
+            [self loadAddressFromGGWithLatitude:latitude longitude:longitude];
+        }
         
     }];
 

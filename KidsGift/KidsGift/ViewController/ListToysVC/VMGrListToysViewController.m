@@ -10,6 +10,7 @@
 #import <FirebaseDatabase/FirebaseDatabase.h>
 #import "AppConstant.h"
 #import "VMGrToyViewCell.h"
+#import "MBProgressHUD.h"
 
 @import Firebase;
 
@@ -52,16 +53,20 @@
 
 - (void)loadDataToys {
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     FIRDatabaseQuery *toysQuery = [[mRef child:FIR_DATABASE_TOYS] queryOrderedByKey];
     [toysQuery  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        
-        NSDictionary *dicToys = [[NSDictionary alloc] initWithDictionary:snapshot.value];
-        NSArray *arrKeys = [dicToys allKeys];
-        for (NSString *key in arrKeys) {
-            NSString *value = [dicToys objectForKey:key];
-            [mDataFillter addObject:value];
-            [mDataToys addObject:value];
-            [self.tableToys reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dicToys = [[NSDictionary alloc] initWithDictionary:snapshot.value];
+            NSArray *arrKeys = [dicToys allKeys];
+            for (NSString *key in arrKeys) {
+                NSString *value = [dicToys objectForKey:key];
+                [mDataFillter addObject:value];
+                [mDataToys addObject:value];
+                [self.tableToys reloadData];
+            }
         }
         
     }];

@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "__40-[VMGrSetupViewController loadDataSetup]_block_invoke:VMGrSetupViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "snapshot.value">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__36-[AppDelegate uploadFileToFireBase:]_block_invoke:AppDelegate.m">
          <PersistentStrings>
             <PersistentString

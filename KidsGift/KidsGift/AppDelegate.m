@@ -15,7 +15,7 @@
 @interface AppDelegate () <UISplitViewControllerDelegate> {
     
     FIRDatabaseReference *mRef;
-    FIRUser *mUser;
+    FIRUser *mFIRUser;
 }
 
 @end
@@ -37,12 +37,12 @@
     [GIDSignIn sharedInstance].delegate = self;
     
     
-    mUser = [[FIRAuth auth] currentUser];
-    if (mUser) {
-        NSDictionary *dicUser = @{FIR_USER_UID: mUser.uid,
-                                  FIR_USER_NAME: mUser.displayName};
+    mFIRUser = [[FIRAuth auth] currentUser];
+    if (mFIRUser) {
+        NSDictionary *dicUser = @{FIR_USER_UID: mFIRUser.uid,
+                                  FIR_USER_NAME: mFIRUser.displayName};
         
-        [[[mRef child:FIR_DATABASE_USERS] child:mUser.uid] updateChildValues:dicUser];
+        [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid] updateChildValues:dicUser];
     }
     
     return YES;
@@ -202,7 +202,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     
-    if (mUser && newLocation) {
+    if (newLocation) {
         [self updateUserLocation:newLocation];
     }
 }
@@ -211,7 +211,7 @@
     
     CLLocation *newLocation = [locations lastObject];
     
-    if (mUser && newLocation) {
+    if (newLocation) {
         [self updateUserLocation:newLocation];
     }
 }
@@ -222,14 +222,15 @@
 
 - (void)updateUserLocation:(CLLocation *)location{
     
-    NSDictionary *dicUser = @{FIR_USER_UID: mUser.uid,
-                              FIR_USER_NAME: mUser.displayName,
-                              FIR_USER_LATITUDE: [NSNumber numberWithFloat:location.coordinate.latitude],
-                              FIR_USER_LONGITUDE: [NSNumber numberWithFloat:location.coordinate.longitude]};
-    
-    [[[mRef child:FIR_DATABASE_USERS] child:mUser.uid] updateChildValues:dicUser withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOCATION_UPDATE object:self];
-    }];
+    mFIRUser = [[FIRAuth auth] currentUser];
+    if (mFIRUser) {
+        NSDictionary *dicUser = @{FIR_USER_LATITUDE: [NSNumber numberWithFloat:location.coordinate.latitude],
+                                  FIR_USER_LONGITUDE: [NSNumber numberWithFloat:location.coordinate.longitude]};
+        
+        [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid] updateChildValues:dicUser withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOCATION_UPDATE object:self];
+        }];
+    }
     
 }
 

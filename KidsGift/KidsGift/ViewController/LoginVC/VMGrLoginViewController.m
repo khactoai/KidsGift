@@ -18,6 +18,7 @@
 
 @interface VMGrLoginViewController () {
 
+    FIRDatabaseReference *mRef;
     FIRUser *mFIRUser;
     NSURLRequest *mImageRequest;
     
@@ -148,11 +149,21 @@
 
 #pragma mark login success
 - (void)loginSuccess:(FIRUser* )user {
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
     mFIRUser = user;
+    mRef = [[FIRDatabase database] reference];
+    if (mFIRUser) {
+        NSDictionary *dicUser = @{FIR_USER_UID: mFIRUser.uid,
+                                  FIR_USER_NAME: mFIRUser.displayName};
+        [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid] updateChildValues:dicUser];
+    }
+    
     if (mImageRequest && mFIRUser) {
         [self downloadImageProfile];
     }
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
     
     dispatch_async(dispatch_get_main_queue(), ^{
         UITabBarController *rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrRootTabBarController"];

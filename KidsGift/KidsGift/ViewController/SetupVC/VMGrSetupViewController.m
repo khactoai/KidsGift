@@ -82,11 +82,14 @@ enum CellSetup : NSUInteger {
 
 - (void)loadDataSetup {
 
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid]  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
-        mDictUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
-        [self.tableSetup reloadData];
-        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
+            mDictUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
+            [self.tableSetup reloadData];
+        }
     }];
 }
 
