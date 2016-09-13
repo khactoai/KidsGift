@@ -8,8 +8,16 @@
 
 #import "VMGrMatchesViewController.h"
 #import "RESideMenu.h"
+#import "MBProgressHUD.h"
+#import "AppConstant.h"
 
-@interface VMGrMatchesViewController ()
+@import Firebase;
+
+@interface VMGrMatchesViewController () {
+
+    FIRDatabaseReference *mRef;
+    NSMutableArray *mDataUsers;
+}
 
 @end
 
@@ -20,6 +28,11 @@
     // Do any additional setup after loading the view.
     
     [self setLogoNavigation];
+    
+    mDataUsers = [[NSMutableArray alloc] init];
+    
+    mRef = [[FIRDatabase database] reference];
+    [self loadUserMatches];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,6 +49,26 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)loadUserMatches {
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    FIRDatabaseQuery *toysQuery = [[mRef child:@"toyhave"] queryEqualToValue:@"name" childKey:@"Sport"];
+    [toysQuery  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dicToys = [[NSDictionary alloc] initWithDictionary:snapshot.value];
+            NSArray *arrKeys = [dicToys allKeys];
+            for (NSString *key in arrKeys) {
+                NSString *value = [dicToys objectForKey:key];
+                [mDataUsers addObject:value];
+            }
+        }
+        
+    }];
+    
+}
 
 
 @end
