@@ -20,6 +20,7 @@
     FIRUser *mFIRUser;
     NSDictionary *mDictUser;
     NSMutableArray *mAllUsers;
+    NSMutableArray *mGroupUsers;
     
     NSString *mToyHave, *mToyWant;
 }
@@ -35,6 +36,7 @@
     [self setLogoNavigation];
     
     mAllUsers = [[NSMutableArray alloc] init];
+    mGroupUsers = [[NSMutableArray alloc] init];
     
     mFIRUser = [[FIRAuth auth] currentUser];
     mRef = [[FIRDatabase database] reference];
@@ -107,11 +109,42 @@
             NSDictionary *dicUsers = [[NSDictionary alloc] initWithDictionary:snapshot.value];
             NSArray *arrKeys = [dicUsers allKeys];
             for (NSString *key in arrKeys) {
-                NSString *value = [dicUsers objectForKey:key];
+                NSDictionary *value = [dicUsers objectForKey:key];
                 [mAllUsers addObject:value];
+            }
+            
+            while (mAllUsers.count > 0) {
+                [self groupUsers];
             }
         }
     }];
+}
+
+
+- (void)groupUsers {
+
+    NSMutableArray *arrUser = [[NSMutableArray alloc] init];
+    NSDictionary *user = [mAllUsers objectAtIndex:0];
+    NSString *toyHave = user[FIR_USER_TOY_HAVE];
+    NSString *toyWant = user[FIR_USER_TOY_WANT];
+    if (!toyHave || !toyHave) {
+        [mAllUsers removeObject:user];
+        return;
+    }
+    [arrUser addObject:user];
+    
+    for (int index = 1; index < mAllUsers.count; index++) {
+        NSDictionary *value = [mAllUsers objectAtIndex:index];
+        if (value[FIR_USER_TOY_HAVE] && value[FIR_USER_TOY_WANT]) {
+            if ([value[FIR_USER_TOY_HAVE] isEqualToString:toyHave] && [value[FIR_USER_TOY_WANT] isEqualToString:toyWant]) {
+                [arrUser addObject:value];
+                
+            }
+        }
+    }
+    [mAllUsers removeObjectsInArray:[NSArray arrayWithArray:arrUser]];
+    
+    [mGroupUsers addObject:arrUser];
 }
 
 
