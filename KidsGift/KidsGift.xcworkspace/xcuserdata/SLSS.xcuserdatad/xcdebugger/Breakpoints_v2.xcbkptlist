@@ -17,6 +17,38 @@
             endingLineNumber = "107"
             landmarkName = "-signIn:didSignInForUser:withError:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_101"
+                  moduleName = "KidsGift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pandc/Dragon/KidsGiftApp/KidsGift/KidsGift/KidsGift/ViewController/LoginVC/VMGrLoginViewController.m"
+                  timestampString = "495587850.449123"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_102"
+                  moduleName = "KidsGift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pandc/Dragon/KidsGiftApp/KidsGift/KidsGift/KidsGift/ViewController/LoginVC/VMGrLoginViewController.m"
+                  timestampString = "495587850.44941"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -33,6 +65,38 @@
             endingLineNumber = "137"
             landmarkName = "-signIn:didDisconnectWithUser:withError:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__61-[VMGrLoginViewController signIn:didSignInForUser:withError:]_block_invoke"
+                  moduleName = "KidsGift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pandc/Dragon/KidsGiftApp/KidsGift/KidsGift/KidsGift/ViewController/LoginVC/VMGrLoginViewController.m"
+                  timestampString = "495587850.461111"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "138"
+                  endingLineNumber = "138"
+                  offsetFromSymbolStart = "258">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_128"
+                  moduleName = "KidsGift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pandc/Dragon/KidsGiftApp/KidsGift/KidsGift/KidsGift/ViewController/LoginVC/VMGrLoginViewController.m"
+                  timestampString = "495587850.461831"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

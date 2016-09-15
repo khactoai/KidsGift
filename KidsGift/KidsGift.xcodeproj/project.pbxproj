@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		328363E41D8B606E003013E8 /* VMGrMatchesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 328363E31D8B606E003013E8 /* VMGrMatchesViewCell.m */; };
 		32866B761D67C04F00B13F04 /* VMGrAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32866B751D67C04F00B13F04 /* VMGrAlertView.m */; };
 		32866B791D67C08200B13F04 /* VMGrUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 32866B781D67C08200B13F04 /* VMGrUtilities.m */; };
 		9AB1F056A8602065B35CECCA /* libPods-KidsGift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C3C6109726BC2F29CE45FF2 /* libPods-KidsGift.a */; };
@@ -82,6 +83,8 @@
 /* Begin PBXFileReference section */
 		0DC14D30BA8ADC80BEE32024 /* Pods-KidsGift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsGift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KidsGift/Pods-KidsGift.debug.xcconfig"; sourceTree = "<group>"; };
 		1C3C6109726BC2F29CE45FF2 /* libPods-KidsGift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KidsGift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		328363E21D8B606E003013E8 /* VMGrMatchesViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrMatchesViewCell.h; sourceTree = "<group>"; };
+		328363E31D8B606E003013E8 /* VMGrMatchesViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrMatchesViewCell.m; sourceTree = "<group>"; };
 		32866B741D67C04F00B13F04 /* VMGrAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrAlertView.h; sourceTree = "<group>"; };
 		32866B751D67C04F00B13F04 /* VMGrAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrAlertView.m; sourceTree = "<group>"; };
 		32866B771D67C08200B13F04 /* VMGrUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrUtilities.h; sourceTree = "<group>"; };
@@ -222,6 +225,8 @@
 				D76281711D800F9700D6CD50 /* VMGrToyViewCell.m */,
 				D75800321D812FC300725FFB /* VMGrSetupViewCell.h */,
 				D75800331D812FC300725FFB /* VMGrSetupViewCell.m */,
+				328363E21D8B606E003013E8 /* VMGrMatchesViewCell.h */,
+				328363E31D8B606E003013E8 /* VMGrMatchesViewCell.m */,
 			);
 			path = ViewCell;
 			sourceTree = "<group>";
@@ -627,6 +632,7 @@
 				D76281721D800F9700D6CD50 /* VMGrToyViewCell.m in Sources */,
 				32866B791D67C08200B13F04 /* VMGrUtilities.m in Sources */,
 				D7C347731D6579C40051E728 /* main.m in Sources */,
+				328363E41D8B606E003013E8 /* VMGrMatchesViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

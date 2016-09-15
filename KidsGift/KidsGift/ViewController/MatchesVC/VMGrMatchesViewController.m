@@ -11,10 +11,11 @@
 #import "MBProgressHUD.h"
 #import "AppConstant.h"
 #import <FirebaseDatabase/FirebaseDatabase.h>
+#import "VMGrMatchesViewCell.h"
 
 @import Firebase;
 
-@interface VMGrMatchesViewController () {
+@interface VMGrMatchesViewController () <UITableViewDelegate>{
 
     FIRDatabaseReference *mRef;
     FIRUser *mFIRUser;
@@ -24,6 +25,7 @@
     
     NSString *mToyHave, *mToyWant;
 }
+@property (weak, nonatomic) IBOutlet UITableView *tableMatches;
 
 @end
 
@@ -146,6 +148,48 @@
     
     [mGroupUsers addObject:arrUser];
 }
+
+#pragma mark UITableView Delegate
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return 6;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 5;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 76;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 50;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"Car";
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSString *identifier = @"VMGrMatchesViewCell";
+    
+    VMGrMatchesViewCell *cell = [self.tableMatches dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[VMGrMatchesViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+
+    return cell;
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
+
 
 
 @end
