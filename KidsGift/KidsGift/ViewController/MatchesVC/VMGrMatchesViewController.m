@@ -12,20 +12,28 @@
 #import "AppConstant.h"
 #import <FirebaseDatabase/FirebaseDatabase.h>
 #import "VMGrMatchesViewCell.h"
+#import "VMGrUser.h"
+#import "VMGrMatchesHeaderViewCell.h"
+#import "VMGrUtilities.h"
+#import <CoreLocation/CoreLocation.h>
+#import "LGRefreshView.h"
 
 @import Firebase;
 
-@interface VMGrMatchesViewController () <UITableViewDelegate>{
+@interface VMGrMatchesViewController () <LGRefreshViewDelegate>{
 
     FIRDatabaseReference *mRef;
     FIRUser *mFIRUser;
-    NSDictionary *mDictUser;
+    VMGrUser *mCurrentUser;
+    CLLocation *mCurrentLocation;
+    
     NSMutableArray *mAllUsers;
     NSMutableArray *mGroupUsers;
+    NSInteger mSectionDelete;
     
-    NSString *mToyHave, *mToyWant;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableMatches;
+@property (strong, nonatomic) LGRefreshView *refreshView;
 
 @end
 
@@ -36,6 +44,7 @@
     // Do any additional setup after loading the view.
     
     [self setLogoNavigation];
+    self.tableMatches.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     mAllUsers = [[NSMutableArray alloc] init];
     mGroupUsers = [[NSMutableArray alloc] init];
@@ -43,6 +52,8 @@
     mFIRUser = [[FIRAuth auth] currentUser];
     mRef = [[FIRDatabase database] reference];
     [self loadUser];
+    
+    self.refreshView = [LGRefreshView refreshViewWithScrollView:self.tableMatches delegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,103 +72,150 @@
 */
 
 - (void)loadUser {
-    
+     __weak typeof (self) wself = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid]  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
-            mDictUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
-            if ([mDictUser objectForKey:FIR_USER_TOY_WANT]) {
-                mToyHave = [mDictUser objectForKey:FIR_USER_TOY_HAVE];
-                mToyWant = [mDictUser objectForKey:FIR_USER_TOY_WANT];
-                [self loadUserMatches];
+            NSDictionary *dicUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
+            mCurrentUser = [[VMGrUser alloc] initWithDictionary:dicUser];
+            mCurrentLocation = [mCurrentUser getLocation];
+            if (mCurrentUser.toyHave && mCurrentUser.toyWant) {
+                if (wself) {
+                    [wself loadAllUsers];
+                }
             }
-            
         }
     }];
 }
 
-//- (void)loadUserMatches:(NSString*)toyHave {
-//    
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    
-//    FIRDatabaseQuery *allUser = [[mRef child:FIR_DATABASE_USERS] queryOrderedByChild:FIR_USER_TOY_HAVE];
-//    FIRDatabaseQuery *userMatches = [allUser queryEqualToValue:toyHave];
-//    
-//    [userMatches observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
-//            NSDictionary *dicUsers = [[NSDictionary alloc] initWithDictionary:snapshot.value];
-//            NSArray *arrKeys = [dicUsers allKeys];
-//            for (NSString *key in arrKeys) {
-//                NSString *value = [dicUsers objectForKey:key];
-//                [mDataUsers addObject:value];
-//            }
-//        }
-//    }];
-//    
-//}
 
-- (void)loadUserMatches {
+- (void)loadAllUsers {
     
+    __weak typeof (self) wself = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
     FIRDatabaseQuery *allUser = [mRef child:FIR_DATABASE_USERS];
-    
     [allUser observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
+            mAllUsers = [[NSMutableArray alloc] init];
+            mGroupUsers = [[NSMutableArray alloc] init];
+            
             NSDictionary *dicUsers = [[NSDictionary alloc] initWithDictionary:snapshot.value];
             NSArray *arrKeys = [dicUsers allKeys];
             for (NSString *key in arrKeys) {
                 NSDictionary *value = [dicUsers objectForKey:key];
-                [mAllUsers addObject:value];
+                VMGrUser *user = [[VMGrUser alloc] initWithDictionary:value];
+                [user setDistanceWithLocation:mCurrentLocation];
+                if (![user.uid isEqual:mCurrentUser.uid]) {
+                    [mAllUsers addObject:user];
+                }
+            }
+            // Sort user with distance
+            [self sortUsesWithDistance:mAllUsers];
+            
+            if (mAllUsers.count > 0) {
+                // Group user matches
+                [wself groupUsersMatches];
+                
+                // Group other users
+                while (mAllUsers.count > 0) {
+                    [wself groupUsers];
+                }
+                
+                // Reload table
+                [wself.tableMatches reloadData];
             }
             
-            while (mAllUsers.count > 0) {
-                [self groupUsers];
-            }
         }
     }];
 }
 
+- (void)groupUsersMatches {
 
-- (void)groupUsers {
-
-    NSMutableArray *arrUser = [[NSMutableArray alloc] init];
-    NSDictionary *user = [mAllUsers objectAtIndex:0];
-    NSString *toyHave = user[FIR_USER_TOY_HAVE];
-    NSString *toyWant = user[FIR_USER_TOY_WANT];
-    if (!toyHave || !toyHave) {
-        [mAllUsers removeObject:user];
-        return;
-    }
-    [arrUser addObject:user];
-    
-    for (int index = 1; index < mAllUsers.count; index++) {
-        NSDictionary *value = [mAllUsers objectAtIndex:index];
-        if (value[FIR_USER_TOY_HAVE] && value[FIR_USER_TOY_WANT]) {
-            if ([value[FIR_USER_TOY_HAVE] isEqualToString:toyHave] && [value[FIR_USER_TOY_WANT] isEqualToString:toyWant]) {
-                [arrUser addObject:value];
-                
+    NSMutableArray *arrUsersMatches = [[NSMutableArray alloc] init];
+    NSMutableArray *arrUsersWithToyHave = [[NSMutableArray alloc] init];
+    NSMutableArray *arrUsersWithToyWant = [[NSMutableArray alloc] init];
+   
+    for (VMGrUser *user in mAllUsers) {
+        if (user.toyHave && user.toyWant) {
+            if ([user.toyHave isEqualToString:mCurrentUser.toyWant] && [user.toyWant isEqualToString:mCurrentUser.toyHave]) {
+                [arrUsersMatches addObject:user];
+            } else if ([user.toyHave isEqualToString:mCurrentUser.toyWant]) {
+                [arrUsersWithToyHave addObject:user];
+            } else if ([user.toyWant isEqualToString:mCurrentUser.toyHave]) {
+                [arrUsersWithToyWant addObject:user];
             }
         }
     }
-    [mAllUsers removeObjectsInArray:[NSArray arrayWithArray:arrUser]];
+    if (arrUsersMatches.count > 0) {
+        [mAllUsers removeObjectsInArray:[NSArray arrayWithArray:arrUsersMatches]];
+        [mGroupUsers addObject:arrUsersMatches];
+    }
     
-    [mGroupUsers addObject:arrUser];
+    if (arrUsersWithToyHave.count > 0) {
+        [mAllUsers removeObjectsInArray:[NSArray arrayWithArray:arrUsersWithToyHave]];
+        [mGroupUsers addObject:arrUsersWithToyHave];
+    }
+    
+    if (arrUsersWithToyWant.count > 0) {
+        [mAllUsers removeObjectsInArray:[NSArray arrayWithArray:arrUsersWithToyWant]];
+        [mGroupUsers addObject:arrUsersWithToyWant];
+    }
+    
+}
+
+- (void)groupUsers {
+
+    NSMutableArray *arrUsers = [[NSMutableArray alloc] init];
+    VMGrUser *userFirst = [mAllUsers objectAtIndex:0];
+    NSString *toyHave = userFirst.toyHave;
+    NSString *toyWant = userFirst.toyWant;
+    NSString *toyNum = userFirst.toyNum;
+    
+    if (!toyHave || !toyWant) {
+        [mAllUsers removeObject:userFirst];
+        return;
+    }
+    [arrUsers addObject:userFirst];
+    
+    for (int index = 1; index < mAllUsers.count; index++) {
+        VMGrUser *user = [mAllUsers objectAtIndex:index];
+        if (user.toyHave && user.toyWant) {
+            if ([user.toyHave isEqual:toyHave] && [user.toyWant isEqual:toyWant] && [user.toyNum isEqual:toyNum]) {
+                [arrUsers addObject:user];
+            }
+        }
+    }
+    [mAllUsers removeObjectsInArray:[NSArray arrayWithArray:arrUsers]];
+    [mGroupUsers addObject:arrUsers];
+    
+}
+
+- (void)sortUsesWithDistance:(NSMutableArray *)arrSort{
+    [arrSort sortUsingComparator:^NSComparisonResult(VMGrUser  *user1, VMGrUser  *user2) {
+        if (user1.locationDistance > user2.locationDistance)
+        {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        if (user1.locationDistance < user2.locationDistance)
+        {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
 }
 
 #pragma mark UITableView Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 6;
+    return mGroupUsers.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return ((NSMutableArray*)[mGroupUsers objectAtIndex:section]).count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -165,11 +223,24 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 50;
+    return 55;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Car";
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSString *identifier = @"VMGrMatchesHeaderViewCell";
+    
+    VMGrMatchesHeaderViewCell *cell = [self.tableMatches dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[VMGrMatchesHeaderViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    NSMutableArray *arr = [mGroupUsers objectAtIndex:section];
+    VMGrUser *user = [arr firstObject];
+    cell.title.text = [NSString stringWithFormat:@"%@ %@ for %@", user.toyNum, user.toyHave, user.toyWant];
+    
+    cell.btnDelete.tag = section;
+    [cell.btnDelete addTarget:self action:@selector(deleteGroup:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -179,6 +250,26 @@
     VMGrMatchesViewCell *cell = [self.tableMatches dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[VMGrMatchesViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    
+    
+    NSMutableArray *arr = [mGroupUsers objectAtIndex:indexPath.section];
+    VMGrUser *user = [arr objectAtIndex:indexPath.row];
+    cell.name.text = user.name;
+    
+    NSDate *date = [VMGrUtilities stringToDate:user.toyDateRequest];
+    NSString *dateRequest = [VMGrUtilities relativeDateStringForDate:date];
+    cell.time.text = dateRequest;
+    
+    // Load image avatar
+    cell.imgAvatar.layer.cornerRadius = cell.imgAvatar.frame.size.width/2;
+    cell.imgAvatar.layer.masksToBounds = YES;
+    
+    if (user.imgAvatar) {
+        cell.imgAvatar.image = user.imgAvatar;
+    } else {
+        cell.imgAvatar.image = [UIImage imageNamed:@"no_avatar"];
+        [self loadImageAvatarWithUser:user image:cell.imgAvatar];
     }
 
     return cell;
@@ -190,6 +281,51 @@
     
 }
 
+- (void)loadImageAvatarWithUser:(VMGrUser *)user image:(UIImageView*)imageView {
+    
+    FIRStorage *storage = [FIRStorage storage];
+    FIRStorageReference *storageRef = [storage referenceForURL:FIR_STORAGE_SG];
+    FIRStorageReference *avatarRef = [storageRef child:FIR_STORAGE_AVATAR];
+    FIRStorageReference *uidRef = [avatarRef child:user.uid];
+    
+    [uidRef dataWithMaxSize:1 * 1024 * 1024 completion:^(NSData * _Nullable data, NSError * _Nullable error) {
+        
+        if (error != nil) {
+            
+        } else {
+            UIImage *imgAvatar = [UIImage imageWithData:data];
+            [imageView setImage:imgAvatar];
+            user.imgAvatar = imgAvatar;
+        }
+        
+    }];
+    
+}
+
+- (void)deleteGroup:(UIButton*)sender {
+    mSectionDelete = sender.tag;
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:@"Do you want to delete group?"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Delete", nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [mGroupUsers removeObjectAtIndex:mSectionDelete];
+        [self.tableMatches reloadData];
+    }
+}
+
+#pragma mark Refesh Delegate
+- (void)refreshViewRefreshing:(LGRefreshView *)refreshView {
+    [self loadUser];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void) { [self.refreshView endRefreshing];
+    });
+}
 
 
 @end

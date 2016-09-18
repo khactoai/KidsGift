@@ -229,13 +229,11 @@ enum CellSetup : NSUInteger {
     
     if (![toyNum isEqualToString:PLEASE_SELECT_NUM] && ![toyHave isEqualToString:PLEASE_SELECT_TOY] && ![toyWant isEqualToString:PLEASE_SELECT_TOY]) {
         
-        NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        
+        NSString *stringDate = [VMGrUtilities dateToString:[NSDate date ]];
         NSDictionary *dicToy = @{FIR_USER_TOY_NUM: toyNum,
                                   FIR_USER_TOY_HAVE: toyHave,
                                   FIR_USER_TOY_WANT: toyWant,
-                                  FIR_USER_TOY_DATE_REQUEST: [dateFormatter stringFromDate:[NSDate date]]};
+                                  FIR_USER_TOY_DATE_REQUEST: stringDate};
         
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid] updateChildValues:dicToy withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {

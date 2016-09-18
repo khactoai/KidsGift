@@ -19,6 +19,7 @@
 + (NSString*)dateToString:(NSDate*)date format:(NSString*)format;
 + (NSDate*)stringToDate:(NSString*)dateStr;
 + (NSString*)timeElapsed:(NSTimeInterval) seconds;
++ (NSString *)relativeDateStringForDate:(NSDate *)date;
 
 + (void)saveImage:(UIImage*)image forKey:(NSString*)imageName;
 + (void)removeImage:(NSString*)fileName;

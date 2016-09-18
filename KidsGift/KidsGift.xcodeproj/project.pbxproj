@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3230CECC1D8D88C4001472BD /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 3230CEC91D8D88C4001472BD /* delete.png */; };
+		3230CECD1D8D88C4001472BD /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3230CECA1D8D88C4001472BD /* delete@2x.png */; };
+		3230CECE1D8D88C4001472BD /* delete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3230CECB1D8D88C4001472BD /* delete@3x.png */; };
+		3230CED11D8D898F001472BD /* VMGrMatchesHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3230CED01D8D898F001472BD /* VMGrMatchesHeaderViewCell.m */; };
+		3242B6031D8D43460033D41B /* VMGrUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242B6021D8D43460033D41B /* VMGrUser.m */; };
 		328363E41D8B606E003013E8 /* VMGrMatchesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 328363E31D8B606E003013E8 /* VMGrMatchesViewCell.m */; };
 		32866B761D67C04F00B13F04 /* VMGrAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32866B751D67C04F00B13F04 /* VMGrAlertView.m */; };
 		32866B791D67C08200B13F04 /* VMGrUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 32866B781D67C08200B13F04 /* VMGrUtilities.m */; };
-		9AB1F056A8602065B35CECCA /* libPods-KidsGift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C3C6109726BC2F29CE45FF2 /* libPods-KidsGift.a */; };
+		D4A16163C6B5F00A0CB39815 /* libPods-KidsGift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1251720982612AFE8300FD /* libPods-KidsGift.a */; };
 		D71E19D61D7E7DE400DCDCF3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D71E19D51D7E7DE400DCDCF3 /* GoogleService-Info.plist */; };
 		D71E19DD1D7E894900DCDCF3 /* logo_m.png in Resources */ = {isa = PBXBuildFile; fileRef = D71E19D71D7E894900DCDCF3 /* logo_m.png */; };
 		D71E19DE1D7E894900DCDCF3 /* logo_m@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D71E19D81D7E894900DCDCF3 /* logo_m@2x.png */; };
@@ -81,14 +86,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0DC14D30BA8ADC80BEE32024 /* Pods-KidsGift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsGift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KidsGift/Pods-KidsGift.debug.xcconfig"; sourceTree = "<group>"; };
-		1C3C6109726BC2F29CE45FF2 /* libPods-KidsGift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KidsGift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3230CEC91D8D88C4001472BD /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
+		3230CECA1D8D88C4001472BD /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = "<group>"; };
+		3230CECB1D8D88C4001472BD /* delete@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@3x.png"; sourceTree = "<group>"; };
+		3230CECF1D8D898F001472BD /* VMGrMatchesHeaderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrMatchesHeaderViewCell.h; sourceTree = "<group>"; };
+		3230CED01D8D898F001472BD /* VMGrMatchesHeaderViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrMatchesHeaderViewCell.m; sourceTree = "<group>"; };
+		3242B6011D8D43450033D41B /* VMGrUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrUser.h; sourceTree = "<group>"; };
+		3242B6021D8D43460033D41B /* VMGrUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrUser.m; sourceTree = "<group>"; };
 		328363E21D8B606E003013E8 /* VMGrMatchesViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrMatchesViewCell.h; sourceTree = "<group>"; };
 		328363E31D8B606E003013E8 /* VMGrMatchesViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrMatchesViewCell.m; sourceTree = "<group>"; };
 		32866B741D67C04F00B13F04 /* VMGrAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrAlertView.h; sourceTree = "<group>"; };
 		32866B751D67C04F00B13F04 /* VMGrAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrAlertView.m; sourceTree = "<group>"; };
 		32866B771D67C08200B13F04 /* VMGrUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrUtilities.h; sourceTree = "<group>"; };
 		32866B781D67C08200B13F04 /* VMGrUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrUtilities.m; sourceTree = "<group>"; };
+		BE6316DE1390A740EF62E383 /* Pods-KidsGift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsGift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KidsGift/Pods-KidsGift.debug.xcconfig"; sourceTree = "<group>"; };
 		D71E19D51D7E7DE400DCDCF3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D71E19D71D7E894900DCDCF3 /* logo_m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_m.png; sourceTree = "<group>"; };
 		D71E19D81D7E894900DCDCF3 /* logo_m@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_m@2x.png"; sourceTree = "<group>"; };
@@ -173,7 +184,8 @@
 		D7D573D41D66D1B400205DFB /* no_avatar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_avatar@3x.png"; sourceTree = "<group>"; };
 		D7D573D91D67172700205DFB /* VMGrUtilsFirebase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrUtilsFirebase.h; sourceTree = "<group>"; };
 		D7D573DA1D67172700205DFB /* VMGrUtilsFirebase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrUtilsFirebase.m; sourceTree = "<group>"; };
-		ED410AB8FEC030D6262B4670 /* Pods-KidsGift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsGift.release.xcconfig"; path = "Pods/Target Support Files/Pods-KidsGift/Pods-KidsGift.release.xcconfig"; sourceTree = "<group>"; };
+		EA2F8BA713E71D22A10D29B0 /* Pods-KidsGift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsGift.release.xcconfig"; path = "Pods/Target Support Files/Pods-KidsGift/Pods-KidsGift.release.xcconfig"; sourceTree = "<group>"; };
+		FD1251720982612AFE8300FD /* libPods-KidsGift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KidsGift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +193,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AB1F056A8602065B35CECCA /* libPods-KidsGift.a in Frameworks */,
+				D4A16163C6B5F00A0CB39815 /* libPods-KidsGift.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,19 +211,19 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		484DBAD635114F06B0A18CF4 /* Frameworks */ = {
+		33FD2A5344D4564B93AC5EFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1C3C6109726BC2F29CE45FF2 /* libPods-KidsGift.a */,
+				FD1251720982612AFE8300FD /* libPods-KidsGift.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6F2081346706143979BECE0B /* Pods */ = {
+		8B974E845BF3A1C95BECA82B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0DC14D30BA8ADC80BEE32024 /* Pods-KidsGift.debug.xcconfig */,
-				ED410AB8FEC030D6262B4670 /* Pods-KidsGift.release.xcconfig */,
+				BE6316DE1390A740EF62E383 /* Pods-KidsGift.debug.xcconfig */,
+				EA2F8BA713E71D22A10D29B0 /* Pods-KidsGift.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -227,6 +239,8 @@
 				D75800331D812FC300725FFB /* VMGrSetupViewCell.m */,
 				328363E21D8B606E003013E8 /* VMGrMatchesViewCell.h */,
 				328363E31D8B606E003013E8 /* VMGrMatchesViewCell.m */,
+				3230CECF1D8D898F001472BD /* VMGrMatchesHeaderViewCell.h */,
+				3230CED01D8D898F001472BD /* VMGrMatchesHeaderViewCell.m */,
 			);
 			path = ViewCell;
 			sourceTree = "<group>";
@@ -263,8 +277,8 @@
 			children = (
 				D7C347701D6579C40051E728 /* KidsGift */,
 				D7C3476F1D6579C40051E728 /* Products */,
-				6F2081346706143979BECE0B /* Pods */,
-				484DBAD635114F06B0A18CF4 /* Frameworks */,
+				8B974E845BF3A1C95BECA82B /* Pods */,
+				33FD2A5344D4564B93AC5EFE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -351,6 +365,9 @@
 		D7C347A91D6587C20051E728 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3230CEC91D8D88C4001472BD /* delete.png */,
+				3230CECA1D8D88C4001472BD /* delete@2x.png */,
+				3230CECB1D8D88C4001472BD /* delete@3x.png */,
 				D758002C1D812CF700725FFB /* user.png */,
 				D758002D1D812CF700725FFB /* user@2x.png */,
 				D758002E1D812CF700725FFB /* user@3x.png */,
@@ -435,6 +452,8 @@
 			children = (
 				D7D573D91D67172700205DFB /* VMGrUtilsFirebase.h */,
 				D7D573DA1D67172700205DFB /* VMGrUtilsFirebase.m */,
+				3242B6011D8D43450033D41B /* VMGrUser.h */,
+				3242B6021D8D43460033D41B /* VMGrUser.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -446,12 +465,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D7C347881D6579C40051E728 /* Build configuration list for PBXNativeTarget "KidsGift" */;
 			buildPhases = (
-				E9FFA0EF7EF797C4BAA6136D /* Check Pods Manifest.lock */,
+				0561787FCA9555F8F7F57195 /* [CP] Check Pods Manifest.lock */,
 				D7C3476A1D6579C40051E728 /* Sources */,
 				D7C3476B1D6579C40051E728 /* Frameworks */,
 				D7C3476C1D6579C40051E728 /* Resources */,
-				B595CC27A7A7B360FF677E18 /* Embed Pods Frameworks */,
-				CB0168080D75584C911C4CEE /* Copy Pods Resources */,
+				A617E8ACB6A3B0D2AAAC081A /* [CP] Embed Pods Frameworks */,
+				530B3948EAF5017A53A5283F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -535,11 +554,14 @@
 				D7C3479E1D6585E40051E728 /* icon_m_40pt@2x.png in Resources */,
 				D7C347A21D6585E40051E728 /* icon_m_60pt@3x.png in Resources */,
 				D7C3479A1D6585E40051E728 /* icon_m_29pt.png in Resources */,
+				3230CECE1D8D88C4001472BD /* delete@3x.png in Resources */,
+				3230CECC1D8D88C4001472BD /* delete.png in Resources */,
 				D75800311D812CF700725FFB /* user@3x.png in Resources */,
 				D71E19DD1D7E894900DCDCF3 /* logo_m.png in Resources */,
 				D71E19E01D7E894900DCDCF3 /* logo_text.png in Resources */,
 				D7C347B11D6587FC0051E728 /* bg_main_m.png in Resources */,
 				D76281761D8010FC00D6CD50 /* check.png in Resources */,
+				3230CECD1D8D88C4001472BD /* delete@2x.png in Resources */,
 				D71E19F81D7E991C00DCDCF3 /* icon_logout@3x.png in Resources */,
 				D7C347A11D6585E40051E728 /* icon_m_60pt@2x.png in Resources */,
 				D76611991D7FCF5F00990506 /* arrow@3x.png in Resources */,
@@ -564,29 +586,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B595CC27A7A7B360FF677E18 /* Embed Pods Frameworks */ = {
+		0561787FCA9555F8F7F57195 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KidsGift/Pods-KidsGift-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		CB0168080D75584C911C4CEE /* Copy Pods Resources */ = {
+		530B3948EAF5017A53A5283F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -594,19 +616,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KidsGift/Pods-KidsGift-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E9FFA0EF7EF797C4BAA6136D /* Check Pods Manifest.lock */ = {
+		A617E8ACB6A3B0D2AAAC081A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KidsGift/Pods-KidsGift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -618,6 +640,7 @@
 			files = (
 				D766119D1D7FDE3100990506 /* VMGrSetupViewController.m in Sources */,
 				D76611A51D7FF67600990506 /* VMGrListToysViewController.m in Sources */,
+				3230CED11D8D898F001472BD /* VMGrMatchesHeaderViewCell.m in Sources */,
 				32866B761D67C04F00B13F04 /* VMGrAlertView.m in Sources */,
 				D7C347BB1D65BD660051E728 /* VMGrLoginViewController.m in Sources */,
 				D7C347C61D65BDD80051E728 /* VMGrSettingViewController.m in Sources */,
@@ -630,6 +653,7 @@
 				D71E19F21D7E906100DCDCF3 /* VMGrMenuViewCell.m in Sources */,
 				D7C347C21D65BD7C0051E728 /* VMGrViewController.m in Sources */,
 				D76281721D800F9700D6CD50 /* VMGrToyViewCell.m in Sources */,
+				3242B6031D8D43460033D41B /* VMGrUser.m in Sources */,
 				32866B791D67C08200B13F04 /* VMGrUtilities.m in Sources */,
 				D7C347731D6579C40051E728 /* main.m in Sources */,
 				328363E41D8B606E003013E8 /* VMGrMatchesViewCell.m in Sources */,
@@ -744,7 +768,7 @@
 		};
 		D7C347891D6579C40051E728 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0DC14D30BA8ADC80BEE32024 /* Pods-KidsGift.debug.xcconfig */;
+			baseConfigurationReference = BE6316DE1390A740EF62E383 /* Pods-KidsGift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -761,7 +785,7 @@
 		};
 		D7C3478A1D6579C40051E728 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED410AB8FEC030D6262B4670 /* Pods-KidsGift.release.xcconfig */;
+			baseConfigurationReference = EA2F8BA713E71D22A10D29B0 /* Pods-KidsGift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
