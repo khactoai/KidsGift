@@ -610,7 +610,7 @@
                                                 <constraint firstItem="IyQ-uu-CqF" firstAttribute="centerY" secondItem="A5w-wM-2Nx" secondAttribute="centerY" id="pTm-3H-t7x"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="btnDelete" destination="IyQ-uu-CqF" id="L1p-1F-H77"/>
                                             <outlet property="title" destination="MPh-M7-yTP" id="TrO-st-nfU"/>

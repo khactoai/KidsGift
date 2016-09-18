@@ -15,6 +15,7 @@
 #import "VMGrUtilities.h"
 #import "MBProgressHUD.h"
 #import "VMGrSetupViewCell.h"
+#import "VMGrUser.h"
 
 @import Firebase;
 
@@ -39,9 +40,9 @@ enum CellSetup : NSUInteger {
     NSString *toySelected;
     NSInteger mSelectedNum;
     
-    FIRUser *mFIRUser;
     FIRDatabaseReference *mRef;
-    NSDictionary *mDictUser;
+    FIRUser *mFIRUser;
+    VMGrUser *mUser;
     NSIndexPath *mIndexPathSelectToy;
 }
 
@@ -57,7 +58,6 @@ enum CellSetup : NSUInteger {
     [self setLogoNavigation];
     self.tableSetup.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    mDictUser = [[NSDictionary alloc] init];
     mRef = [[FIRDatabase database] reference];
     mFIRUser = [[FIRAuth auth] currentUser];
     [self loadDataSetup];
@@ -87,7 +87,8 @@ enum CellSetup : NSUInteger {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
-            mDictUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
+            NSDictionary *dictUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
+            mUser = [[VMGrUser alloc]initWithDictionary:dictUser];
             [self.tableSetup reloadData];
         }
     }];
@@ -115,8 +116,8 @@ enum CellSetup : NSUInteger {
     
     if (indexPath.row == 0) {
         cell.lableTitle.text = @"I have";
-        if ([mDictUser objectForKey:FIR_USER_TOY_NUM]) {
-            cell.labelValue.text = [mDictUser objectForKey:FIR_USER_TOY_NUM];
+        if (mUser.toyNum) {
+            cell.labelValue.text = mUser.toyNum;
             [cell.labelValue setFont:[UIFont systemFontOfSize:16]];
             [cell.labelValue setTextColor:[UIColor blackColor]];
         } else {
@@ -126,8 +127,8 @@ enum CellSetup : NSUInteger {
         }
     } else if (indexPath.row == 1) {
         cell.lableTitle.text = @"";
-        if ([mDictUser objectForKey:FIR_USER_TOY_HAVE]) {
-            cell.labelValue.text = [mDictUser objectForKey:FIR_USER_TOY_HAVE];
+        if (mUser.toyHave) {
+            cell.labelValue.text = mUser.toyHave;
             [cell.labelValue setFont:[UIFont systemFontOfSize:16]];
             [cell.labelValue setTextColor:[UIColor blackColor]];
         } else {
@@ -143,8 +144,8 @@ enum CellSetup : NSUInteger {
         
     } else if (indexPath.row == 3) {
         cell.lableTitle.text = @"";
-        if ([mDictUser objectForKey:FIR_USER_TOY_WANT]) {
-            cell.labelValue.text = [mDictUser objectForKey:FIR_USER_TOY_WANT];
+        if (mUser.toyWant) {
+            cell.labelValue.text = mUser.toyWant;
             [cell.labelValue setFont:[UIFont systemFontOfSize:16]];
             [cell.labelValue setTextColor:[UIColor blackColor]];
         } else {

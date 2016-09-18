@@ -15,6 +15,7 @@
 #import "VMGrAlertView.h"
 #import "MBProgressHUD.h"
 #import "RESideMenu.h"
+#import "AppConstant.h"
 
 @interface VMGrLoginViewController () {
 
@@ -36,16 +37,30 @@
     
     [GIDSignIn sharedInstance].uiDelegate = self;
     
+    mRef = [[FIRDatabase database] reference];
     mFIRUser = [[FIRAuth auth] currentUser];
     
     if (mFIRUser) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UITabBarController *rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrRootTabBarController"];
-            rootViewController.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-            [self presentViewController:rootViewController animated:YES completion:nil];
-        });
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid]  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            NSInteger selectedIndex = 0;
+            if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dictUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
+                if (dictUser[FIR_USER_TOY_HAVE] && dictUser[FIR_USER_TOY_WANT]) {
+                    selectedIndex = 1;
+                }
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UITabBarController *rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrRootTabBarController"];
+                rootViewController.selectedIndex = selectedIndex;
+                rootViewController.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
+                [self presentViewController:rootViewController animated:YES completion:nil];
+            });
+            
+        }];
     }
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -153,7 +168,6 @@
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     mFIRUser = user;
-    mRef = [[FIRDatabase database] reference];
     if (mFIRUser) {
         NSDictionary *dicUser = @{FIR_USER_UID: mFIRUser.uid,
                                   FIR_USER_NAME: mFIRUser.displayName};
@@ -163,7 +177,6 @@
     if (mImageRequest && mFIRUser) {
         [self downloadImageProfile];
     }
-    
     
     dispatch_async(dispatch_get_main_queue(), ^{
         UITabBarController *rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrRootTabBarController"];
