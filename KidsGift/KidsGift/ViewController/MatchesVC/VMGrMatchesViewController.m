@@ -96,7 +96,7 @@
     __weak typeof (self) wself = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     FIRDatabaseQuery *allUser = [mRef child:FIR_DATABASE_USERS];
-    [allUser observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+    [allUser observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
             mAllUsers = [[NSMutableArray alloc] init];
@@ -321,10 +321,12 @@
 
 #pragma mark Refesh Delegate
 - (void)refreshViewRefreshing:(LGRefreshView *)refreshView {
-    [self loadUser];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void) { [self.refreshView endRefreshing];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void) {
+        [self.refreshView endRefreshing];
     });
+    
+    [self loadUser];
 }
 
 
