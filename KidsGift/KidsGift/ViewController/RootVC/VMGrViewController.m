@@ -35,6 +35,10 @@
     self.navigationItem.title = @"";
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.tabBarController.tabBar.hidden = NO;
+}
+
 - (void) setLogoNavigation {
     
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 200.0, 40.0)];

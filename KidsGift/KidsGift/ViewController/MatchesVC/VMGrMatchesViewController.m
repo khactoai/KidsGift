@@ -17,6 +17,7 @@
 #import "VMGrUtilities.h"
 #import <CoreLocation/CoreLocation.h>
 #import "LGRefreshView.h"
+#import "VMGrConversationViewController.h"
 
 @import Firebase;
 
@@ -278,6 +279,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    //[self performSegueWithIdentifier:@"VMGrConversationSegue" sender:self];
+    NSMutableArray *arr = [mGroupUsers objectAtIndex:indexPath.section];
+    VMGrUser *user = [arr objectAtIndex:indexPath.row];
+    
+    VMGrConversationViewController *conversationViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrConversationViewController"];
+    conversationViewController.mUserReceiver = user;
+    
+    [self.navigationController pushViewController:conversationViewController animated:YES];
+    self.tabBarController.tabBar.hidden = YES;
     
 }
 

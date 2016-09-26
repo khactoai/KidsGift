@@ -31,3 +31,11 @@
 #define		FIR_USER_TOY_WANT           @"toy_want"
 #define		FIR_USER_TOY_DATE_REQUEST   @"date_request"
 
+
+#define		FIR_DATABASE_MESSAGES          @"messages"
+#define		FIR_MESSAGES_ID                 @"messages_id"
+#define		FIR_MESSAGES_UID_CURRENT                 @"messages_uid_current"
+#define		FIR_MESSAGES_UID_RECEIVER                @"messages_uid_receiver"
+#define		FIR_MESSAGES_TEXT                @"messages_text"
+#define		FIR_MESSAGES_DATE                @"messages_date"
+

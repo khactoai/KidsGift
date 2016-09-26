@@ -17,5 +17,6 @@ target "KidsGift" do
     
     pod 'ActionSheetPicker-3.0'
     pod 'LGRefreshView'
+    pod 'JSQMessagesViewController'
 
 end
