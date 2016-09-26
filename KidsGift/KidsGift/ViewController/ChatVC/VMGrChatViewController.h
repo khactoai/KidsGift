@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VMGrViewController.h"
 
-@interface VMGrChatViewController : UIViewController
+@interface VMGrChatViewController : VMGrViewController
 
 @end

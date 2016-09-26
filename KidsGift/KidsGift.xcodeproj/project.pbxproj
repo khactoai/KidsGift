@@ -15,6 +15,10 @@
 		328363E41D8B606E003013E8 /* VMGrMatchesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 328363E31D8B606E003013E8 /* VMGrMatchesViewCell.m */; };
 		32866B761D67C04F00B13F04 /* VMGrAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32866B751D67C04F00B13F04 /* VMGrAlertView.m */; };
 		32866B791D67C08200B13F04 /* VMGrUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 32866B781D67C08200B13F04 /* VMGrUtilities.m */; };
+		32DF70FC1D99B61B004E62C8 /* VMGrConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DF70FB1D99B61B004E62C8 /* VMGrConversationViewController.m */; };
+		32DF70FF1D99B632004E62C8 /* VMGrMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DF70FE1D99B632004E62C8 /* VMGrMessage.m */; };
+		32DF71021D99BEE6004E62C8 /* VMGrRecent.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DF71011D99BEE6004E62C8 /* VMGrRecent.m */; };
+		32DF71051D99DCC1004E62C8 /* VMGrRecentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DF71041D99DCC1004E62C8 /* VMGrRecentViewCell.m */; };
 		D4A16163C6B5F00A0CB39815 /* libPods-KidsGift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1251720982612AFE8300FD /* libPods-KidsGift.a */; };
 		D71E19D61D7E7DE400DCDCF3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D71E19D51D7E7DE400DCDCF3 /* GoogleService-Info.plist */; };
 		D71E19DD1D7E894900DCDCF3 /* logo_m.png in Resources */ = {isa = PBXBuildFile; fileRef = D71E19D71D7E894900DCDCF3 /* logo_m.png */; };
@@ -99,6 +103,14 @@
 		32866B751D67C04F00B13F04 /* VMGrAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrAlertView.m; sourceTree = "<group>"; };
 		32866B771D67C08200B13F04 /* VMGrUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrUtilities.h; sourceTree = "<group>"; };
 		32866B781D67C08200B13F04 /* VMGrUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrUtilities.m; sourceTree = "<group>"; };
+		32DF70FA1D99B61B004E62C8 /* VMGrConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrConversationViewController.h; sourceTree = "<group>"; };
+		32DF70FB1D99B61B004E62C8 /* VMGrConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrConversationViewController.m; sourceTree = "<group>"; };
+		32DF70FD1D99B632004E62C8 /* VMGrMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrMessage.h; sourceTree = "<group>"; };
+		32DF70FE1D99B632004E62C8 /* VMGrMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrMessage.m; sourceTree = "<group>"; };
+		32DF71001D99BEE6004E62C8 /* VMGrRecent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrRecent.h; sourceTree = "<group>"; };
+		32DF71011D99BEE6004E62C8 /* VMGrRecent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrRecent.m; sourceTree = "<group>"; };
+		32DF71031D99DCC1004E62C8 /* VMGrRecentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrRecentViewCell.h; sourceTree = "<group>"; };
+		32DF71041D99DCC1004E62C8 /* VMGrRecentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrRecentViewCell.m; sourceTree = "<group>"; };
 		BE6316DE1390A740EF62E383 /* Pods-KidsGift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsGift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KidsGift/Pods-KidsGift.debug.xcconfig"; sourceTree = "<group>"; };
 		D71E19D51D7E7DE400DCDCF3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D71E19D71D7E894900DCDCF3 /* logo_m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_m.png; sourceTree = "<group>"; };
@@ -211,6 +223,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		32DF70F91D99B61B004E62C8 /* ConversationVC */ = {
+			isa = PBXGroup;
+			children = (
+				32DF70FA1D99B61B004E62C8 /* VMGrConversationViewController.h */,
+				32DF70FB1D99B61B004E62C8 /* VMGrConversationViewController.m */,
+			);
+			path = ConversationVC;
+			sourceTree = "<group>";
+		};
 		33FD2A5344D4564B93AC5EFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +262,8 @@
 				328363E31D8B606E003013E8 /* VMGrMatchesViewCell.m */,
 				3230CECF1D8D898F001472BD /* VMGrMatchesHeaderViewCell.h */,
 				3230CED01D8D898F001472BD /* VMGrMatchesHeaderViewCell.m */,
+				32DF71031D99DCC1004E62C8 /* VMGrRecentViewCell.h */,
+				32DF71041D99DCC1004E62C8 /* VMGrRecentViewCell.m */,
 			);
 			path = ViewCell;
 			sourceTree = "<group>";
@@ -323,6 +346,7 @@
 		D7C3478B1D6585480051E728 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				32DF70F91D99B61B004E62C8 /* ConversationVC */,
 				D76611A21D7FF66500990506 /* ListToysVC */,
 				D766119E1D7FDE4000990506 /* ChatVC */,
 				D766119A1D7FDE0E00990506 /* SetupVC */,
@@ -450,10 +474,14 @@
 		D7D573D81D6716FF00205DFB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				32DF70FD1D99B632004E62C8 /* VMGrMessage.h */,
+				32DF70FE1D99B632004E62C8 /* VMGrMessage.m */,
 				D7D573D91D67172700205DFB /* VMGrUtilsFirebase.h */,
 				D7D573DA1D67172700205DFB /* VMGrUtilsFirebase.m */,
 				3242B6011D8D43450033D41B /* VMGrUser.h */,
 				3242B6021D8D43460033D41B /* VMGrUser.m */,
+				32DF71001D99BEE6004E62C8 /* VMGrRecent.h */,
+				32DF71011D99BEE6004E62C8 /* VMGrRecent.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -638,8 +666,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32DF70FF1D99B632004E62C8 /* VMGrMessage.m in Sources */,
 				D766119D1D7FDE3100990506 /* VMGrSetupViewController.m in Sources */,
 				D76611A51D7FF67600990506 /* VMGrListToysViewController.m in Sources */,
+				32DF71051D99DCC1004E62C8 /* VMGrRecentViewCell.m in Sources */,
 				3230CED11D8D898F001472BD /* VMGrMatchesHeaderViewCell.m in Sources */,
 				32866B761D67C04F00B13F04 /* VMGrAlertView.m in Sources */,
 				D7C347BB1D65BD660051E728 /* VMGrLoginViewController.m in Sources */,
@@ -656,6 +686,8 @@
 				3242B6031D8D43460033D41B /* VMGrUser.m in Sources */,
 				32866B791D67C08200B13F04 /* VMGrUtilities.m in Sources */,
 				D7C347731D6579C40051E728 /* main.m in Sources */,
+				32DF70FC1D99B61B004E62C8 /* VMGrConversationViewController.m in Sources */,
+				32DF71021D99BEE6004E62C8 /* VMGrRecent.m in Sources */,
 				328363E41D8B606E003013E8 /* VMGrMatchesViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

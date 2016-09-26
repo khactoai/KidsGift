@@ -8,6 +8,7 @@
 
 #import "VMGrMessage.h"
 #import "AppConstant.h"
+#import "VMGrUtilities.h"
 
 @implementation VMGrMessage
 
@@ -46,6 +47,14 @@
         
     }
     return self;
+}
+
+- (JSQMessage*)createMessage {
+    JSQMessage *message = [[JSQMessage alloc] initWithSenderId:self.uidSender
+                                             senderDisplayName:self.displayName
+                                                          date:[VMGrUtilities stringToDate:self.date]
+                                                          text:self.text];
+    return message;
 }
 
 @end

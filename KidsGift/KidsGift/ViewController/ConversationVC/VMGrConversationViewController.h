@@ -16,6 +16,6 @@
 
 @interface VMGrConversationViewController : JSQMessagesViewController
 
-@property (strong, nonatomic) VMGrUser *mUserReceiver;
+- (void)setCurrentUser:(VMGrUser*)currentUser receiverUser:(VMGrUser*)receiverUser;
 
 @end

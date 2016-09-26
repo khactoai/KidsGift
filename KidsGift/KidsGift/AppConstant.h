@@ -33,10 +33,18 @@
 
 
 #define		FIR_DATABASE_MESSAGES          @"messages"
-#define		FIR_MESSAGES_ID                 @"messages_id"
-#define		FIR_MESSAGES_UID_SENDER                 @"messages_uid_sender"
-#define		FIR_MESSAGES_UID_RECEIVER                @"messages_uid_receiver"
-#define		FIR_MESSAGES_TEXT                @"messages_text"
-#define		FIR_MESSAGES_DATE                @"messages_date"
-#define		FIR_MESSAGES_DISPLAY_NAME                @"messages_display_name"
+#define		FIR_MESSAGES_ID                @"messages_id"
+#define		FIR_MESSAGES_UID_SENDER        @"messages_uid_sender"
+#define		FIR_MESSAGES_UID_RECEIVER      @"messages_uid_receiver"
+#define		FIR_MESSAGES_TEXT              @"messages_text"
+#define		FIR_MESSAGES_DATE              @"messages_date"
+#define		FIR_MESSAGES_DISPLAY_NAME      @"messages_display_name"
+
+#define		FIR_DATABASE_RECENTS           @"recents"
+#define		FIR_RECENT_UID_SENDER          @"recent_uid_sender"
+#define		FIR_RECENT_UID_RECEIVER        @"recent_uid_receiver"
+#define		FIR_RECENT_DISPLAY_NAME        @"recent_display_name"
+#define		FIR_RECENT_TEXT                @"recent_text"
+#define		FIR_RECENT_DATE                @"recent_date"
+#define		FIR_RECENT_COUNT               @"recent_count"
 

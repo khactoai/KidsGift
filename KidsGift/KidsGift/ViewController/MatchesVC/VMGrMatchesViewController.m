@@ -280,12 +280,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    //[self performSegueWithIdentifier:@"VMGrConversationSegue" sender:self];
     NSMutableArray *arr = [mGroupUsers objectAtIndex:indexPath.section];
-    VMGrUser *user = [arr objectAtIndex:indexPath.row];
+    VMGrUser *receiverUser = [arr objectAtIndex:indexPath.row];
     
     VMGrConversationViewController *conversationViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrConversationViewController"];
-    conversationViewController.mUserReceiver = user;
+    [conversationViewController setCurrentUser:mCurrentUser receiverUser:receiverUser];
     
     [self.navigationController pushViewController:conversationViewController animated:YES];
     self.tabBarController.tabBar.hidden = YES;
@@ -308,9 +307,7 @@
             [imageView setImage:imgAvatar];
             user.imgAvatar = imgAvatar;
         }
-        
     }];
-    
 }
 
 - (void)deleteGroup:(UIButton*)sender {

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <JSQMessagesViewController/JSQMessages.h>
 
 @interface VMGrMessage : NSObject
 
@@ -18,6 +19,7 @@
 @property(retain, nonatomic) NSString *date;
 
 - (id)initWithDictionary:(NSDictionary*)dicMessage;
+- (JSQMessage*)createMessage;
 
 
 @end
