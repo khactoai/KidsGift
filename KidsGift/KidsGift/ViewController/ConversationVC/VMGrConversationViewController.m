@@ -37,8 +37,8 @@
     mRef = [[FIRDatabase database] reference];
     mFIRUserCurrent = [[FIRAuth auth] currentUser];
     
-    self.senderId = self.mUserReceiver.uid;
-    self.senderDisplayName = self.mUserReceiver.name;
+    self.senderId = mFIRUserCurrent.uid;
+    self.senderDisplayName = mFIRUserCurrent.displayName;
     
     
     NSString *uidCurrent = mFIRUserCurrent.uid;
@@ -59,21 +59,19 @@
 }
 
 - (void)loadMessages {
-
+    
     [[[mRef child:FIR_DATABASE_MESSAGES] child:mMessageId]  observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
             
-            NSDictionary *dicMessage = [[NSDictionary alloc] initWithDictionary:snapshot.value];
-            NSArray *arrKeys = [dicMessage allKeys];
-//            for (NSString *key in arrKeys) {
-//                NSDictionary *value = [dicMessage objectForKey:key];
-//                VMGrMessage *message = [[VMGrMessage alloc] initWithDictionary:value];
-//                
-//                
-//                NSDate *date = [VMGrUtilities stringToDate:message.date];
-//                JSQMessage *jMessage = [[JSQMessage alloc] initWithSenderId:message.uidCurrent senderDisplayName:@"Hello" date:date text:message.text];
-//                [self.mArrMessages addObject:jMessage];
-//            }
+            VMGrMessage *messageObj = [[VMGrMessage alloc] initWithDictionary:snapshot.value];
+            
+            JSQMessage *jsqMessage = [[JSQMessage alloc] initWithSenderId:messageObj.uidSender
+                                                      senderDisplayName:messageObj.displayName
+                                                                   date:[VMGrUtilities stringToDate:messageObj.date]
+                                                                   text:messageObj.text];
+            [self.mArrMessages addObject:jsqMessage];
+            [self finishReceivingMessage];
+            
         }
     }];
 }
@@ -81,9 +79,10 @@
 - (void)sendMessage:(NSString *)text {
     
     NSDictionary *dictMessage = @{FIR_MESSAGES_ID: mMessageId,
-                             FIR_MESSAGES_UID_CURRENT: mFIRUserCurrent.uid,
+                             FIR_MESSAGES_UID_SENDER: mFIRUserCurrent.uid,
                              FIR_MESSAGES_UID_RECEIVER: self.mUserReceiver.uid,
                              FIR_MESSAGES_TEXT: text,
+                             FIR_MESSAGES_DISPLAY_NAME: mFIRUserCurrent.displayName,
                              FIR_MESSAGES_DATE: [VMGrUtilities dateToString:[NSDate date]]};
     
     
@@ -121,7 +120,9 @@
 }
 
 - (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row %2 == 0) {
+    
+    JSQMessage *jsqMessage = [self.mArrMessages objectAtIndex:indexPath.row];
+    if ([jsqMessage.senderId isEqual:mFIRUserCurrent.uid]) {
         return bubbleImageOutgoing;
     }
     return bubbleImageIncoming;

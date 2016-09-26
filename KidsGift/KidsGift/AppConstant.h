@@ -34,8 +34,9 @@
 
 #define		FIR_DATABASE_MESSAGES          @"messages"
 #define		FIR_MESSAGES_ID                 @"messages_id"
-#define		FIR_MESSAGES_UID_CURRENT                 @"messages_uid_current"
+#define		FIR_MESSAGES_UID_SENDER                 @"messages_uid_sender"
 #define		FIR_MESSAGES_UID_RECEIVER                @"messages_uid_receiver"
 #define		FIR_MESSAGES_TEXT                @"messages_text"
 #define		FIR_MESSAGES_DATE                @"messages_date"
+#define		FIR_MESSAGES_DISPLAY_NAME                @"messages_display_name"
 

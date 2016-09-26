@@ -20,8 +20,8 @@
         }
         
         // UID_CURRENT
-        if (dicMessage[FIR_MESSAGES_UID_CURRENT]) {
-            self.uidCurrent = dicMessage[FIR_MESSAGES_UID_CURRENT];
+        if (dicMessage[FIR_MESSAGES_UID_SENDER]) {
+            self.uidSender = dicMessage[FIR_MESSAGES_UID_SENDER];
         }
         
         // Receiver
@@ -32,6 +32,11 @@
         // Text
         if (dicMessage[FIR_MESSAGES_TEXT]) {
             self.text = dicMessage[FIR_MESSAGES_TEXT];
+        }
+        
+        // Name
+        if (dicMessage[FIR_MESSAGES_DISPLAY_NAME]) {
+            self.displayName = dicMessage[FIR_MESSAGES_DISPLAY_NAME];
         }
         
         // Date
