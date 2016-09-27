@@ -17,6 +17,10 @@
     JSQMessagesBubbleImage *bubbleImageSender;
     JSQMessagesBubbleImage *bubbleImageReceiver;
     
+    JSQMessagesAvatarImage *avatarImageSender;
+    JSQMessagesAvatarImage *avatarImageReciver;
+    JSQMessagesAvatarImage *avatarImageBlank;
+    
     FIRDatabaseReference *mRef;
     NSString *mMessageId;
     
@@ -45,9 +49,21 @@
     [self loadMessages];
     [self clearRecent];
     
+    [self setupViewMessage];
+    
+}
+
+- (void)setupViewMessage {
+
+    [self.inputToolbar.contentView.textView setPlaceHolder:@"Type a message ..."];
+    
+    self.inputToolbar.contentView.leftBarButtonItem = nil;
+    self.showLoadEarlierMessagesHeader = NO;
+    
     JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     bubbleImageSender = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleBlueColor]];
     bubbleImageReceiver = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleLightGrayColor]];
+    avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"no_avatar"] diameter:20.0];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -155,6 +171,32 @@
     }];
 }
 
+// Load avatar
+- (void)loadImageAvatarWithUid:(NSString *)uid {
+    
+    FIRStorage *storage = [FIRStorage storage];
+    FIRStorageReference *storageRef = [storage referenceForURL:FIR_STORAGE_SG];
+    FIRStorageReference *avatarRef = [storageRef child:FIR_STORAGE_AVATAR];
+    FIRStorageReference *uidRef = [avatarRef child:uid];
+    
+    [uidRef dataWithMaxSize:1 * 1024 * 1024 completion:^(NSData * _Nullable data, NSError * _Nullable error) {
+        
+        if (error != nil) {
+            
+        } else {
+            UIImage *imgAvatar = [UIImage imageWithData:data];
+            if ([uid isEqual:mCurrentUser.uid]) {
+                avatarImageSender = [JSQMessagesAvatarImageFactory avatarImageWithImage:imgAvatar diameter:20.0];
+            } else {
+                avatarImageReciver = [JSQMessagesAvatarImageFactory avatarImageWithImage:imgAvatar diameter:20.0];
+            }
+            
+            [self.collectionView reloadData];
+        }
+    }];
+}
+
+
 #pragma mark - JSQMessagesViewController method overrides
 
 - (void)didPressSendButton:(UIButton *)button withMessageText:(NSString *)text senderId:(NSString *)senderId senderDisplayName:(NSString *)name date:(NSDate *)date {
@@ -166,6 +208,9 @@
     [self updateRecentForReceiver:text];
     
     [self finishSendingMessage];
+    [self scrollToBottomAnimated:NO];
+    self.automaticallyScrollsToMostRecentMessage = YES;
+    self.showLoadEarlierMessagesHeader = NO;
     
 }
 
@@ -185,11 +230,35 @@
 }
 
 - (id<JSQMessageAvatarImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    
+    JSQMessage *message = [mArrMessages objectAtIndex:indexPath.row];
+    if ([message.senderId isEqualToString:mCurrentUser.uid]) {
+        if (!avatarImageSender) {
+            [self loadImageAvatarWithUid:mCurrentUser.uid];
+        } else {
+            return avatarImageSender;
+        }
+    } else {
+        if (!avatarImageReciver) {
+            [self loadImageAvatarWithUid:mReceiverUser.uid];
+        } else {
+            return avatarImageReciver;
+        }
+    }
+    return avatarImageBlank;
 }
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    
+    JSQMessage *message = mArrMessages[indexPath.row];
+    if (indexPath.row > 0)
+    {
+        JSQMessage *previous = mArrMessages[indexPath.row - 1];
+        if ([message.senderId isEqual:previous.senderId]) {
+            return nil;
+        }
+    }
+    return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:message.date];
 }
 
 // Display Name
@@ -222,7 +291,16 @@
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
                    layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath {
-    return 0;
+    
+    JSQMessage *message = mArrMessages[indexPath.row];
+    if (indexPath.row > 0)
+    {
+        JSQMessage *previous = mArrMessages[indexPath.row - 1];
+        if ([message.senderId isEqual:previous.senderId]) {
+            return 10;
+        }
+    }
+    return 30;
 }
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		321F08921D9B087800E71500 /* VMGrRootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 321F08911D9B087800E71500 /* VMGrRootTabBarController.m */; };
 		3230CECC1D8D88C4001472BD /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 3230CEC91D8D88C4001472BD /* delete.png */; };
 		3230CECD1D8D88C4001472BD /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3230CECA1D8D88C4001472BD /* delete@2x.png */; };
 		3230CECE1D8D88C4001472BD /* delete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3230CECB1D8D88C4001472BD /* delete@3x.png */; };
@@ -96,6 +97,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		321F08901D9B087800E71500 /* VMGrRootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrRootTabBarController.h; sourceTree = "<group>"; };
+		321F08911D9B087800E71500 /* VMGrRootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrRootTabBarController.m; sourceTree = "<group>"; };
 		3230CEC91D8D88C4001472BD /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		3230CECA1D8D88C4001472BD /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = "<group>"; };
 		3230CECB1D8D88C4001472BD /* delete@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@3x.png"; sourceTree = "<group>"; };
@@ -467,6 +470,8 @@
 				D7C347BE1D65BD7C0051E728 /* VMGrRootViewController.m */,
 				D7C347BF1D65BD7C0051E728 /* VMGrViewController.h */,
 				D7C347C01D65BD7C0051E728 /* VMGrViewController.m */,
+				321F08901D9B087800E71500 /* VMGrRootTabBarController.h */,
+				321F08911D9B087800E71500 /* VMGrRootTabBarController.m */,
 			);
 			path = RootVC;
 			sourceTree = "<group>";
@@ -727,6 +732,7 @@
 				32866B791D67C08200B13F04 /* VMGrUtilities.m in Sources */,
 				D7C347731D6579C40051E728 /* main.m in Sources */,
 				32DF70FC1D99B61B004E62C8 /* VMGrConversationViewController.m in Sources */,
+				321F08921D9B087800E71500 /* VMGrRootTabBarController.m in Sources */,
 				32DF71021D99BEE6004E62C8 /* VMGrRecent.m in Sources */,
 				328363E41D8B606E003013E8 /* VMGrMatchesViewCell.m in Sources */,
 			);

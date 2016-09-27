@@ -137,16 +137,16 @@
         [self loadImageAvatarWithUser:recent image:cell.imgAvatar];
     }
     
-    // Badge
-    cell.badge.topOffset = 60;
-    cell.badge.rightOffset = 20;
+    GIBadgeView *badge = [GIBadgeView new];
+    [cell.badgeView addSubview:badge];
+    badge.badgeValue = recent.count;
+    badge.topOffset = 10;
+    badge.rightOffset = 10;
     if (recent.count > 0) {
-        [cell.badge setHidden:NO];
-        cell.badge.badgeValue = recent.count;
+        [cell.badgeView setHidden:NO];
     } else {
-        [cell.badge setHidden:YES];
+        [cell.badgeView setHidden:YES];
     }
-    
     
     return cell;
     
@@ -162,7 +162,7 @@
     
     VMGrConversationViewController *conversationViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrConversationViewController"];
     [conversationViewController setCurrentUser:mCurrentUser receiverUser:receiverUser];
-    
+
     [self.navigationController pushViewController:conversationViewController animated:YES];
     self.tabBarController.tabBar.hidden = YES;
     
