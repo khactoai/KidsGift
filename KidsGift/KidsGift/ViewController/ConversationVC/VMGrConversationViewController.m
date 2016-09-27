@@ -34,6 +34,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.title = mReceiverUser.name;
+    
     self.senderId = mCurrentUser.uid;
     self.senderDisplayName = mCurrentUser.name;
     

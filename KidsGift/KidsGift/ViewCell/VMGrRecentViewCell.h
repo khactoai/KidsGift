@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GIBadgeView.h"
 
 @interface VMGrRecentViewCell : UITableViewCell
 
@@ -14,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *message;
 @property (weak, nonatomic) IBOutlet UILabel *time;
+@property (weak, nonatomic) IBOutlet GIBadgeView *badge;
 
 @end

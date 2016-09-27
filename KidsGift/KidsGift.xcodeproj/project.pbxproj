@@ -55,6 +55,12 @@
 		D766119D1D7FDE3100990506 /* VMGrSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D766119C1D7FDE3100990506 /* VMGrSetupViewController.m */; };
 		D76611A11D7FDE5000990506 /* VMGrChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D76611A01D7FDE5000990506 /* VMGrChatViewController.m */; };
 		D76611A51D7FF67600990506 /* VMGrListToysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D76611A41D7FF67600990506 /* VMGrListToysViewController.m */; };
+		D76794A61D9A89BF0095B89C /* chat.png in Resources */ = {isa = PBXBuildFile; fileRef = D76794A01D9A89BF0095B89C /* chat.png */; };
+		D76794A71D9A89BF0095B89C /* chat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D76794A11D9A89BF0095B89C /* chat@2x.png */; };
+		D76794A81D9A89BF0095B89C /* chat@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D76794A21D9A89BF0095B89C /* chat@3x.png */; };
+		D76794A91D9A89BF0095B89C /* find.png in Resources */ = {isa = PBXBuildFile; fileRef = D76794A31D9A89BF0095B89C /* find.png */; };
+		D76794AA1D9A89BF0095B89C /* find@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D76794A41D9A89BF0095B89C /* find@2x.png */; };
+		D76794AB1D9A89BF0095B89C /* find@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D76794A51D9A89BF0095B89C /* find@3x.png */; };
 		D7C347731D6579C40051E728 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C347721D6579C40051E728 /* main.m */; };
 		D7C347761D6579C40051E728 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C347751D6579C40051E728 /* AppDelegate.m */; };
 		D7C3477F1D6579C40051E728 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C3477D1D6579C40051E728 /* Main.storyboard */; };
@@ -154,6 +160,12 @@
 		D76611A01D7FDE5000990506 /* VMGrChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrChatViewController.m; sourceTree = "<group>"; };
 		D76611A31D7FF67600990506 /* VMGrListToysViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrListToysViewController.h; sourceTree = "<group>"; };
 		D76611A41D7FF67600990506 /* VMGrListToysViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrListToysViewController.m; sourceTree = "<group>"; };
+		D76794A01D9A89BF0095B89C /* chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat.png; sourceTree = "<group>"; };
+		D76794A11D9A89BF0095B89C /* chat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat@2x.png"; sourceTree = "<group>"; };
+		D76794A21D9A89BF0095B89C /* chat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat@3x.png"; sourceTree = "<group>"; };
+		D76794A31D9A89BF0095B89C /* find.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = find.png; sourceTree = "<group>"; };
+		D76794A41D9A89BF0095B89C /* find@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "find@2x.png"; sourceTree = "<group>"; };
+		D76794A51D9A89BF0095B89C /* find@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "find@3x.png"; sourceTree = "<group>"; };
 		D7C3476E1D6579C40051E728 /* KidsGift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KidsGift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C347721D6579C40051E728 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D7C347741D6579C40051E728 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -389,6 +401,12 @@
 		D7C347A91D6587C20051E728 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D76794A01D9A89BF0095B89C /* chat.png */,
+				D76794A11D9A89BF0095B89C /* chat@2x.png */,
+				D76794A21D9A89BF0095B89C /* chat@3x.png */,
+				D76794A31D9A89BF0095B89C /* find.png */,
+				D76794A41D9A89BF0095B89C /* find@2x.png */,
+				D76794A51D9A89BF0095B89C /* find@3x.png */,
 				3230CEC91D8D88C4001472BD /* delete.png */,
 				3230CECA1D8D88C4001472BD /* delete@2x.png */,
 				3230CECB1D8D88C4001472BD /* delete@3x.png */,
@@ -499,6 +517,7 @@
 				D7C3476C1D6579C40051E728 /* Resources */,
 				A617E8ACB6A3B0D2AAAC081A /* [CP] Embed Pods Frameworks */,
 				530B3948EAF5017A53A5283F /* [CP] Copy Pods Resources */,
+				35C7EFE974C7052D418D9859 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -566,9 +585,11 @@
 				D7C347AF1D6587EB0051E728 /* button_fb@3x.png in Resources */,
 				D7C3479D1D6585E40051E728 /* icon_m_40pt.png in Resources */,
 				D7C3479F1D6585E40051E728 /* icon_m_40pt@3x.png in Resources */,
+				D76794A71D9A89BF0095B89C /* chat@2x.png in Resources */,
 				D758002F1D812CF700725FFB /* user.png in Resources */,
 				D71E19ED1D7E8E8600DCDCF3 /* icon_menu@2x.png in Resources */,
 				D7C347AD1D6587EB0051E728 /* button_fb.png in Resources */,
+				D76794A81D9A89BF0095B89C /* chat@3x.png in Resources */,
 				D75800261D812C2600725FFB /* setting.png in Resources */,
 				D758002A1D812C9A00725FFB /* star@2x.png in Resources */,
 				D7C347841D6579C40051E728 /* LaunchScreen.storyboard in Resources */,
@@ -586,6 +607,8 @@
 				3230CECC1D8D88C4001472BD /* delete.png in Resources */,
 				D75800311D812CF700725FFB /* user@3x.png in Resources */,
 				D71E19DD1D7E894900DCDCF3 /* logo_m.png in Resources */,
+				D76794AB1D9A89BF0095B89C /* find@3x.png in Resources */,
+				D76794AA1D9A89BF0095B89C /* find@2x.png in Resources */,
 				D71E19E01D7E894900DCDCF3 /* logo_text.png in Resources */,
 				D7C347B11D6587FC0051E728 /* bg_main_m.png in Resources */,
 				D76281761D8010FC00D6CD50 /* check.png in Resources */,
@@ -602,9 +625,11 @@
 				D7C3477F1D6579C40051E728 /* Main.storyboard in Resources */,
 				D7C347AE1D6587EB0051E728 /* button_fb@2x.png in Resources */,
 				D71E19E81D7E8E5400DCDCF3 /* back_menu@3x.png in Resources */,
+				D76794A61D9A89BF0095B89C /* chat.png in Resources */,
 				D7C3479C1D6585E40051E728 /* icon_m_29pt@3x.png in Resources */,
 				D75800301D812CF700725FFB /* user@2x.png in Resources */,
 				D76611981D7FCF5F00990506 /* arrow@2x.png in Resources */,
+				D76794A91D9A89BF0095B89C /* find.png in Resources */,
 				D7C347B51D65884B0051E728 /* button_gg@2x.png in Resources */,
 				D7C347A81D6585F20051E728 /* launch@2x.png in Resources */,
 				D71E19E21D7E894900DCDCF3 /* logo_text@3x.png in Resources */,
@@ -627,6 +652,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		35C7EFE974C7052D418D9859 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KidsGift/Pods-KidsGift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		530B3948EAF5017A53A5283F /* [CP] Copy Pods Resources */ = {

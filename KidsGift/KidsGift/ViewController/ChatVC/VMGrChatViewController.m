@@ -12,6 +12,7 @@
 #import "AppConstant.h"
 #import "VMGrRecent.h"
 #import "VMGrUtilities.h"
+#import "GIBadgeView.h"
 
 @import Firebase;
 
@@ -41,12 +42,22 @@
     
     mArrRecents = [[NSMutableArray alloc] init];
     [self loadRecents];
-    
+    [self updateRecents];
+    [self loadUser];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)loadUser {
+    [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid]  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dicUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
+            mCurrentUser = [[VMGrUser alloc] initWithDictionary:dicUser];
+        }
+    }];
 }
 
 - (void)loadRecents {
@@ -61,6 +72,26 @@
         }
     }];
 
+}
+
+- (void)updateRecents {
+    
+    [[[mRef child:FIR_DATABASE_RECENTS] child:mFIRUser.uid]  observeEventType:FIRDataEventTypeChildChanged withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
+            VMGrRecent *recent = [[VMGrRecent alloc]initWithDictionary:snapshot.value];
+            if (recent.text != nil && recent.displayName != nil) {
+                for (int index = 0; index < mArrRecents.count; index++) {
+                    VMGrRecent *recentChange = [mArrRecents objectAtIndex:index];
+                    if ([recent.uidReceiver isEqual:recentChange.uidReceiver]) {
+                        recent.imgAvatar = recentChange.imgAvatar;
+                        [mArrRecents replaceObjectAtIndex:index withObject:recent];
+                    }
+                }
+            }
+            [self.tableRecents reloadData];
+        }
+    }];
+    
 }
 
 #pragma mark UITableView Delegate
@@ -106,6 +137,17 @@
         [self loadImageAvatarWithUser:recent image:cell.imgAvatar];
     }
     
+    // Badge
+    cell.badge.topOffset = 60;
+    cell.badge.rightOffset = 20;
+    if (recent.count > 0) {
+        [cell.badge setHidden:NO];
+        cell.badge.badgeValue = recent.count;
+    } else {
+        [cell.badge setHidden:YES];
+    }
+    
+    
     return cell;
     
 }
@@ -113,10 +155,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    //VMGrConversationViewController *conversationViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrConversationViewController"];
+    VMGrRecent *recent = [mArrRecents objectAtIndex:indexPath.row];
+    VMGrUser *receiverUser = [[VMGrUser alloc] init];
+    receiverUser.uid = recent.uidReceiver;
+    receiverUser.name = recent.displayName;
     
-    //[self.navigationController pushViewController:conversationViewController animated:YES];
-    //self.tabBarController.tabBar.hidden = YES;
+    VMGrConversationViewController *conversationViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrConversationViewController"];
+    [conversationViewController setCurrentUser:mCurrentUser receiverUser:receiverUser];
+    
+    [self.navigationController pushViewController:conversationViewController animated:YES];
+    self.tabBarController.tabBar.hidden = YES;
     
 }
 
@@ -125,7 +173,7 @@
     FIRStorage *storage = [FIRStorage storage];
     FIRStorageReference *storageRef = [storage referenceForURL:FIR_STORAGE_SG];
     FIRStorageReference *avatarRef = [storageRef child:FIR_STORAGE_AVATAR];
-    FIRStorageReference *uidRef = [avatarRef child:recent.uidSender];
+    FIRStorageReference *uidRef = [avatarRef child:recent.uidReceiver];
     
     [uidRef dataWithMaxSize:1 * 1024 * 1024 completion:^(NSData * _Nullable data, NSError * _Nullable error) {
         
