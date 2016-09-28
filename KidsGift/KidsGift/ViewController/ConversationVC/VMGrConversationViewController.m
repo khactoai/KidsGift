@@ -280,7 +280,13 @@
 - (UICollectionViewCell *)collectionView:(JSQMessagesCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
-    cell.textView.textColor = [UIColor blackColor];
+    
+    JSQMessage *jsqMessage = [mArrMessages objectAtIndex:indexPath.row];
+    if ([jsqMessage.senderId isEqual:mCurrentUser.uid]) {
+        cell.textView.textColor = [UIColor whiteColor];
+    } else {
+        cell.textView.textColor = [UIColor blackColor];
+    }
     cell.textView.linkTextAttributes = @{NSForegroundColorAttributeName:[UIColor blueColor]};
     
     return cell;

@@ -177,7 +177,7 @@ enum CellMenu : NSUInteger {
         if (status) {
             [self dismissViewControllerAnimated:YES completion:nil];
         }
-        
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_LOCATION_UPDATE object:nil];
     }
     
 }
