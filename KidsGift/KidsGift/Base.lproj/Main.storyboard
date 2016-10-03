@@ -659,16 +659,40 @@
                                                         <constraint firstAttribute="height" constant="60" id="qca-Lw-6eM"/>
                                                     </constraints>
                                                 </imageView>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gq2-6e-tru">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No user matches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6F-bW-cxF">
+                                                            <rect key="frame" x="20" y="27" width="221" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="221" id="HF8-zn-kJu"/>
+                                                                <constraint firstAttribute="height" constant="21" id="tAg-dF-mEo"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="L6F-bW-cxF" firstAttribute="centerY" secondItem="gq2-6e-tru" secondAttribute="centerY" id="0wW-Jy-XCY"/>
+                                                        <constraint firstItem="L6F-bW-cxF" firstAttribute="leading" secondItem="gq2-6e-tru" secondAttribute="leading" constant="20" id="3bJ-2u-E1b"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ZY8-YF-fWs" firstAttribute="centerY" secondItem="TZE-rh-XmD" secondAttribute="centerY" id="0P3-ZC-0JF"/>
+                                                <constraint firstItem="gq2-6e-tru" firstAttribute="leading" secondItem="TZE-rh-XmD" secondAttribute="leading" id="31t-Lu-bVQ"/>
                                                 <constraint firstItem="Kzz-x7-v3h" firstAttribute="top" secondItem="TZE-rh-XmD" secondAttribute="top" constant="8" id="ELE-sL-8bk"/>
                                                 <constraint firstItem="Kzz-x7-v3h" firstAttribute="leading" secondItem="Sec-fS-17A" secondAttribute="trailing" constant="5" id="FKa-i2-rdY"/>
                                                 <constraint firstItem="Sec-fS-17A" firstAttribute="leading" secondItem="ZY8-YF-fWs" secondAttribute="trailing" constant="15" id="I8J-o8-yTR"/>
+                                                <constraint firstItem="gq2-6e-tru" firstAttribute="top" secondItem="TZE-rh-XmD" secondAttribute="top" id="XF4-rN-c5o"/>
                                                 <constraint firstItem="b69-hG-4mD" firstAttribute="top" secondItem="Kzz-x7-v3h" secondAttribute="bottom" constant="5" id="XZ4-ui-Len"/>
                                                 <constraint firstItem="b69-hG-4mD" firstAttribute="leading" secondItem="ZY8-YF-fWs" secondAttribute="trailing" constant="15" id="aQy-mF-OKT"/>
                                                 <constraint firstAttribute="trailing" secondItem="Kzz-x7-v3h" secondAttribute="trailing" constant="10" id="avX-Rz-l86"/>
                                                 <constraint firstItem="Sec-fS-17A" firstAttribute="top" secondItem="TZE-rh-XmD" secondAttribute="top" constant="8" id="gGB-aQ-v4r"/>
+                                                <constraint firstAttribute="trailing" secondItem="gq2-6e-tru" secondAttribute="trailing" id="lMf-39-sHV"/>
+                                                <constraint firstAttribute="bottom" secondItem="gq2-6e-tru" secondAttribute="bottom" id="nww-Dd-mtj"/>
                                                 <constraint firstItem="ZY8-YF-fWs" firstAttribute="leading" secondItem="TZE-rh-XmD" secondAttribute="leading" constant="15" id="rVu-dg-sZd"/>
                                                 <constraint firstItem="NkE-0w-B95" firstAttribute="leading" secondItem="b69-hG-4mD" secondAttribute="trailing" constant="19" id="sFM-ru-kpb"/>
                                                 <constraint firstAttribute="trailing" secondItem="NkE-0w-B95" secondAttribute="trailing" constant="10" id="xnm-oZ-mYE"/>
@@ -679,6 +703,7 @@
                                             <outlet property="imgAvatar" destination="ZY8-YF-fWs" id="r76-Yn-tiL"/>
                                             <outlet property="message" destination="b69-hG-4mD" id="MLH-UT-dlf"/>
                                             <outlet property="name" destination="Sec-fS-17A" id="9Ai-nn-8B7"/>
+                                            <outlet property="noUserMatchesView" destination="gq2-6e-tru" id="6dJ-dr-Q8y"/>
                                             <outlet property="time" destination="Kzz-x7-v3h" id="jKo-3u-wef"/>
                                         </connections>
                                     </tableViewCell>

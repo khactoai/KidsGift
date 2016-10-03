@@ -152,19 +152,22 @@
     }
     if (arrUsersMatches.count > 0) {
         [mAllUsers removeObjectsInArray:[NSArray arrayWithArray:arrUsersMatches]];
+        [self checkToAddGroupUsers:arrUsersMatches];
+    } else {
+        // Add current user for mathches user
+        [arrUsersMatches addObject:mCurrentUser];
         [mGroupUsers addObject:arrUsersMatches];
     }
     
     if (arrUsersWithToyHave.count > 0) {
         [mAllUsers removeObjectsInArray:[NSArray arrayWithArray:arrUsersWithToyHave]];
-        [mGroupUsers addObject:arrUsersWithToyHave];
+        [self checkToAddGroupUsers:arrUsersWithToyHave];
     }
     
     if (arrUsersWithToyWant.count > 0) {
         [mAllUsers removeObjectsInArray:[NSArray arrayWithArray:arrUsersWithToyWant]];
-        [mGroupUsers addObject:arrUsersWithToyWant];
+        [self checkToAddGroupUsers:arrUsersWithToyWant];
     }
-    
 }
 
 - (void)groupUsers {
@@ -190,8 +193,17 @@
         }
     }
     [mAllUsers removeObjectsInArray:[NSArray arrayWithArray:arrUsers]];
-    [mGroupUsers addObject:arrUsers];
+    [self checkToAddGroupUsers:arrUsers];
     
+}
+
+// Check delete group
+- (void)checkToAddGroupUsers:(NSMutableArray*)arrUsers {
+    VMGrUser *userGroup = [arrUsers firstObject];
+    NSString *groupDelete = [NSString stringWithFormat:@"%@-%@-%@", userGroup.toyNum, userGroup.toyHave, userGroup.toyWant];
+    if (![mCurrentUser.arrGroupDelete containsObject:groupDelete]) {
+        [mGroupUsers addObject:arrUsers];
+    }
 }
 
 - (void)sortUsesWithDistance:(NSMutableArray *)arrSort{
@@ -238,8 +250,12 @@
     VMGrUser *user = [arr firstObject];
     cell.title.text = [NSString stringWithFormat:@"%@ %@ for %@", user.toyNum, user.toyHave, user.toyWant];
     
-    cell.btnDelete.tag = section;
-    [cell.btnDelete addTarget:self action:@selector(deleteGroup:) forControlEvents:UIControlEventTouchUpInside];
+    if ([user.uid isEqual:mCurrentUser.uid]) {
+        cell.btnDelete.hidden = YES;
+    } else {
+        cell.btnDelete.tag = section;
+        [cell.btnDelete addTarget:self action:@selector(deleteGroup:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
     return cell;
 }
@@ -253,24 +269,26 @@
         cell = [[VMGrMatchesViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
-    
     NSMutableArray *arr = [mGroupUsers objectAtIndex:indexPath.section];
     VMGrUser *user = [arr objectAtIndex:indexPath.row];
-    cell.name.text = user.name;
     
-    NSDate *date = [VMGrUtilities stringToDate:user.toyDateRequest];
-    NSString *dateRequest = [VMGrUtilities relativeDateStringForDate:date];
-    cell.time.text = dateRequest;
-    
-    // Load image avatar
-    cell.imgAvatar.layer.cornerRadius = cell.imgAvatar.frame.size.width/2;
-    cell.imgAvatar.layer.masksToBounds = YES;
-    
-    if (user.imgAvatar) {
-        cell.imgAvatar.image = user.imgAvatar;
+    if ([user.uid isEqual:mCurrentUser.uid]) {
+        cell.noUserMatchesView.hidden = NO;
     } else {
-        cell.imgAvatar.image = [UIImage imageNamed:@"no_avatar"];
-        [self loadImageAvatarWithUser:user image:cell.imgAvatar];
+        cell.noUserMatchesView.hidden = YES;
+        cell.name.text = user.name;
+        NSDate *date = [VMGrUtilities stringToDate:user.toyDateRequest];
+        NSString *dateRequest = [VMGrUtilities relativeDateStringForDate:date];
+        cell.time.text = dateRequest;
+        // Load image avatar
+        cell.imgAvatar.layer.cornerRadius = cell.imgAvatar.frame.size.width/2;
+        cell.imgAvatar.layer.masksToBounds = YES;
+        if (user.imgAvatar) {
+            cell.imgAvatar.image = user.imgAvatar;
+        } else {
+            cell.imgAvatar.image = [UIImage imageNamed:@"no_avatar"];
+            [self loadImageAvatarWithUser:user image:cell.imgAvatar];
+        }
     }
 
     return cell;
@@ -322,8 +340,23 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
-        [mGroupUsers removeObjectAtIndex:mSectionDelete];
-        [self.tableMatches reloadData];
+        
+        NSMutableArray *arrDelete = [mGroupUsers objectAtIndex:mSectionDelete];
+        VMGrUser *user = [arrDelete firstObject];
+        
+        NSDictionary *dictDelete = @{FIR_USER_TOY_NUM: user.toyNum,
+                                 FIR_USER_TOY_HAVE: user.toyHave,
+                                 FIR_USER_TOY_WANT: user.toyWant};
+        
+        NSString *groupDelete = [NSString stringWithFormat:@"%@-%@-%@", user.toyNum, user.toyHave, user.toyWant];
+        
+        [[[[[mRef child:FIR_DATABASE_USERS] child:mCurrentUser.uid] child:FIR_USER_DELETE_GROUP] child:groupDelete] setValue:dictDelete withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+            
+            [mGroupUsers removeObjectAtIndex:mSectionDelete];
+            [self.tableMatches reloadData];
+            
+        }];
+        
     }
 }
 

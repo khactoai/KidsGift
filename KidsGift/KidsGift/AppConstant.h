@@ -30,6 +30,7 @@
 #define		FIR_USER_TOY_HAVE           @"toy_have"
 #define		FIR_USER_TOY_WANT           @"toy_want"
 #define		FIR_USER_TOY_DATE_REQUEST   @"date_request"
+#define		FIR_USER_DELETE_GROUP       @"delete_group"
 
 
 #define		FIR_DATABASE_MESSAGES          @"messages"

@@ -28,6 +28,7 @@
 @property(assign, nonatomic) CLLocationDistance locationDistance;
 
 @property(retain, nonatomic) UIImage *imgAvatar;
+@property(retain, nonatomic) NSMutableArray *arrGroupDelete;
 
 - (id)initWithDictionary:(NSDictionary*)dicUser;
 
