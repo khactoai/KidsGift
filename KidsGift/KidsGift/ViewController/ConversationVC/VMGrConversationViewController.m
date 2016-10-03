@@ -185,13 +185,13 @@
             
         } else {
             UIImage *imgAvatar = [UIImage imageWithData:data];
-            if ([uid isEqual:mCurrentUser.uid]) {
+            if ([uid isEqual:mCurrentUser.uid] && imgAvatar) {
                 avatarImageSender = [JSQMessagesAvatarImageFactory avatarImageWithImage:imgAvatar diameter:20.0];
-            } else {
+                [self.collectionView reloadData];
+            } else if ([uid isEqual:mReceiverUser.uid] && imgAvatar) {
                 avatarImageReciver = [JSQMessagesAvatarImageFactory avatarImageWithImage:imgAvatar diameter:20.0];
+                [self.collectionView reloadData];
             }
-            
-            [self.collectionView reloadData];
         }
     }];
 }
@@ -230,6 +230,7 @@
 }
 
 - (id<JSQMessageAvatarImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     
     JSQMessage *message = [mArrMessages objectAtIndex:indexPath.row];
     if ([message.senderId isEqualToString:mCurrentUser.uid]) {
