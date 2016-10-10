@@ -40,8 +40,15 @@
     
     mRef = [[FIRDatabase database] reference];
     mFIRUser = [[FIRAuth auth] currentUser];
-    // open main VC
-    [self openMainVC];
+    
+    bool check = [[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstTimeLaunchedApp"];
+    if (check) {
+        // open main VC
+        [self openMainVC];
+    } else {
+        [self logoutUser];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -194,12 +201,37 @@
     
 }
 
+- (void)logoutUser {
+    
+    if (mFIRUser) {
+        for (id<FIRUserInfo> userInfo in mFIRUser.providerData) {
+            if ([userInfo.providerID isEqualToString:FIRFacebookAuthProviderID]) {
+                FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+                [login logOut];
+                
+            } else if ([userInfo.providerID isEqualToString:FIRGoogleAuthProviderID]) {
+                [[GIDSignIn sharedInstance] signOut];
+            }
+        }
+        
+        NSError *signOutError;
+        BOOL status = [[FIRAuth auth] signOut:&signOutError];
+        if (status) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstTimeLaunchedApp"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+    } else {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstTimeLaunchedApp"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+}
+
 - (void)openMainVC {
 
     if (mFIRUser) {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid]  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             NSInteger selectedIndex = 0;
             if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
