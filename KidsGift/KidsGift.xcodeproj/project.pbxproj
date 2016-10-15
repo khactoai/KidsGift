@@ -16,12 +16,12 @@
 		328363E41D8B606E003013E8 /* VMGrMatchesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 328363E31D8B606E003013E8 /* VMGrMatchesViewCell.m */; };
 		32866B761D67C04F00B13F04 /* VMGrAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32866B751D67C04F00B13F04 /* VMGrAlertView.m */; };
 		32866B791D67C08200B13F04 /* VMGrUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 32866B781D67C08200B13F04 /* VMGrUtilities.m */; };
+		3286ED031DB274330070797C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3286ED021DB274330070797C /* GoogleService-Info.plist */; };
 		32DF70FC1D99B61B004E62C8 /* VMGrConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DF70FB1D99B61B004E62C8 /* VMGrConversationViewController.m */; };
 		32DF70FF1D99B632004E62C8 /* VMGrMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DF70FE1D99B632004E62C8 /* VMGrMessage.m */; };
 		32DF71021D99BEE6004E62C8 /* VMGrRecent.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DF71011D99BEE6004E62C8 /* VMGrRecent.m */; };
 		32DF71051D99DCC1004E62C8 /* VMGrRecentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DF71041D99DCC1004E62C8 /* VMGrRecentViewCell.m */; };
 		D4A16163C6B5F00A0CB39815 /* libPods-KidsGift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1251720982612AFE8300FD /* libPods-KidsGift.a */; };
-		D71E19D61D7E7DE400DCDCF3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D71E19D51D7E7DE400DCDCF3 /* GoogleService-Info.plist */; };
 		D71E19DD1D7E894900DCDCF3 /* logo_m.png in Resources */ = {isa = PBXBuildFile; fileRef = D71E19D71D7E894900DCDCF3 /* logo_m.png */; };
 		D71E19DE1D7E894900DCDCF3 /* logo_m@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D71E19D81D7E894900DCDCF3 /* logo_m@2x.png */; };
 		D71E19DF1D7E894900DCDCF3 /* logo_m@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D71E19D91D7E894900DCDCF3 /* logo_m@3x.png */; };
@@ -112,6 +112,7 @@
 		32866B751D67C04F00B13F04 /* VMGrAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrAlertView.m; sourceTree = "<group>"; };
 		32866B771D67C08200B13F04 /* VMGrUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrUtilities.h; sourceTree = "<group>"; };
 		32866B781D67C08200B13F04 /* VMGrUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrUtilities.m; sourceTree = "<group>"; };
+		3286ED021DB274330070797C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		32DF70FA1D99B61B004E62C8 /* VMGrConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrConversationViewController.h; sourceTree = "<group>"; };
 		32DF70FB1D99B61B004E62C8 /* VMGrConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrConversationViewController.m; sourceTree = "<group>"; };
 		32DF70FD1D99B632004E62C8 /* VMGrMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrMessage.h; sourceTree = "<group>"; };
@@ -121,7 +122,6 @@
 		32DF71031D99DCC1004E62C8 /* VMGrRecentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrRecentViewCell.h; sourceTree = "<group>"; };
 		32DF71041D99DCC1004E62C8 /* VMGrRecentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrRecentViewCell.m; sourceTree = "<group>"; };
 		BE6316DE1390A740EF62E383 /* Pods-KidsGift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsGift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KidsGift/Pods-KidsGift.debug.xcconfig"; sourceTree = "<group>"; };
-		D71E19D51D7E7DE400DCDCF3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D71E19D71D7E894900DCDCF3 /* logo_m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_m.png; sourceTree = "<group>"; };
 		D71E19D81D7E894900DCDCF3 /* logo_m@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_m@2x.png"; sourceTree = "<group>"; };
 		D71E19D91D7E894900DCDCF3 /* logo_m@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_m@3x.png"; sourceTree = "<group>"; };
@@ -344,7 +344,7 @@
 				D7C347801D6579C40051E728 /* Assets.xcassets */,
 				D7C347821D6579C40051E728 /* LaunchScreen.storyboard */,
 				D7C347851D6579C40051E728 /* Info.plist */,
-				D71E19D51D7E7DE400DCDCF3 /* GoogleService-Info.plist */,
+				3286ED021DB274330070797C /* GoogleService-Info.plist */,
 				D7C347711D6579C40051E728 /* Supporting Files */,
 			);
 			path = KidsGift;
@@ -544,7 +544,7 @@
 				TargetAttributes = {
 					D7C3476D1D6579C40051E728 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = NV6PR3F96Y;
+						DevelopmentTeam = BAB5QR9DE9;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -580,7 +580,6 @@
 				D7D573D61D66D1B400205DFB /* no_avatar@2x.png in Resources */,
 				D7C347A71D6585F20051E728 /* launch.png in Resources */,
 				D758002B1D812C9A00725FFB /* star@3xpng.png in Resources */,
-				D71E19D61D7E7DE400DCDCF3 /* GoogleService-Info.plist in Resources */,
 				D71E19F61D7E991C00DCDCF3 /* icon_logout.png in Resources */,
 				D75800271D812C2600725FFB /* star.png in Resources */,
 				D7D573D51D66D1B400205DFB /* no_avatar.png in Resources */,
@@ -592,6 +591,7 @@
 				D7C3479F1D6585E40051E728 /* icon_m_40pt@3x.png in Resources */,
 				D76794A71D9A89BF0095B89C /* chat@2x.png in Resources */,
 				D758002F1D812CF700725FFB /* user.png in Resources */,
+				3286ED031DB274330070797C /* GoogleService-Info.plist in Resources */,
 				D71E19ED1D7E8E8600DCDCF3 /* icon_menu@2x.png in Resources */,
 				D7C347AD1D6587EB0051E728 /* button_fb.png in Resources */,
 				D76794A81D9A89BF0095B89C /* chat@3x.png in Resources */,
@@ -778,8 +778,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Kulturely Limited (NV6PR3F96Y)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kulturely Limited (NV6PR3F96Y)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dao Nguyen (Z3TGT9EAV4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dao Nguyen (Z3TGT9EAV4)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -801,7 +801,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "0ac1cd31-143f-4cfc-8608-2d4f00151e50";
+				PROVISIONING_PROFILE = "4dc4780d-5438-410e-851d-cc27131b74ff";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -825,8 +825,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Kulturely Limited (NV6PR3F96Y)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kulturely Limited (NV6PR3F96Y)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dao Nguyen (Z3TGT9EAV4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dao Nguyen (Z3TGT9EAV4)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -841,7 +841,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "0ac1cd31-143f-4cfc-8608-2d4f00151e50";
+				PROVISIONING_PROFILE = "4dc4780d-5438-410e-851d-cc27131b74ff";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -855,14 +855,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = KidsGift/KidsGift.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Kulturely Limited (NV6PR3F96Y)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dao Nguyen (Z3TGT9EAV4)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KidsGift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mobifocuz.kidsgifting;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mobifocuz.kidsgiftingapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0ac1cd31-143f-4cfc-8608-2d4f00151e50";
+				PROVISIONING_PROFILE = "4dc4780d-5438-410e-851d-cc27131b74ff";
 			};
 			name = Debug;
 		};
@@ -873,14 +873,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = KidsGift/KidsGift.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Kulturely Limited (NV6PR3F96Y)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dao Nguyen (Z3TGT9EAV4)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KidsGift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mobifocuz.kidsgifting;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mobifocuz.kidsgiftingapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0ac1cd31-143f-4cfc-8608-2d4f00151e50";
+				PROVISIONING_PROFILE = "4dc4780d-5438-410e-851d-cc27131b74ff";
 			};
 			name = Release;
 		};

@@ -13,7 +13,7 @@
 #define		NOTIFICATION_LOCATION_UPDATE			@"NOTIFICATION_LOCATION_UPDATE"
 #define     DATE_FORMAT @"yyyy-MM-dd HH:mm:ss"
 
-#define		FIR_STORAGE_SG          @"gs://kidsgift-34c93.appspot.com"
+#define		FIR_STORAGE_SG          @"gs://kids-gifting.appspot.com"
 #define		FIR_STORAGE_AVATAR      @"avatar"
 #define		FIR_DATABASE_TOYS       @"toys"
 

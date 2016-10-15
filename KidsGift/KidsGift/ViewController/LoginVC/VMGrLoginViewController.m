@@ -101,6 +101,7 @@
                                           } else {
                                               [MBProgressHUD hideHUDForView:self.view animated:YES];
                                               [VMGrAlertView showAlertMessage:@"Login error"];
+                                              [self logoutUser];
                                           }
                                       }];
             
@@ -136,6 +137,7 @@
                                       } else {
                                           [MBProgressHUD hideHUDForView:self.view animated:YES];
                                           [VMGrAlertView showAlertMessage:@"Login error"];
+                                          [self logoutUser];
                                       }
                                       
                                   }];

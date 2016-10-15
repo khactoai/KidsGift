@@ -90,6 +90,12 @@ enum CellMenu : NSUInteger {
         if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
             mDictUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
             [self.tableSetting reloadData];
+            // Load location
+            if ([mDictUser objectForKey:FIR_USER_LATITUDE] && [mDictUser objectForKey:FIR_USER_LONGITUDE]) {
+                float latitude = [[mDictUser objectForKey:FIR_USER_LATITUDE] floatValue];
+                float longitude = [[mDictUser objectForKey:FIR_USER_LONGITUDE] floatValue];
+                [self loadAddressFromGGWithLatitude:latitude longitude:longitude];
+            }
         }
         
     }];
@@ -222,10 +228,12 @@ enum CellMenu : NSUInteger {
         
         if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dicUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
-            float latitude = [[dicUser objectForKey:FIR_USER_LATITUDE] floatValue];
-            float longitude = [[dicUser objectForKey:FIR_USER_LONGITUDE] floatValue];
+            if ([dicUser objectForKey:FIR_USER_LATITUDE] && [dicUser objectForKey:FIR_USER_LONGITUDE]) {
+                float latitude = [[dicUser objectForKey:FIR_USER_LATITUDE] floatValue];
+                float longitude = [[dicUser objectForKey:FIR_USER_LONGITUDE] floatValue];
+                [self loadAddressFromGGWithLatitude:latitude longitude:longitude];
+            }
             
-            [self loadAddressFromGGWithLatitude:latitude longitude:longitude];
         }
         
     }];

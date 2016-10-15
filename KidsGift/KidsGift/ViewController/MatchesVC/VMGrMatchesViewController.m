@@ -256,7 +256,7 @@
         cell.btnDelete.tag = section;
         [cell.btnDelete addTarget:self action:@selector(deleteGroup:) forControlEvents:UIControlEventTouchUpInside];
     }
-    
+
     return cell;
 }
 
@@ -274,8 +274,11 @@
     
     if ([user.uid isEqual:mCurrentUser.uid]) {
         cell.noUserMatchesView.hidden = NO;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.userInteractionEnabled = NO;
     } else {
         cell.noUserMatchesView.hidden = YES;
+        cell.userInteractionEnabled = YES;
         cell.name.text = user.name;
         NSDate *date = [VMGrUtilities stringToDate:user.toyDateRequest];
         NSString *dateRequest = [VMGrUtilities relativeDateStringForDate:date];

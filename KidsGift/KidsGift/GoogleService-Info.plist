@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>230116747061-lfbcjavb7bdvn54q8ljg9bdbcjmkpi8j.apps.googleusercontent.com</string>
+	<string>920506539718-fctmg69o1rk2sqcisur3rti14dft93o2.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.230116747061-lfbcjavb7bdvn54q8ljg9bdbcjmkpi8j</string>
+	<string>com.googleusercontent.apps.920506539718-fctmg69o1rk2sqcisur3rti14dft93o2</string>
 	<key>API_KEY</key>
-	<string>AIzaSyATvaaKn_yJgFbCHpuwl3yj38PRlVmSoZA</string>
+	<string>AIzaSyBpPK4CMdbV-213umCTZmVqqwOYEJ2nsZs</string>
 	<key>GCM_SENDER_ID</key>
-	<string>230116747061</string>
+	<string>920506539718</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.mobifocuz.kidsgifting</string>
+	<string>com.mobifocuz.kidsgiftingapp</string>
 	<key>PROJECT_ID</key>
-	<string>kidsgift-34c93</string>
+	<string>kids-gifting</string>
 	<key>STORAGE_BUCKET</key>
-	<string>kidsgift-34c93.appspot.com</string>
+	<string>kids-gifting.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:230116747061:ios:3af733a2b64f2a8f</string>
+	<string>1:920506539718:ios:a806389d15c47d85</string>
 	<key>DATABASE_URL</key>
-	<string>https://kidsgift-34c93.firebaseio.com</string>
+	<string>https://kids-gifting.firebaseio.com</string>
 </dict>
 </plist>
