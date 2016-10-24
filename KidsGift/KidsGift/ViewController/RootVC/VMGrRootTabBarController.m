@@ -83,7 +83,7 @@
         }
     }
     if (badge > 0) {
-        [[self.viewControllers objectAtIndex:2] tabBarItem].badgeValue = [NSString stringWithFormat:@"%ld", badge];
+        [[self.viewControllers objectAtIndex:2] tabBarItem].badgeValue = [NSString stringWithFormat:@"%ld", (long)badge];
     } else {
         [[self.viewControllers objectAtIndex:2] tabBarItem].badgeValue = nil;
     }
