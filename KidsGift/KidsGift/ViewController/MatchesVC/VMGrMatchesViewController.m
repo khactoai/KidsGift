@@ -55,6 +55,9 @@
     [self loadUser];
     
     self.refreshView = [LGRefreshView refreshViewWithScrollView:self.tableMatches delegate:self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadUser) name:NOTIFICATION_SETUP_UPDATE object:nil];
+    [self setLogoNavigation];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -117,6 +120,10 @@
             [self sortUsesWithDistance:mAllUsers];
             
             if (mAllUsers.count > 0) {
+                // Group user mathces exactly
+                [self groupUsersMatchesExactly];
+                
+                /*
                 // Group user matches
                 [wself groupUsersMatches];
                 
@@ -124,6 +131,7 @@
                 while (mAllUsers.count > 0) {
                     [wself groupUsers];
                 }
+                 */
                 
                 // Reload table
                 [wself.tableMatches reloadData];
@@ -131,6 +139,27 @@
             
         }
     }];
+}
+
+- (void)groupUsersMatchesExactly {
+    
+    NSMutableArray *arrUsersMatches = [[NSMutableArray alloc] init];
+    
+    for (VMGrUser *user in mAllUsers) {
+        if (user.toyHave && user.toyWant) {
+            if ([user.toyHave isEqualToString:mCurrentUser.toyWant] && [user.toyWant isEqualToString:mCurrentUser.toyHave]) {
+                [arrUsersMatches addObject:user];
+            }
+        }
+    }
+    if (arrUsersMatches.count > 0) {
+        [mAllUsers removeObjectsInArray:[NSArray arrayWithArray:arrUsersMatches]];
+        [self checkToAddGroupUsers:arrUsersMatches];
+    } else {
+        // Add current user for mathches user
+        [arrUsersMatches addObject:mCurrentUser];
+        [mGroupUsers addObject:arrUsersMatches];
+    }
 }
 
 - (void)groupUsersMatches {

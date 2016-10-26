@@ -11,6 +11,7 @@
 #define		SCREEN_HEIGHT	[UIScreen mainScreen].bounds.size.height
 
 #define		NOTIFICATION_LOCATION_UPDATE			@"NOTIFICATION_LOCATION_UPDATE"
+#define		NOTIFICATION_SETUP_UPDATE               @"NOTIFICATION_SETUP_UPDATE"
 #define     DATE_FORMAT @"yyyy-MM-dd HH:mm:ss"
 
 #define		FIR_STORAGE_SG          @"gs://kids-gifting.appspot.com"

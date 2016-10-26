@@ -154,10 +154,7 @@ enum CellSetup : NSUInteger {
             [cell.labelValue setTextColor:[UIColor grayColor]];
         }
     }
-    
-    
     return cell;
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -244,6 +241,7 @@ enum CellSetup : NSUInteger {
             } else {
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [VMGrAlertView showAlertMessage:@"Setup success"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SETUP_UPDATE object:self];
             }
             
         }];
