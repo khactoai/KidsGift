@@ -13,6 +13,7 @@
 		3230CECE1D8D88C4001472BD /* delete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3230CECB1D8D88C4001472BD /* delete@3x.png */; };
 		3230CED11D8D898F001472BD /* VMGrMatchesHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3230CED01D8D898F001472BD /* VMGrMatchesHeaderViewCell.m */; };
 		3242B6031D8D43460033D41B /* VMGrUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242B6021D8D43460033D41B /* VMGrUser.m */; };
+		327960811DC29FC400F7F1DF /* VMGrToy.m in Sources */ = {isa = PBXBuildFile; fileRef = 327960801DC29FC400F7F1DF /* VMGrToy.m */; };
 		328363E41D8B606E003013E8 /* VMGrMatchesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 328363E31D8B606E003013E8 /* VMGrMatchesViewCell.m */; };
 		32866B761D67C04F00B13F04 /* VMGrAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32866B751D67C04F00B13F04 /* VMGrAlertView.m */; };
 		32866B791D67C08200B13F04 /* VMGrUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 32866B781D67C08200B13F04 /* VMGrUtilities.m */; };
@@ -109,6 +110,8 @@
 		3230CED01D8D898F001472BD /* VMGrMatchesHeaderViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrMatchesHeaderViewCell.m; sourceTree = "<group>"; };
 		3242B6011D8D43450033D41B /* VMGrUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrUser.h; sourceTree = "<group>"; };
 		3242B6021D8D43460033D41B /* VMGrUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrUser.m; sourceTree = "<group>"; };
+		3279607F1DC29FC400F7F1DF /* VMGrToy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrToy.h; sourceTree = "<group>"; };
+		327960801DC29FC400F7F1DF /* VMGrToy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrToy.m; sourceTree = "<group>"; };
 		328363E21D8B606E003013E8 /* VMGrMatchesViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrMatchesViewCell.h; sourceTree = "<group>"; };
 		328363E31D8B606E003013E8 /* VMGrMatchesViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrMatchesViewCell.m; sourceTree = "<group>"; };
 		32866B741D67C04F00B13F04 /* VMGrAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrAlertView.h; sourceTree = "<group>"; };
@@ -514,6 +517,8 @@
 				3242B6021D8D43460033D41B /* VMGrUser.m */,
 				32DF71001D99BEE6004E62C8 /* VMGrRecent.h */,
 				32DF71011D99BEE6004E62C8 /* VMGrRecent.m */,
+				3279607F1DC29FC400F7F1DF /* VMGrToy.h */,
+				327960801DC29FC400F7F1DF /* VMGrToy.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -745,6 +750,7 @@
 				D7C347731D6579C40051E728 /* main.m in Sources */,
 				32DF70FC1D99B61B004E62C8 /* VMGrConversationViewController.m in Sources */,
 				321F08921D9B087800E71500 /* VMGrRootTabBarController.m in Sources */,
+				327960811DC29FC400F7F1DF /* VMGrToy.m in Sources */,
 				32DF71021D99BEE6004E62C8 /* VMGrRecent.m in Sources */,
 				328363E41D8B606E003013E8 /* VMGrMatchesViewCell.m in Sources */,
 			);

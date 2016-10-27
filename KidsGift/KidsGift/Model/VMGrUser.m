@@ -8,6 +8,7 @@
 
 #import "VMGrUser.h"
 #import "AppConstant.h"
+#import "VMGrToy.h"
 
 @implementation VMGrUser
 
@@ -58,9 +59,23 @@
         if (dicUser[FIR_USER_TOY_NUM]) {
             self.toyNum = dicUser[FIR_USER_TOY_NUM];
         }
-        // toyNum
+        // toyDate
         if (dicUser[FIR_USER_TOY_DATE_REQUEST]) {
             self.toyDateRequest = dicUser[FIR_USER_TOY_DATE_REQUEST];
+        }
+        
+        // toy setup
+        self.arrToySetup = [[NSMutableArray alloc] init];
+        if (dicUser[FIR_USER_TOY_SETUP]) {
+            NSDictionary *dictToySetup = dicUser[FIR_USER_TOY_SETUP];
+            NSArray *arrKeys = [dictToySetup allKeys];
+            for (NSString *key in arrKeys) {
+                NSDictionary *value = [dictToySetup objectForKey:key];
+                VMGrToy *toy = [[VMGrToy alloc] initWithDictionary:value];
+                if (toy) {
+                    [self.arrToySetup addObject:toy];
+                }
+            }
         }
         
         // delete group

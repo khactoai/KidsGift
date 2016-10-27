@@ -16,6 +16,7 @@
 #import "MBProgressHUD.h"
 #import "VMGrSetupViewCell.h"
 #import "VMGrUser.h"
+#import "VMGrToy.h"
 
 @import Firebase;
 
@@ -116,8 +117,10 @@ enum CellSetup : NSUInteger {
     
     if (indexPath.row == 0) {
         cell.lableTitle.text = @"I have";
-        if (mUser.toyNum) {
-            cell.labelValue.text = mUser.toyNum;
+        
+        if (mUser.arrToySetup && mUser.arrToySetup.count > 0) {
+            VMGrToy *toy = [mUser.arrToySetup lastObject];
+            cell.labelValue.text = toy.toyNum;
             [cell.labelValue setFont:[UIFont systemFontOfSize:16]];
             [cell.labelValue setTextColor:[UIColor blackColor]];
         } else {
@@ -127,8 +130,9 @@ enum CellSetup : NSUInteger {
         }
     } else if (indexPath.row == 1) {
         cell.lableTitle.text = @"";
-        if (mUser.toyHave) {
-            cell.labelValue.text = mUser.toyHave;
+        if (mUser.arrToySetup && mUser.arrToySetup.count > 0) {
+            VMGrToy *toy = [mUser.arrToySetup lastObject];
+            cell.labelValue.text = toy.toyHave;
             [cell.labelValue setFont:[UIFont systemFontOfSize:16]];
             [cell.labelValue setTextColor:[UIColor blackColor]];
         } else {
@@ -144,8 +148,9 @@ enum CellSetup : NSUInteger {
         
     } else if (indexPath.row == 3) {
         cell.lableTitle.text = @"";
-        if (mUser.toyWant) {
-            cell.labelValue.text = mUser.toyWant;
+        if (mUser.arrToySetup && mUser.arrToySetup.count > 0) {
+            VMGrToy *toy = [mUser.arrToySetup lastObject];
+            cell.labelValue.text = toy.toyWant;
             [cell.labelValue setFont:[UIFont systemFontOfSize:16]];
             [cell.labelValue setTextColor:[UIColor blackColor]];
         } else {
@@ -226,15 +231,15 @@ enum CellSetup : NSUInteger {
     }
     
     if (![toyNum isEqualToString:PLEASE_SELECT_NUM] && ![toyHave isEqualToString:PLEASE_SELECT_TOY] && ![toyWant isEqualToString:PLEASE_SELECT_TOY]) {
-        
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         NSString *stringDate = [VMGrUtilities dateToString:[NSDate date ]];
         NSDictionary *dicToy = @{FIR_USER_TOY_NUM: toyNum,
                                   FIR_USER_TOY_HAVE: toyHave,
                                   FIR_USER_TOY_WANT: toyWant,
                                   FIR_USER_TOY_DATE_REQUEST: stringDate};
+        NSString *groupId = [NSString stringWithFormat:@"%@-%@-%@", toyNum, toyHave, toyWant];
         
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid] updateChildValues:dicToy withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
+        [[[[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid] child:FIR_USER_TOY_SETUP] child:groupId] updateChildValues:dicToy withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
             if (error) {
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [VMGrAlertView showAlertMessage:@"Setup error, please check again"];

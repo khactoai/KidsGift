@@ -29,6 +29,7 @@
 
 @property(retain, nonatomic) UIImage *imgAvatar;
 @property(retain, nonatomic) NSMutableArray *arrGroupDelete;
+@property(retain, nonatomic) NSMutableArray *arrToySetup;
 
 - (id)initWithDictionary:(NSDictionary*)dicUser;
 
