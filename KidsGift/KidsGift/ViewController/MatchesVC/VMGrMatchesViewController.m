@@ -18,6 +18,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "LGRefreshView.h"
 #import "VMGrConversationViewController.h"
+#import "VMGrToy.h"
 
 @import Firebase;
 
@@ -27,6 +28,8 @@
     FIRUser *mFIRUser;
     VMGrUser *mCurrentUser;
     CLLocation *mCurrentLocation;
+    
+    NSMutableArray *mArrToySetup;
     
     NSMutableArray *mAllUsers;
     NSMutableArray *mGroupUsers;
@@ -49,6 +52,7 @@
     
     mAllUsers = [[NSMutableArray alloc] init];
     mGroupUsers = [[NSMutableArray alloc] init];
+    mArrToySetup = [[NSMutableArray alloc] init];
     
     mFIRUser = [[FIRAuth auth] currentUser];
     mRef = [[FIRDatabase database] reference];
@@ -84,14 +88,76 @@
         if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dicUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
             mCurrentUser = [[VMGrUser alloc] initWithDictionary:dicUser];
-            mCurrentLocation = [mCurrentUser getLocation];
-            if (mCurrentUser.toyHave && mCurrentUser.toyWant) {
-                if (wself) {
-                    [wself loadAllUsers];
-                }
+            if (mCurrentUser.arrToySetup && mCurrentUser.arrToySetup.count > 0) {
+                mArrToySetup = mCurrentUser.arrToySetup;
+                [self.tableMatches reloadData];
+                
+                [wself loadUserMatchesTest];
             }
+            
+            
+//            mCurrentLocation = [mCurrentUser getLocation];
+//            if (mCurrentUser.toyHave && mCurrentUser.toyWant) {
+//                if (wself) {
+//                    [wself loadAllUsers];
+//                }
+//            }
         }
     }];
+}
+
+- (void)loadUserMatchesTest {
+    
+    FIRDatabaseQuery *allUser = [mRef child:@"test_data"];
+    
+    [allUser queryEqualToValue:@"long" childKey:@"name"];
+    
+    
+    //[allUser queryEqualToValue:@"Barbie" childKey:@"toy_have"];
+    //[allUser queryStartingAtValue:@"Barbie" childKey:@"toy_have"];
+    //[[allUser queryOrderedByChild:@"name"] queryEqualToValue:@"long"];
+    
+    //[allUser queryStartingAtValue:@"Tony Lonsdfdsfsdfg" childKey:@"dsfsfdffsf"];
+    //[allUser queryLimitedToFirst:2];
+    
+
+    
+    
+    
+    [allUser observeSingleEventOfType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
+        if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
+            NSLog(@"FIRDataEventTypeChildAdded: %@", snapshot.value);
+        } else {
+            NSLog(@"FIRDataEventTypeChildAdded");
+        }
+    }];
+    
+    [allUser observeSingleEventOfType:FIRDataEventTypeChildChanged withBlock:^(FIRDataSnapshot *snapshot) {
+        if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
+            NSLog(@"FIRDataEventTypeChildChanged: %@", snapshot.value);
+        } else {
+            NSLog(@"FIRDataEventTypeChildChanged");
+        }
+    }];
+    
+    [allUser observeSingleEventOfType:FIRDataEventTypeChildMoved withBlock:^(FIRDataSnapshot *snapshot) {
+        if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
+            NSLog(@"FIRDataEventTypeChildMoved: %@", snapshot.value);
+        } else {
+            NSLog(@"FIRDataEventTypeChildMoved");
+        }
+    }];
+    [allUser observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+        if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
+            NSLog(@"FIRDataEventTypeValue: %@", snapshot.value);
+        } else {
+            NSLog(@"FIRDataEventTypeValue");
+        }
+    }];
+    
+   
+    
+
 }
 
 
@@ -253,11 +319,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return mGroupUsers.count;
+    return mArrToySetup.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return ((NSMutableArray*)[mGroupUsers objectAtIndex:section]).count;
+    return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -275,17 +341,12 @@
     if (cell == nil) {
         cell = [[VMGrMatchesHeaderViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    NSMutableArray *arr = [mGroupUsers objectAtIndex:section];
-    VMGrUser *user = [arr firstObject];
-    cell.title.text = [NSString stringWithFormat:@"%@ %@ for %@", user.toyNum, user.toyHave, user.toyWant];
-    
-    if ([user.uid isEqual:mCurrentUser.uid]) {
-        cell.btnDelete.hidden = YES;
-    } else {
+    if (mArrToySetup && mArrToySetup.count > 0) {
+        VMGrToy *toy = [mArrToySetup objectAtIndex:section];
+        cell.title.text = [NSString stringWithFormat:@"%@ %@ for %@", toy.toyNum, toy.toyHave, toy.toyWant];
         cell.btnDelete.tag = section;
         [cell.btnDelete addTarget:self action:@selector(deleteGroup:) forControlEvents:UIControlEventTouchUpInside];
     }
-
     return cell;
 }
 
@@ -298,30 +359,30 @@
         cell = [[VMGrMatchesViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
-    NSMutableArray *arr = [mGroupUsers objectAtIndex:indexPath.section];
-    VMGrUser *user = [arr objectAtIndex:indexPath.row];
-    
-    if ([user.uid isEqual:mCurrentUser.uid]) {
-        cell.noUserMatchesView.hidden = NO;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.userInteractionEnabled = NO;
-    } else {
-        cell.noUserMatchesView.hidden = YES;
-        cell.userInteractionEnabled = YES;
-        cell.name.text = user.name;
-        NSDate *date = [VMGrUtilities stringToDate:user.toyDateRequest];
-        NSString *dateRequest = [VMGrUtilities relativeDateStringForDate:date];
-        cell.time.text = dateRequest;
-        // Load image avatar
-        cell.imgAvatar.layer.cornerRadius = cell.imgAvatar.frame.size.width/2;
-        cell.imgAvatar.layer.masksToBounds = YES;
-        if (user.imgAvatar) {
-            cell.imgAvatar.image = user.imgAvatar;
-        } else {
-            cell.imgAvatar.image = [UIImage imageNamed:@"no_avatar"];
-            [self loadImageAvatarWithUser:user image:cell.imgAvatar];
-        }
-    }
+//    NSMutableArray *arr = [mGroupUsers objectAtIndex:indexPath.section];
+//    VMGrUser *user = [arr objectAtIndex:indexPath.row];
+//    
+//    if ([user.uid isEqual:mCurrentUser.uid]) {
+//        cell.noUserMatchesView.hidden = NO;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.userInteractionEnabled = NO;
+//    } else {
+//        cell.noUserMatchesView.hidden = YES;
+//        cell.userInteractionEnabled = YES;
+//        cell.name.text = user.name;
+//        NSDate *date = [VMGrUtilities stringToDate:user.toyDateRequest];
+//        NSString *dateRequest = [VMGrUtilities relativeDateStringForDate:date];
+//        cell.time.text = dateRequest;
+//        // Load image avatar
+//        cell.imgAvatar.layer.cornerRadius = cell.imgAvatar.frame.size.width/2;
+//        cell.imgAvatar.layer.masksToBounds = YES;
+//        if (user.imgAvatar) {
+//            cell.imgAvatar.image = user.imgAvatar;
+//        } else {
+//            cell.imgAvatar.image = [UIImage imageNamed:@"no_avatar"];
+//            [self loadImageAvatarWithUser:user image:cell.imgAvatar];
+//        }
+//    }
 
     return cell;
     
@@ -330,14 +391,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSMutableArray *arr = [mGroupUsers objectAtIndex:indexPath.section];
-    VMGrUser *receiverUser = [arr objectAtIndex:indexPath.row];
-    
-    VMGrConversationViewController *conversationViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrConversationViewController"];
-    [conversationViewController setCurrentUser:mCurrentUser receiverUser:receiverUser];
-    
-    [self.navigationController pushViewController:conversationViewController animated:YES];
-    self.tabBarController.tabBar.hidden = YES;
+//    NSMutableArray *arr = [mGroupUsers objectAtIndex:indexPath.section];
+//    VMGrUser *receiverUser = [arr objectAtIndex:indexPath.row];
+//    
+//    VMGrConversationViewController *conversationViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"VMGrConversationViewController"];
+//    [conversationViewController setCurrentUser:mCurrentUser receiverUser:receiverUser];
+//    
+//    [self.navigationController pushViewController:conversationViewController animated:YES];
+//    self.tabBarController.tabBar.hidden = YES;
     
 }
 

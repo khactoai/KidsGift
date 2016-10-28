@@ -44,6 +44,7 @@ enum CellSetup : NSUInteger {
     FIRDatabaseReference *mRef;
     FIRUser *mFIRUser;
     VMGrUser *mUser;
+    VMGrToy *mToySetup;
     NSIndexPath *mIndexPathSelectToy;
 }
 
@@ -90,7 +91,10 @@ enum CellSetup : NSUInteger {
         if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dictUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
             mUser = [[VMGrUser alloc]initWithDictionary:dictUser];
-            [self.tableSetup reloadData];
+            if (mUser.arrToySetup.count && mUser.arrToySetup.count > 0) {
+                mToySetup = [mUser.arrToySetup firstObject];
+                [self.tableSetup reloadData];
+            }
         }
     }];
 }
@@ -118,9 +122,8 @@ enum CellSetup : NSUInteger {
     if (indexPath.row == 0) {
         cell.lableTitle.text = @"I have";
         
-        if (mUser.arrToySetup && mUser.arrToySetup.count > 0) {
-            VMGrToy *toy = [mUser.arrToySetup lastObject];
-            cell.labelValue.text = toy.toyNum;
+        if (mToySetup) {
+            cell.labelValue.text = mToySetup.toyNum;
             [cell.labelValue setFont:[UIFont systemFontOfSize:16]];
             [cell.labelValue setTextColor:[UIColor blackColor]];
         } else {
@@ -130,9 +133,8 @@ enum CellSetup : NSUInteger {
         }
     } else if (indexPath.row == 1) {
         cell.lableTitle.text = @"";
-        if (mUser.arrToySetup && mUser.arrToySetup.count > 0) {
-            VMGrToy *toy = [mUser.arrToySetup lastObject];
-            cell.labelValue.text = toy.toyHave;
+        if (mToySetup) {
+            cell.labelValue.text = mToySetup.toyHave;
             [cell.labelValue setFont:[UIFont systemFontOfSize:16]];
             [cell.labelValue setTextColor:[UIColor blackColor]];
         } else {
@@ -148,9 +150,8 @@ enum CellSetup : NSUInteger {
         
     } else if (indexPath.row == 3) {
         cell.lableTitle.text = @"";
-        if (mUser.arrToySetup && mUser.arrToySetup.count > 0) {
-            VMGrToy *toy = [mUser.arrToySetup lastObject];
-            cell.labelValue.text = toy.toyWant;
+        if (mToySetup) {
+            cell.labelValue.text = mToySetup.toyWant;
             [cell.labelValue setFont:[UIFont systemFontOfSize:16]];
             [cell.labelValue setTextColor:[UIColor blackColor]];
         } else {
@@ -232,7 +233,7 @@ enum CellSetup : NSUInteger {
     
     if (![toyNum isEqualToString:PLEASE_SELECT_NUM] && ![toyHave isEqualToString:PLEASE_SELECT_TOY] && ![toyWant isEqualToString:PLEASE_SELECT_TOY]) {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        NSString *stringDate = [VMGrUtilities dateToString:[NSDate date ]];
+        NSString *stringDate = [VMGrUtilities dateToString:[NSDate date]];
         NSDictionary *dicToy = @{FIR_USER_TOY_NUM: toyNum,
                                   FIR_USER_TOY_HAVE: toyHave,
                                   FIR_USER_TOY_WANT: toyWant,

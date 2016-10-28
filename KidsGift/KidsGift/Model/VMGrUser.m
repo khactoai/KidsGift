@@ -9,6 +9,7 @@
 #import "VMGrUser.h"
 #import "AppConstant.h"
 #import "VMGrToy.h"
+#import "VMGrUtilities.h"
 
 @implementation VMGrUser
 
@@ -77,6 +78,9 @@
                 }
             }
         }
+        if (self.arrToySetup.count > 0) {
+            [self sortToysWithDate:self.arrToySetup];
+        }
         
         // delete group
         self.arrGroupDelete = [[NSMutableArray alloc] init];
@@ -108,5 +112,19 @@
     self.locationDistance = kilometers;
 }
 
+- (void)sortToysWithDate:(NSMutableArray *)arrSort{
+    [arrSort sortUsingComparator:^NSComparisonResult(VMGrToy *toy1, VMGrToy *toy2) {
+        
+        NSDate *date1 = [VMGrUtilities stringToDate:toy1.toyDateRequest];
+        NSDate *date2 = [VMGrUtilities stringToDate:toy2.toyDateRequest];
+        if (date1 < date2) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        if (date1 > date2) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+}
 
 @end
