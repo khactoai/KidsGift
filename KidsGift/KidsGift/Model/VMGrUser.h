@@ -21,18 +21,16 @@
 @property(assign, nonatomic) Boolean notifyMatch;
 @property(assign, nonatomic) Boolean notifyChat;
 
+@property(retain, nonatomic) NSMutableArray *arrToySetup;
 @property(retain, nonatomic) NSString *toyHave;
 @property(retain, nonatomic) NSString *toyWant;
 @property(retain, nonatomic) NSString *toyNum;
 @property(retain, nonatomic) NSString *toyDateRequest;
-@property(assign, nonatomic) CLLocationDistance locationDistance;
 
+@property(assign, nonatomic) CLLocationDistance locationDistance;
 @property(retain, nonatomic) UIImage *imgAvatar;
-@property(retain, nonatomic) NSMutableArray *arrGroupDelete;
-@property(retain, nonatomic) NSMutableArray *arrToySetup;
 
 - (id)initWithDictionary:(NSDictionary*)dicUser;
-
 - (CLLocation* )getLocation;
 - (void)setDistanceWithLocation:(CLLocation *)otherLocation;
 

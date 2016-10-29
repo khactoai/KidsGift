@@ -98,7 +98,6 @@
 		D7D573D61D66D1B400205DFB /* no_avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D573D31D66D1B400205DFB /* no_avatar@2x.png */; };
 		D7D573D71D66D1B400205DFB /* no_avatar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D573D41D66D1B400205DFB /* no_avatar@3x.png */; };
 		D7D573DB1D67172700205DFB /* VMGrUtilsFirebase.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D573DA1D67172700205DFB /* VMGrUtilsFirebase.m */; };
-		D7E2A2E61DC31FA500793EA3 /* VMGrMatches.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E2A2E51DC31FA500793EA3 /* VMGrMatches.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -221,8 +220,6 @@
 		D7D573D41D66D1B400205DFB /* no_avatar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_avatar@3x.png"; sourceTree = "<group>"; };
 		D7D573D91D67172700205DFB /* VMGrUtilsFirebase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrUtilsFirebase.h; sourceTree = "<group>"; };
 		D7D573DA1D67172700205DFB /* VMGrUtilsFirebase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrUtilsFirebase.m; sourceTree = "<group>"; };
-		D7E2A2E41DC31FA500793EA3 /* VMGrMatches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMGrMatches.h; sourceTree = "<group>"; };
-		D7E2A2E51DC31FA500793EA3 /* VMGrMatches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VMGrMatches.m; sourceTree = "<group>"; };
 		EA2F8BA713E71D22A10D29B0 /* Pods-KidsGift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidsGift.release.xcconfig"; path = "Pods/Target Support Files/Pods-KidsGift/Pods-KidsGift.release.xcconfig"; sourceTree = "<group>"; };
 		FD1251720982612AFE8300FD /* libPods-KidsGift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KidsGift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -522,8 +519,6 @@
 				32DF71011D99BEE6004E62C8 /* VMGrRecent.m */,
 				3279607F1DC29FC400F7F1DF /* VMGrToy.h */,
 				327960801DC29FC400F7F1DF /* VMGrToy.m */,
-				D7E2A2E41DC31FA500793EA3 /* VMGrMatches.h */,
-				D7E2A2E51DC31FA500793EA3 /* VMGrMatches.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -738,7 +733,6 @@
 				D76611A51D7FF67600990506 /* VMGrListToysViewController.m in Sources */,
 				32DF71051D99DCC1004E62C8 /* VMGrRecentViewCell.m in Sources */,
 				3230CED11D8D898F001472BD /* VMGrMatchesHeaderViewCell.m in Sources */,
-				D7E2A2E61DC31FA500793EA3 /* VMGrMatches.m in Sources */,
 				32866B761D67C04F00B13F04 /* VMGrAlertView.m in Sources */,
 				D7C347BB1D65BD660051E728 /* VMGrLoginViewController.m in Sources */,
 				D7C347C61D65BDD80051E728 /* VMGrSettingViewController.m in Sources */,

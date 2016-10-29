@@ -30,36 +30,58 @@
         if (dicToy[FIR_USER_TOY_DATE_REQUEST]) {
             self.toyDateRequest = dicToy[FIR_USER_TOY_DATE_REQUEST];
         }
+        // group id
+        if (dicToy[FIR_USER_TOY_GROUP_ID]) {
+            self.groupID = dicToy[FIR_USER_TOY_GROUP_ID];
+        }
+        // array user matches
+        self.arrUserMatches = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-//- (void)loadUsersMatches:(FIRDatabaseReference*) mRef{
-//    
-//    [mRef child:FIR_DATABASE_USERS] qu
-//    
-//    [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid]  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//        
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//        if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
-//            NSDictionary *dicUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
-//            mCurrentUser = [[VMGrUser alloc] initWithDictionary:dicUser];
-//            if (mCurrentUser.arrToySetup && mCurrentUser.arrToySetup.count > 0) {
-//                mArrToySetup = mCurrentUser.arrToySetup;
-//                [self.tableMatches reloadData];
-//            }
-//            
-//            
-//            //            mCurrentLocation = [mCurrentUser getLocation];
-//            //            if (mCurrentUser.toyHave && mCurrentUser.toyWant) {
-//            //                if (wself) {
-//            //                    [wself loadAllUsers];
-//            //                }
-//            //            }
-//        }
-//    }];
-//
-//
-//}
+- (void)loadUsersMatches:(FIRDatabaseReference*) mRef currentUser:(VMGrUser*) currentUser{
+    FIRDatabaseQuery *userQuery = [mRef child:FIR_DATABASE_USERS];
+    NSString *groupMatches = [NSString stringWithFormat:@"%@-%@", self.toyWant, self.toyHave];
+    NSString *childId = [NSString stringWithFormat:@"toy_setup/%@/%@", groupMatches, FIR_USER_TOY_GROUP_ID];
+    
+    [[[userQuery queryOrderedByChild:childId] queryEqualToValue:groupMatches] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        [self.arrUserMatches removeAllObjects];
+        if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dicUsers = [[NSDictionary alloc] initWithDictionary:snapshot.value];
+            NSArray *arrKeys = [dicUsers allKeys];
+            for (NSString *key in arrKeys) {
+                NSDictionary *value = [dicUsers objectForKey:key];
+                VMGrUser *user = [[VMGrUser alloc] initWithDictionary:value];
+                [user setDistanceWithLocation:[currentUser getLocation]];
+                if (![user.uid isEqual:currentUser.uid]) {
+                    [self.arrUserMatches addObject:user];
+                }
+            }
+            [self sortUsesWithDistance:self.arrUserMatches];
+            if (self.delegate && [self.delegate respondsToSelector:@selector(loadUsersMatchesFinish:)]) {
+                [self.delegate loadUsersMatchesFinish:self];
+            }
+        }
+        
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        
+    }];
+
+}
+
+- (void)sortUsesWithDistance:(NSMutableArray *)arrSort{
+    [arrSort sortUsingComparator:^NSComparisonResult(VMGrUser  *user1, VMGrUser  *user2) {
+        if (user1.locationDistance > user2.locationDistance)
+        {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        if (user1.locationDistance < user2.locationDistance)
+        {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+}
 
 @end

@@ -17,6 +17,7 @@
 #import "RESideMenu.h"
 #import "AppConstant.h"
 #import "VMGrRootTabBarController.h"
+#import "VMGrUser.h"
 
 @interface VMGrLoginViewController () {
 
@@ -238,7 +239,8 @@
             NSInteger selectedIndex = 0;
             if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
                 NSDictionary *dictUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
-                if (dictUser[FIR_USER_TOY_HAVE] && dictUser[FIR_USER_TOY_WANT]) {
+                VMGrUser *user = [[VMGrUser alloc] initWithDictionary:dictUser];
+                if (user && user.arrToySetup && user.arrToySetup.count > 0) {
                     selectedIndex = 1;
                 }
             }

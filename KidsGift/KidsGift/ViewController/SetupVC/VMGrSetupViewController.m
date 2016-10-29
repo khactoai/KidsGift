@@ -63,6 +63,7 @@ enum CellSetup : NSUInteger {
     mRef = [[FIRDatabase database] reference];
     mFIRUser = [[FIRAuth auth] currentUser];
     [self loadDataSetup];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadDataSetup) name:NOTIFICATION_SETUP_DELETE object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -233,12 +234,13 @@ enum CellSetup : NSUInteger {
     
     if (![toyNum isEqualToString:PLEASE_SELECT_NUM] && ![toyHave isEqualToString:PLEASE_SELECT_TOY] && ![toyWant isEqualToString:PLEASE_SELECT_TOY]) {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        NSString *groupId = [NSString stringWithFormat:@"%@-%@",toyHave, toyWant];
         NSString *stringDate = [VMGrUtilities dateToString:[NSDate date]];
-        NSDictionary *dicToy = @{FIR_USER_TOY_NUM: toyNum,
+        NSDictionary *dicToy = @{FIR_USER_TOY_GROUP_ID: groupId,
+                                 FIR_USER_TOY_NUM: toyNum,
                                   FIR_USER_TOY_HAVE: toyHave,
                                   FIR_USER_TOY_WANT: toyWant,
                                   FIR_USER_TOY_DATE_REQUEST: stringDate};
-        NSString *groupId = [NSString stringWithFormat:@"%@-%@-%@", toyNum, toyHave, toyWant];
         
         [[[[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid] child:FIR_USER_TOY_SETUP] child:groupId] updateChildValues:dicToy withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
             if (error) {
@@ -257,6 +259,5 @@ enum CellSetup : NSUInteger {
     }
     
 }
-
 
 @end

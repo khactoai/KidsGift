@@ -571,13 +571,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VMGrMatchesHeaderViewCell" rowHeight="55" id="JR6-B4-Yyh" customClass="VMGrMatchesHeaderViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="VMGrMatchesHeaderViewCell" rowHeight="55" id="JR6-B4-Yyh" customClass="VMGrMatchesHeaderViewCell">
                                         <rect key="frame" x="0.0" y="92" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JR6-B4-Yyh" id="A5w-wM-2Nx">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdJ-fe-mOX">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Teddy Bears for Dolls" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPh-M7-yTP">
                                                     <rect key="frame" x="20" y="6" width="300" height="42"/>
                                                     <constraints>
@@ -600,9 +604,13 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="IyQ-uu-CqF" secondAttribute="trailing" constant="10" id="32X-tV-qzB"/>
                                                 <constraint firstItem="MPh-M7-yTP" firstAttribute="centerY" secondItem="A5w-wM-2Nx" secondAttribute="centerY" id="4K7-7z-1Ez"/>
+                                                <constraint firstItem="HdJ-fe-mOX" firstAttribute="leading" secondItem="A5w-wM-2Nx" secondAttribute="leading" id="8H8-CK-rPH"/>
                                                 <constraint firstItem="MPh-M7-yTP" firstAttribute="leading" secondItem="A5w-wM-2Nx" secondAttribute="leading" constant="20" id="EcY-t3-twL"/>
+                                                <constraint firstAttribute="bottom" secondItem="HdJ-fe-mOX" secondAttribute="bottom" id="N1p-Uu-ecO"/>
                                                 <constraint firstItem="IyQ-uu-CqF" firstAttribute="leading" secondItem="MPh-M7-yTP" secondAttribute="trailing" constant="5" id="Q1o-HH-Uci"/>
+                                                <constraint firstAttribute="trailing" secondItem="HdJ-fe-mOX" secondAttribute="trailing" id="nI6-hE-Ii3"/>
                                                 <constraint firstItem="IyQ-uu-CqF" firstAttribute="centerY" secondItem="A5w-wM-2Nx" secondAttribute="centerY" id="pTm-3H-t7x"/>
+                                                <constraint firstItem="HdJ-fe-mOX" firstAttribute="top" secondItem="A5w-wM-2Nx" secondAttribute="top" id="xBg-Cb-3YC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
@@ -670,7 +678,7 @@
                                                                 <constraint firstAttribute="height" constant="21" id="tAg-dF-mEo"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>

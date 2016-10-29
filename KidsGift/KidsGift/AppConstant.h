@@ -12,6 +12,7 @@
 
 #define		NOTIFICATION_LOCATION_UPDATE			@"NOTIFICATION_LOCATION_UPDATE"
 #define		NOTIFICATION_SETUP_UPDATE               @"NOTIFICATION_SETUP_UPDATE"
+#define		NOTIFICATION_SETUP_DELETE               @"NOTIFICATION_SETUP_DELETE"
 #define     DATE_FORMAT @"yyyy-MM-dd HH:mm:ss"
 
 #define		FIR_STORAGE_SG          @"gs://kids-gifting.appspot.com"
@@ -27,13 +28,12 @@
 #define		FIR_USER_DISTANCE           @"distance"
 #define		FIR_USER_NOTIFY_MATCH       @"notify_match"
 #define		FIR_USER_NOTIFY_CHAT        @"notify_chat"
+#define		FIR_USER_TOY_SETUP          @"toy_setup"
+#define		FIR_USER_TOY_GROUP_ID       @"toy_group_id"
 #define		FIR_USER_TOY_NUM            @"toy_num"
 #define		FIR_USER_TOY_HAVE           @"toy_have"
 #define		FIR_USER_TOY_WANT           @"toy_want"
 #define		FIR_USER_TOY_DATE_REQUEST   @"date_request"
-#define		FIR_USER_DELETE_GROUP       @"delete_group"
-#define		FIR_USER_TOY_SETUP          @"toy_setup"
-
 
 #define		FIR_DATABASE_MESSAGES          @"messages"
 #define		FIR_MESSAGES_ID                @"messages_id"

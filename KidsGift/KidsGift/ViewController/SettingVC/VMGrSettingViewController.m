@@ -253,12 +253,8 @@ enum CellMenu : NSUInteger {
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        } else {
-            NSLog(@"%@ %@", response, responseObject);
+        if (!error) {
             NSDictionary *dic = [[responseObject objectForKey:@"results"] objectAtIndex:0];
-            
             if ([dic objectForKey:@"formatted_address"]) {
                 NSArray *arrFormattedAddress = [dic objectForKey:@"formatted_address"];
                 NSString *strFormattedAddress = [arrFormattedAddress description];

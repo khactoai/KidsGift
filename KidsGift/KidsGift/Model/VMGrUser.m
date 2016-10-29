@@ -77,25 +77,8 @@
                     [self.arrToySetup addObject:toy];
                 }
             }
-        }
-        if (self.arrToySetup.count > 0) {
-            [self sortToysWithDate:self.arrToySetup];
-        }
-        
-        // delete group
-        self.arrGroupDelete = [[NSMutableArray alloc] init];
-        if (dicUser[FIR_USER_DELETE_GROUP]) {
-            NSDictionary *dictDelete = dicUser[FIR_USER_DELETE_GROUP];
-            NSArray *arrKeys = [dictDelete allKeys];
-            for (NSString *key in arrKeys) {
-                NSDictionary *value = [dictDelete objectForKey:key];
-                if (value[FIR_USER_TOY_NUM] && value[FIR_USER_TOY_HAVE] && value[FIR_USER_TOY_WANT]) {
-                    NSString *toyNum = value[FIR_USER_TOY_NUM];
-                    NSString *toyHave = value[FIR_USER_TOY_HAVE];
-                    NSString *toyWant = value[FIR_USER_TOY_WANT];
-                    NSString *groupDelete = [NSString stringWithFormat:@"%@-%@-%@", toyNum, toyHave, toyWant];
-                    [self.arrGroupDelete addObject:groupDelete];
-                }
+            if (self.arrToySetup.count > 0) {
+                [self sortToysWithDate:self.arrToySetup];
             }
         }
     }
