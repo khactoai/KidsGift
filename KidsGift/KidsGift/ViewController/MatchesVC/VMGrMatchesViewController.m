@@ -19,6 +19,7 @@
 #import "LGRefreshView.h"
 #import "VMGrConversationViewController.h"
 #import "VMGrToy.h"
+#import "VMGrAlertView.h"
 
 @import Firebase;
 
@@ -64,7 +65,15 @@
 }
 
 - (void)loadCurrentUser {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    // check connection
+    if (![VMGrUtilities connectedToNetwork]) {
+        [VMGrAlertView showAlertNoConnection];
+        return;
+    }
+    
+    MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [progressHUD hideAnimated:YES afterDelay:60.0];
     [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid]  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {

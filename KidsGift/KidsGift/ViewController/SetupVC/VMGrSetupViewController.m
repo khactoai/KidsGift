@@ -85,7 +85,13 @@ enum CellSetup : NSUInteger {
 
 - (void)loadDataSetup {
 
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    // check connection
+    if (![VMGrUtilities connectedToNetwork]) {
+        [VMGrAlertView showAlertNoConnection];
+        return;
+    }
+    MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [progressHUD hideAnimated:YES afterDelay:60.0];
     [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid]  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -233,7 +239,6 @@ enum CellSetup : NSUInteger {
     }
     
     if (![toyNum isEqualToString:PLEASE_SELECT_NUM] && ![toyHave isEqualToString:PLEASE_SELECT_TOY] && ![toyWant isEqualToString:PLEASE_SELECT_TOY]) {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         NSString *groupId = [NSString stringWithFormat:@"%@-%@",toyHave, toyWant];
         NSString *stringDate = [VMGrUtilities dateToString:[NSDate date]];
         NSDictionary *dicToy = @{FIR_USER_TOY_GROUP_ID: groupId,
@@ -242,12 +247,13 @@ enum CellSetup : NSUInteger {
                                   FIR_USER_TOY_WANT: toyWant,
                                   FIR_USER_TOY_DATE_REQUEST: stringDate};
         
+        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [progressHUD hideAnimated:YES afterDelay:60.0];
         [[[[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid] child:FIR_USER_TOY_SETUP] child:groupId] updateChildValues:dicToy withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (error) {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [VMGrAlertView showAlertMessage:@"Setup error, please check again"];
             } else {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [VMGrAlertView showAlertMessage:@"Setup success"];
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SETUP_UPDATE object:self];
             }

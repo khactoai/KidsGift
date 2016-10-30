@@ -231,9 +231,13 @@
 }
 
 - (void)openMainVC {
-
+    if (![VMGrUtilities connectedToNetwork]) {
+        [VMGrAlertView showAlertNoConnection];
+        return;
+    }
     if (mFIRUser) {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [progressHUD hideAnimated:YES afterDelay:60.0];
         [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid]  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             NSInteger selectedIndex = 0;
