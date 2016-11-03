@@ -79,12 +79,13 @@
         if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dicUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
             mCurrentUser = [[VMGrUser alloc] initWithDictionary:dicUser];
+            [mArrToySetup removeLastObject];
             if (mCurrentUser.arrToySetup && mCurrentUser.arrToySetup.count > 0) {
                 mArrToySetup = mCurrentUser.arrToySetup;
-                [self.tableMatches reloadData];
                 // load user matches
                 [self loadUsersMatches];
             }
+            [self.tableMatches reloadData];
         }
     }];
 }
