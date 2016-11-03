@@ -39,6 +39,8 @@
         // distance
         if (dicUser[FIR_USER_DISTANCE]) {
             self.distance = [dicUser[FIR_USER_DISTANCE] integerValue];
+        } else {
+            self.distance = 10;
         }
         // notifyMatch
         if (dicUser[FIR_USER_NOTIFY_MATCH]) {

@@ -100,8 +100,8 @@ enum CellSetup : NSUInteger {
             mUser = [[VMGrUser alloc]initWithDictionary:dictUser];
             if (mUser.arrToySetup.count && mUser.arrToySetup.count > 0) {
                 mToySetup = [mUser.arrToySetup firstObject];
-                [self.tableSetup reloadData];
             }
+            [self.tableSetup reloadData];
         }
     }];
 }

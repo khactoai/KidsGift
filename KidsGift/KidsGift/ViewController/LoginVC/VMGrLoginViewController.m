@@ -108,7 +108,6 @@
             
         } else {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            //[VMGrAlertView showAlertMessage:error.localizedDescription];
         }
         
     }];
@@ -144,7 +143,6 @@
                                   }];
     } else {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        //[VMGrAlertView showAlertMessage:error.localizedDescription];
     }
 
 }

@@ -17,6 +17,7 @@
 #import "RESideMenu.h"
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "MBProgressHUD.h"
+#import "VMGrUser.h"
 
 @import Firebase;
 
@@ -35,7 +36,7 @@ enum CellMenu : NSUInteger {
     
     FIRDatabaseReference *mRef;
     FIRUser *mFIRUser;
-    NSDictionary *mDictUser;
+    VMGrUser *mUser;
 
 }
 
@@ -88,12 +89,13 @@ enum CellMenu : NSUInteger {
     [[[mRef child:FIR_DATABASE_USERS] child:mFIRUser.uid]  observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (snapshot && snapshot.value && [snapshot.value isKindOfClass:[NSDictionary class]]) {
-            mDictUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
+            NSDictionary *dictUser = [[NSDictionary alloc] initWithDictionary:snapshot.value];
+            mUser = [[VMGrUser alloc] initWithDictionary:dictUser];
             [self.tableSetting reloadData];
             // Load location
-            if ([mDictUser objectForKey:FIR_USER_LATITUDE] && [mDictUser objectForKey:FIR_USER_LONGITUDE]) {
-                float latitude = [[mDictUser objectForKey:FIR_USER_LATITUDE] floatValue];
-                float longitude = [[mDictUser objectForKey:FIR_USER_LONGITUDE] floatValue];
+            if ([dictUser objectForKey:FIR_USER_LATITUDE] && [dictUser objectForKey:FIR_USER_LONGITUDE]) {
+                float latitude = mUser.latitude;
+                float longitude = mUser.longitude;
                 [self loadAddressFromGGWithLatitude:latitude longitude:longitude];
             }
         }
@@ -134,21 +136,17 @@ enum CellMenu : NSUInteger {
             [self loadImageAvatar:cell.imgAvatar];
             break;
         case CellLocation:
-            if ([mDictUser objectForKey:FIR_USER_LOCATION]) {
-                cell.location.text = [mDictUser objectForKey:FIR_USER_LOCATION];
+            if (mUser.location && ![mUser.location isEqualToString:@""]) {
+                cell.location.text = mUser.location;
             }
             break;
         case CellDistance:
-            if ([mDictUser objectForKey:FIR_USER_DISTANCE]) {
-                cell.distance.text = [mDictUser objectForKey:FIR_USER_DISTANCE];
-            } else {
-                cell.distance.text = [NSString stringWithFormat:@"%d", (int)cell.sliderDistance.value];
-            }
-            
+            cell.distance.text = [NSString stringWithFormat:@"%d", (int)mUser.distance];
+            cell.sliderDistance.value = mUser.distance;
             break;
         case CellNotify:
-            [cell.switchNotifyMatch setOn:[[mDictUser objectForKey:FIR_USER_NOTIFY_MATCH] boolValue]];
-            [cell.switchNotifyChat setOn:[[mDictUser objectForKey:FIR_USER_NOTIFY_CHAT] boolValue]];
+            [cell.switchNotifyMatch setOn:mUser.notifyMatch];
+            [cell.switchNotifyChat setOn:mUser.notifyChat];
             break;
         default:
             break;
