@@ -62,8 +62,8 @@ enum CellSetup : NSUInteger {
     
     mRef = [[FIRDatabase database] reference];
     mFIRUser = [[FIRAuth auth] currentUser];
-    [self loadDataSetup];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadDataSetup) name:NOTIFICATION_SETUP_DELETE object:nil];
+    //[self loadDataSetup];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadDataSetup) name:NOTIFICATION_SETUP_DELETE object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -254,14 +254,21 @@ enum CellSetup : NSUInteger {
             if (error) {
                 [VMGrAlertView showAlertMessage:@"Setup error, please check again"];
             } else {
-                [VMGrAlertView showAlertMessage:@"Setup success"];
+                NSString *title = [NSString stringWithFormat:@"%@ for %@", toyHave, toyWant];
+                [VMGrAlertView showAlertTitle:title message:@"Setup Successful"];
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SETUP_UPDATE object:self];
+                [self.tableSetup reloadData];
             }
             
         }];
         
     } else {
-        [VMGrAlertView showAlertMessage:PLEASE_SELECT_TOY];
+        if ([toyHave isEqualToString:PLEASE_SELECT_TOY] || [toyWant isEqualToString:PLEASE_SELECT_TOY]) {
+            [VMGrAlertView showAlertMessage:PLEASE_SELECT_TOY];
+        } else {
+            [VMGrAlertView showAlertMessage:PLEASE_SELECT_NUM];
+        }
+        
     }
     
 }

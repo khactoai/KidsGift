@@ -129,7 +129,7 @@
     }
     if (mArrToySetup && mArrToySetup.count > 0) {
         VMGrToy *toy = [mArrToySetup objectAtIndex:section];
-        cell.title.text = [NSString stringWithFormat:@"%@ %@ for %@", toy.toyNum, toy.toyHave, toy.toyWant];
+        cell.title.text = [NSString stringWithFormat:@"%@ for %@", toy.toyHave, toy.toyWant];
         cell.btnDelete.tag = section;
         [cell.btnDelete addTarget:self action:@selector(deleteGroup:) forControlEvents:UIControlEventTouchUpInside];
     }
